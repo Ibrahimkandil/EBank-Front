@@ -1,0 +1,57 @@
+.animated-background {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.animated-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300%;
+    height: 100%;
+    background: linear-gradient(-45deg, #3498db, #9b59b6, #12f3d9);
+    animation: gradientAnimation 5s ease infinite;
+}
+
+
+@keyframes gradientAnimation {
+    0%, 100% {
+        transform: translateX(-66.66%);
+    }
+    50% {
+        transform: translateX(0);
+    }
+}
+.int-error {
+   justify-content: center;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12);
+    width: 40%;
+    border-radius: 20px;
+}
+.card-text {
+    contain: content;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.icon-size {
+    font-size: 26px
+}
+.block-text {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.block-buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
