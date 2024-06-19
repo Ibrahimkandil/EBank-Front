@@ -46,7 +46,6 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
 import {AppLoaderComponent} from "./authenticate/app-loader/app-loader.component";
 import {AppLoaderService} from "./authenticate/app-loader/app-loader.service";
 import {CookieService} from "ngx-cookie-service";
-import { Interface1Component } from './interface1/interface1.component';
 import {Interface1Module} from "./interface1/interface1.module";
 import {NotFoundComponent} from "./not-found/not-found.component";
 
@@ -55,13 +54,14 @@ import {NotFoundComponent} from "./not-found/not-found.component";
     AppComponent,
     AuthenticateComponent,
     AppLoaderComponent,
-    NotFoundComponent
+    NotFoundComponent,
 
 
 
 
   ],
   imports: [
+
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
