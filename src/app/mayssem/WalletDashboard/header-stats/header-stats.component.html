@@ -4,10 +4,11 @@
     <div>
       <!-- Card stats -->
       <div class="flex flex-wrap">
-        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
+        <div class="w-full lg:w-6/12 xl:w-3/12 px-4" *ngFor="let item of datasources">
+
           <app-card-stats
-            statSubtitle="Dinar"
-            statTitle="350,897"
+            statSubtitle="{{item.currency }}"
+            statTitle="{{item.balance }}"
             statArrow="up"
             statPercent="3.48"
             statPercentColor="text-emerald-500"
@@ -16,42 +17,42 @@
           statIconColor="bg-blue-500"
           ></app-card-stats>
         </div>
-        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-          <app-card-stats
-            statSubtitle="Dollar"
-            statTitle="2,356"
-            statArrow="down"
-            statPercent="3.48"
-            statPercentColor="text-red-500"
-            statDescripiron="Since last week"
-            statIconName="fas fa-dollar-sign"
-          statIconColor="bg-yellow-500"
-          ></app-card-stats>
-        </div>
-        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-          <app-card-stats
-            statSubtitle="Euro"
-            statTitle="924"
-            statArrow="down"
-            statPercent="1.10"
-            statPercentColor="text-orange-500"
-            statDescripiron="Since yesterday"
-            statIconName="fas fa-euro-sign"
-          statIconColor="bg-green-500"
-          ></app-card-stats>
-        </div>
-        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-          <app-card-stats
-            statSubtitle="Pound"
-            statTitle="49,65"
-            statArrow="up"
-            statPercent="12"
-            statPercentColor="text-emerald-500"
-            statDescripiron="Since last month"
-            statIconName="fas fa-pound-sign"
-          statIconColor="bg-purple-500"
-          ></app-card-stats>
-        </div>
+<!--        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">-->
+<!--          <app-card-stats-->
+<!--            statSubtitle="Dollar"-->
+<!--            statTitle="2,356"-->
+<!--            statArrow="down"-->
+<!--            statPercent="3.48"-->
+<!--            statPercentColor="text-red-500"-->
+<!--            statDescripiron="Since last week"-->
+<!--            statIconName="fas fa-dollar-sign"-->
+<!--          statIconColor="bg-yellow-500"-->
+<!--          ></app-card-stats>-->
+<!--        </div>-->
+<!--        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">-->
+<!--          <app-card-stats-->
+<!--            statSubtitle="Euro"-->
+<!--            statTitle="924"-->
+<!--            statArrow="down"-->
+<!--            statPercent="1.10"-->
+<!--            statPercentColor="text-orange-500"-->
+<!--            statDescripiron="Since yesterday"-->
+<!--            statIconName="fas fa-euro-sign"-->
+<!--          statIconColor="bg-green-500"-->
+<!--          ></app-card-stats>-->
+<!--        </div>-->
+<!--        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">-->
+<!--          <app-card-stats-->
+<!--            statSubtitle="Pound"-->
+<!--            statTitle="49,65"-->
+<!--            statArrow="up"-->
+<!--            statPercent="12"-->
+<!--            statPercentColor="text-emerald-500"-->
+<!--            statDescripiron="Since last month"-->
+<!--            statIconName="fas fa-pound-sign"-->
+<!--          statIconColor="bg-purple-500"-->
+<!--          ></app-card-stats>-->
+<!--        </div>-->
       </div>
     </div>
   </div>
