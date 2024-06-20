@@ -48,6 +48,7 @@ import {AppLoaderService} from "./authenticate/app-loader/app-loader.service";
 import {CookieService} from "ngx-cookie-service";
 import {Interface1Module} from "./interface1/interface1.module";
 import {NotFoundComponent} from "./not-found/not-found.component";
+import {WalletDashboardService} from "./mayssem/WalletDashboard/wallet-dashboard.service";
 
 @NgModule({
   declarations: [
@@ -114,7 +115,7 @@ import {NotFoundComponent} from "./not-found/not-found.component";
 
   ],
 
-  providers: [AppLoaderService,CookieService],
+  providers: [AppLoaderService,CookieService,WalletDashboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
