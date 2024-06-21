@@ -2,11 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {AuthenticateComponent} from "./authenticate/authenticate.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
+import {ResetpasswordComponent} from "./authenticate/resetpassword/resetpassword.component";
 import {WalletDashboardModule} from "./mayssem/WalletDashboard/wallet-dashboard.module";
 
 const routes: Routes = [
   {
     path: 'auth',component:AuthenticateComponent
+  },
+  {
+    path:'reset',component:ResetpasswordComponent
   },
   {path:'',
     redirectTo: 'auth',

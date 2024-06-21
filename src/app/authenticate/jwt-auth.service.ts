@@ -20,14 +20,9 @@ const DEMO_TOKEN =
 })
 export class JwtAuthService {
   token:any;
-  isAuthenticated!: Boolean;
-  // user: User = {};
-  // user$ = (new BehaviorSubject<User>(this.user));
-   signingIn!: Boolean;
+
   return!: string;
-  JWT_TOKEN = "JWT_TOKEN";
-  APP_USER = "MATX_USER";
-//    private ls: LocalStoreService,    private ls: LocalStoreService,
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -36,103 +31,18 @@ export class JwtAuthService {
     this.route.queryParams
       .subscribe(params => this.return = params['return'] || '/');
   }
+  public restpasswordEmail(body:any){
+    return this.http.post<any>('http://localhost:8080/ebank/api/v1/auth/sendEmail',body)
+  }
 
   public signin(username:any, password:any) {
     console.log('username', username);
     console.log('password', password);
-    let body={
+    let body = {
       "identificationnumber": username,
-        "password": password
+      "password": password
     }
     console.log('body', body);
     return this.http.post('http://localhost:8080/ebank/api/v1/auth/signin', body)
-    // return of({token: DEMO_TOKEN, user: DEMO_USER})
-    //   .pipe(
-    //     delay(1000),
-    //     map((res: any) => {
-    //       this.setUserAndToken(res.token, res.user, !!res);
-    //       this.signingIn = false;
-    //       return res;
-    //     }),
-    //     catchError((error) => {
-    //       return throwError(error);
-    //     })
-    //   );
-
-    // FOLLOWING CODE SENDS SIGNIN REQUEST TO SERVER
-
-    // this.signingIn = true;
-    // return this.http.post(`${environment.apiURL}/auth/local`, { username, password })
-    //   .pipe(
-    //     map((res: any) => {
-    //       this.setUserAndToken(res.token, res.user, !!res);
-    //       this.signingIn = false;
-    //       return res;
-    //     }),
-    //     catchError((error) => {
-    //       return throwError(error);
-    //     })
-    //   );
   }
-
-  /*
-    checkTokenIsValid is called inside constructor of
-    shared/components/layouts/admin-layout/admin-layout.component.ts
-  */
-  // public checkTokenIsValid() {
-  //   return of(DEMO_USER)
-  //     .pipe(
-  //       map((profile: User) => {
-  //         this.setUserAndToken(this.getJwtToken(), profile, true);
-  //         this.signingIn = false;
-  //         return profile;
-  //       }),
-  //       catchError((error) => {
-  //         return of(error);
-  //       })
-  //     );
-  //
-  //   /*
-  //     The following code get user data and jwt token is assigned to
-  //     Request header using token.interceptor
-  //     This checks if the existing token is valid when app is reloaded
-  //   */
-  //
-  //   // return this.http.get(`${environment.apiURL}/api/users/profile`)
-  //   //   .pipe(
-  //   //     map((profile: User) => {
-  //   //       this.setUserAndToken(this.getJwtToken(), profile, true);
-  //   //       return profile;
-  //   //     }),
-  //   //     catchError((error) => {
-  //   //       this.signout();
-  //   //       return of(error);
-  //   //     })
-  //   //   );
-  // }
-  //
-  // public signout() {
-  //   this.setUserAndToken(null, null, false);
-  //   this.router.navigateByUrl("sessions/signin");
-  // }
-  //
-  // isLoggedIn(): Boolean {
-  //   return !!this.getJwtToken();
-  // }
-  //
-  // getJwtToken() {
-  //   return this.ls.getItem(this.JWT_TOKEN);
-  // }
-  // getUser() {
-  //   return this.ls.getItem(this.APP_USER);
-  // }
-  //
-  // setUserAndToken(token: String, user: User, isAuthenticated: Boolean) {
-  //   this.isAuthenticated = isAuthenticated;
-  //   this.token = token;
-  //   this.user = user;
-  //   this.user$.next(user);
-  //   this.ls.setItem(this.JWT_TOKEN, token);
-  //   this.ls.setItem(this.APP_USER, user);
-  // }
 }

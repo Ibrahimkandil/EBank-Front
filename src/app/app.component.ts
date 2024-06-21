@@ -16,6 +16,7 @@ export class AppComponent {
   signinForm:any=new FormGroup({
   a : new FormControl(null)
 })
+  display_menu : boolean=false;
   constructor(
       private cookieGestionnaireService:CookiesGestionnaireService,
       private LoginControllerService:LoginControllerService,

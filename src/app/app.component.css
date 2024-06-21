@@ -187,4 +187,60 @@ nav ul li a:hover {
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+.menu-container {
+.menu-user {
+  position: relative;
+  cursor: pointer !important;
+  left: 150%;
+
+}
+}
+
+.hidden-menu {
+  display: none !important;
+
+}
+.shown-menu {
+  display: block !important;
+
+}
+.menu {
+
+  transition: max-height 3s ease;
+  position: absolute;
+  top: 6%;
+  list-style-type: none;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 150px;
+  right: 5%;
+  padding-left: 0px;
+
+}
+.menu:hover {
+  display : block !important;
+}
+  /*.menu-container {*/
+
+  /*}*/
+.menu li {
+  margin-bottom: 10px;
+}
+.menu li a {
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #333;
+}
+.menu li a:hover {
+  background-color: #f0f0f0;
+}
+
+
+
 
