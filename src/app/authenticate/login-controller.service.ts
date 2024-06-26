@@ -17,12 +17,23 @@ export class LoginControllerService {
     console.log("this.route.url", this.route.url)
     console.log("this0router",this.router)
     console.log("this.route.snapshot",this.route.snapshot)
+    let valemp:boolean = this.cookieService.get("type")==="Employee"
+    let valcli:boolean = this.cookieService.get("type")==="Client"
+    let valadm:boolean = this.cookieService.get("type")==="Admin"
     if (this.cookieService.get('token')) {
       console.log('token exist')
-      this.router.navigateByUrl("interface1");
+      if (valcli) {
+        this.router.navigate(["/interface1"]);
+
+      }
+
+    if(valemp) {
+      this.router.navigate(["/interface2"]);
+    }
+
     }else{
       // if(  this.route.snapshot.url[0].path!=='auth')
-      this.router.navigateByUrl("auth");
+      this.router.navigate(["/auth"]);
     }
   }
 }

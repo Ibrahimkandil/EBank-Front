@@ -1176,6 +1176,12 @@ select {
   clip: auto;
   white-space: normal;
 }
+.text-white.p-3.text-center.inline-flex.items-center.justify-center.w-12.h-12.shadow-lg.rounded-full.bg-blue-500 {
+  .fa {
+    font-size: 25px;
+    color: black;
+  }
+}
 
 .appearance-none {
   -webkit-appearance: none;
@@ -1320,6 +1326,22 @@ select {
 .bg-red-500 {
   --tw-bg-opacity: 1;
   background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
+}
+.bg-green-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(25, 135, 84, var(--tw-bg-opacity));
+}
+.circle-icon {
+  transition: transform 2s ease-in-out, opacity 2s ease-in-out;
+}
+
+.fa-circle {
+  opacity: 1; /* Example: Ensure fully visible when active */
+}
+
+.fa-regular.fa-circle {
+  transform: scale(1); /* Example: Normal size when inactive */
+  opacity: 0.5; /* Example: Reduce opacity when inactive */
 }
 
 .bg-red-600 {
@@ -3687,6 +3709,24 @@ select {
     -webkit-animation-timing-function: cubic-bezier(0,0,0.2,1);
             animation-timing-function: cubic-bezier(0,0,0.2,1);
   }
+}
+.trait {
+  display: flex; justify-content: space-between;
+  margin-top: 3%;
+}
+
+@media (max-width :720px){
+  .trait {
+    display: none;
+    /*display: flex; justify-content: space-between;*/
+  }
+
+}
+
+.mat-select-min-line.ng-tns-c31-1.ng-star-inserted {
+
+  color:white
+
 }
 
 @media (min-width: 640px) {

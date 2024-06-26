@@ -51,6 +51,9 @@ import {Interface1Module} from "./interface1/interface1.module";
 import {NotFoundComponent} from "./not-found/not-found.component";
 import {WalletDashboardService} from "./mayssem/WalletDashboard/wallet-dashboard.service";
 import { ResetpasswordComponent } from './authenticate/resetpassword/resetpassword.component';
+import { Interface2Component } from './interface2/interface2.component';
+import {Interface2Module} from "./interface2/interface2.module";
+
 
 @NgModule({
   declarations: [
@@ -58,14 +61,13 @@ import { ResetpasswordComponent } from './authenticate/resetpassword/resetpasswo
     AuthenticateComponent,
     AppLoaderComponent,
     NotFoundComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
 
 
 
 
   ],
   imports: [
-
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -107,13 +109,14 @@ import { ResetpasswordComponent } from './authenticate/resetpassword/resetpasswo
     MatBottomSheetModule,
     MatDividerModule,
     ReactiveFormsModule,
-
     BrowserAnimationsModule,
+    MatIconModule,
 
 
   ],
   exports: [
-    Interface1Module
+    Interface1Module,
+      Interface2Module
 
 
   ],

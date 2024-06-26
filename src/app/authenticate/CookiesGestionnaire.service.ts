@@ -24,6 +24,8 @@ export class CookiesGestionnaireService {
       }
       }
       });
+
+
   }
 
   clearCookies(){
