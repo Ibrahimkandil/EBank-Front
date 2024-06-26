@@ -22,11 +22,9 @@
           <mat-icon fontIcon="person" ></mat-icon>
 <!--        <img style="width: 50px;height: 50px" src="assets/images/userlogo.png" alt="logo" />-->
 <!--        <img style="width: 50px;height: 50px" [src]="this.CookieService.get('image_data')" alt="User" />-->
-
         <p style="padding-left: 1% ;margin: 0px;margin-right: -10%"> {{this.CookieService.get('first_name')+" "+this.CookieService.get('last_name')}} </p>
           <div class="menu-container" (mouseenter)="display_menu=true" (focus)="display_menu=false"  >
           <span  class="menu-user" ><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-
               <ul  (mouseleave)="display_menu=false" class="menu" [ngClass]="display_menu?'shown-menu':'hidden-menu'" >
                 <li>
                   <a href="#">Home</a>
@@ -41,7 +39,6 @@
                   <a href="#">Contact Us</a>
                 </li>
               </ul>
-
         </div>
         </div>
             <mat-icon class="Icon-Hovered" fontIcon="logout" (click)="logout()" ></mat-icon>
@@ -52,12 +49,7 @@
         <span class="line"></span>
     </div>
 </nav>
-
-
-
-
-
-<div class="menubar" [ngClass]="this.nav?'active':''"  (focusin)="this.toggleNav()">
+<div class="menubar" *ngIf="this.CookieService.get('token')" [ngClass]="this.nav?'active':''"  (focusin)="this.toggleNav()">
     <span   class="iconss" (click)="toggleNav()" ><i class=" fas fa-times"></i>
 </span>
 

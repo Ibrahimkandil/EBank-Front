@@ -7,14 +7,44 @@
         <h6 class="uppercase text-blueGray-100 mb-1 text-xs font-semibold">
           Overview
         </h6>
+        <div style="display: flex;
+    justify-content: space-between;">
+
         <h2 class="text-white text-xl font-semibold">Sales value</h2>
+        <div style="display: flex;
+    justify-content: center;">
+          <mat-form-field >
+            <mat-label  style="color:white">Compte Bancaire</mat-label>
+            <mat-select [value]="this.currencies[0]"  (valueChange)="h1($event)">
+              <mat-option  *ngFor="let account of currencies" [value]="account">
+                {{ account }}
+              </mat-option>
+
+            </mat-select>
+          </mat-form-field>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
-  <div class="p-4 flex-auto">
-    <!-- Chart -->
-    <div class="relative" style="height: 350px">
-      <canvas id="line-chart"></canvas>
-    </div>
-  </div>
+  <mat-tab-group>
+    <mat-tab style="color: white" label="Dérnier Cinq Jours">
+      <div class="p-4 flex-auto">
+        <!-- Chart -->
+        <div class="relative" style="height: 350px">
+          <canvas #lineChartCanvas id="line-chart"></canvas>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab  style="color: white" label="Dérnier Cinq Heures">
+      <div class="p-4 flex-auto">
+        <!-- Chart -->
+        <div class="relative" style="height: 350px">
+          <canvas #lineHeureChartCanvas id="line-heure-chart"></canvas>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
 </div>

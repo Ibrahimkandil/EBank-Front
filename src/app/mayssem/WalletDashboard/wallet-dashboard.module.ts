@@ -8,6 +8,11 @@ import {CardPageVisitsComponent} from "./card-page-visits/card-page-visits.compo
 import {CardSocialTrafficComponent} from "./card-social-traffic/card-social-traffic.component";
 import {HeaderStatsComponent} from "./header-stats/header-stats.component";
 import {CardStatsComponent} from "./card-stats/card-stats.component";
+import {MatIconModule} from "@angular/material/icon";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatOptionModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
+import {MatTabsModule} from "@angular/material/tabs";
 
 
 const routes: Routes = [
@@ -16,18 +21,27 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [
-    WalletDashboardComponent,
-    CardLineChartComponent,
-    CardBarChartComponent,
-    CardPageVisitsComponent,
-    CardSocialTrafficComponent,
+    declarations: [
+        WalletDashboardComponent,
+        CardLineChartComponent,
+        CardBarChartComponent,
+        CardPageVisitsComponent,
+        CardSocialTrafficComponent,
+        HeaderStatsComponent,
+        CardStatsComponent
+    ],
+  exports: [
     HeaderStatsComponent,
-    CardStatsComponent
+
   ],
-  imports: [
-    RouterModule.forChild(routes),
-    CommonModule
-  ]
+    imports: [
+        RouterModule.forChild(routes),
+        CommonModule,
+        MatIconModule,
+        MatFormFieldModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatTabsModule
+    ]
 })
 export class WalletDashboardModule { }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {FormControl, FormControlName, FormGroup} from "@angular/forms";
+import {FormControl,  FormGroup} from "@angular/forms";
 import {CookieService} from "ngx-cookie-service";
-import {ActivatedRoute, Router} from "@angular/router";
+import { Router} from "@angular/router";
 import {LoginControllerService} from "./authenticate/login-controller.service";
 import {CookiesGestionnaireService} from "./authenticate/CookiesGestionnaire.service";
 
