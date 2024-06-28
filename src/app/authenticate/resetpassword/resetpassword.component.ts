@@ -201,7 +201,7 @@ export class ResetpasswordComponent {
 
       }
 
-      this.http.post<any>('http://localhost:8080/ebank/api/v1/auth/getEmail',obj)
+      this.http.post<any>('http://localhost:8081/ebank/api/v1/auth/getEmail',obj)
         .subscribe(response => {
           console.log('response', response);
           console.log('response.token', response.token);
@@ -211,7 +211,7 @@ export class ResetpasswordComponent {
           let restObj ={
             "password":this.cryptage(passValue)
           }
-          this.http.post<any>('http://localhost:8080/ebank/api/v1/client/reset/'+response['client'].id,restObj, { headers: headers })
+          this.http.post<any>('http://localhost:8081/ebank/api/v1/client/reset/'+response['client'].id,restObj, { headers: headers })
             .subscribe(response => {
               this.snackBar.open(response, 'Success', {
                 duration: 5000, // duration in milliseconds (optional)

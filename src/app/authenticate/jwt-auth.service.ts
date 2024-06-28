@@ -32,7 +32,7 @@ export class JwtAuthService {
       .subscribe(params => this.return = params['return'] || '/');
   }
   public restpasswordEmail(body:any){
-    return this.http.post<any>('http://localhost:8080/ebank/api/v1/auth/sendEmail',body)
+    return this.http.post<any>('http://localhost:8081/ebank/api/v1/auth/sendEmail',body)
   }
 
   public signin(username:any, password:any) {
@@ -43,6 +43,6 @@ export class JwtAuthService {
       "password": password
     }
     console.log('body', body);
-    return this.http.post('http://localhost:8080/ebank/api/v1/auth/signin', body)
+    return this.http.post('http://localhost:8081/ebank/api/v1/auth/signin', body)
   }
 }

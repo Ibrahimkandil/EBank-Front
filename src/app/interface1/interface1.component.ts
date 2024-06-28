@@ -54,14 +54,14 @@ export class Interface1Component implements OnInit{
     const headers = new HttpHeaders({
       'Authorization': 'Bearer '+this.cookieservice.get('token')
     });
-    this.http.get('http://localhost:8080/ebank/api/v1/client/historiques/'+this.cookieservice.get('id'), {headers: headers}).
+    this.http.get('http://localhost:8081/ebank/api/v1/client/historiques/'+this.cookieservice.get('id'), {headers: headers}).
     subscribe((res: any) => {
       this.historiques=res;
       this.snackBar.open("Succefull fetching Historiques", 'Success', {
         duration: 5000, // duration in milliseconds (optional)
 
       });
-      this.http.get('http://localhost:8080/ebank/api/v1/client/comptes/'+this.cookieservice.get('id'), {headers: headers}).
+      this.http.get('http://localhost:8081/ebank/api/v1/client/comptes/'+this.cookieservice.get('id'), {headers: headers}).
       subscribe((resp: any) => {
         this.comptes=resp;
         this.snackBar.open(resp, 'Success fetching les comptes Bancaires', {
@@ -173,7 +173,7 @@ getNotification(){
   const headers = new HttpHeaders({
     'Authorization': 'Bearer '+this.cookieservice.get('token')
   });
-    this.http.get('http://localhost:8080/ebank/api/v1/client/notifications/'+this.cookieservice.get('id'), {headers: headers})
+    this.http.get('http://localhost:8081/ebank/api/v1/client/notifications/'+this.cookieservice.get('id'), {headers: headers})
         .subscribe((res: any) => {
           this.reclamations=res[2]
 

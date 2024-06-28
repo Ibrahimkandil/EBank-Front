@@ -1,0 +1,88 @@
+<br>
+<div class="row-6 col-12" style="    display: flex;
+    align-items: center;
+    flex-direction: column;">
+    <img style="width: 50px;height: 50px" src="assets/images/Bank.png" alt="logo" />
+    <h2>Formulaire d'Ajout Un Nouveau Client</h2>
+</div>
+<br>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-md-8">
+<form
+        style="    display: flex;
+    flex-direction: column;
+    " [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+<!--    <mat-form-field appearance="fill">-->
+<!--        <mat-label>Identification Number</mat-label>-->
+<!--        <input matInput formControlName="IdentificationNumber">-->
+<!--    </mat-form-field>-->
+<div  style="display: flex;justify-content: space-between;">
+    <mat-form-field  style="width: 49%" appearance="fill">
+        <mat-label>Nom</mat-label>
+        <input matInput formControlName="last_name">
+    </mat-form-field>
+
+    <mat-form-field style="width: 49%" appearance="fill">
+        <mat-label>prénom</mat-label>
+        <input matInput formControlName="first_name">
+    </mat-form-field>
+</div>
+    <div  style="display: flex;justify-content: space-between;">
+    <mat-form-field style="width: 49%" appearance="fill">
+        <mat-label>Etat du Civil</mat-label>
+        <mat-select formControlName="etatCivil">
+            <mat-option *ngFor="let status of civilStatuses" [value]="status">{{ status }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field style="width: 49%" appearance="fill">
+        <mat-label>Status d'Emploi</mat-label>
+        <mat-select formControlName="statutEmploi">
+            <mat-option *ngFor="let status of employmentStatuses" [value]="status">{{ status }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    </div>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Addresse</mat-label>
+        <input matInput formControlName="address">
+    </mat-form-field>
+
+
+
+    <mat-form-field appearance="fill">
+        <mat-label>Adresse Email</mat-label>
+        <input matInput formControlName="email">
+    </mat-form-field>
+    <div  style="display: flex;justify-content: space-between;">
+        <mat-form-field style="width: 49%" appearance="fill">
+            <mat-label>Numéro du télephone</mat-label>
+            <input matInput formControlName="phone">
+        </mat-form-field>
+    <mat-form-field style="width: 49%"  appearance="fill">
+        <mat-label>Genre</mat-label>
+        <mat-select formControlName="sexe">
+            <mat-option *ngFor="let sex of sexes" [value]="sex">{{ sex }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    </div>
+    <mat-form-field    appearance="fill">
+        <mat-label>Date du Naissance</mat-label>
+        <input matInput type="date" formControlName="date_of_birth">
+    </mat-form-field>
+
+
+
+
+    <div>
+            <input type="file" (change)="onFileSelected($event)" />
+    </div>
+    <br>
+
+    <button mat-raised-button class="mat-primary full-width mb-16" [disabled]="clientForm.invalid">Submit</button>
+</form>
+</div>
+</div>
