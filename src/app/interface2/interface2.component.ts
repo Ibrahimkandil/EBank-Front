@@ -59,7 +59,7 @@ export class Interface2Component {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer '+this.cookieservice.get('token')
     });
-    this.http.get("http://localhost:8080/ebank/api/v1/client/all",{headers: headers})
+    this.http.get("http://localhost:8081/ebank/api/v1/client/all",{headers: headers})
         .subscribe((res:any)=>{
           this.datasourceClient=res;
           this.datasourceClient.forEach((client:any,i:number)=>{

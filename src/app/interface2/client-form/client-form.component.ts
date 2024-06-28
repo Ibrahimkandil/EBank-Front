@@ -62,7 +62,7 @@ export class ClientFormComponent {
       const headers = new HttpHeaders({
         'Authorization': 'Bearer '+this.cookieService.get('token')
       });
-      this.http.post<any>('http://localhost:8080/ebank/api/v1/employee/addClient/'+id, formData,{headers: headers}).subscribe(
+      this.http.post<any>('http://localhost:8081/ebank/api/v1/employee/addClient/'+id, formData,{headers: headers}).subscribe(
           response => {
             console.log('Form submission successful:', response);
             this.snackBar.open('Client data saved successfully', 'Close', {
