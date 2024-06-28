@@ -1,1 +1,360 @@
-<p>interface2 works!</p>
+<div class="flex flex-wrap mt-4">
+    <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
+        <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+            <div class="rounded-t mb-0 px-4 py-3 border-0">
+                <div class="flex flex-wrap items-center">
+                    <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+                        <button class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="redirectversForm()">Ajouter Client</button>
+                    </div>
+                </div>
+            </div>
+            <div class="block w-full overflow-x-auto">
+                        <table class="items-center w-full bg-transparent border-collapse" >
+                            <thead class="thead-light">
+                            <tr>
+                                <th
+                                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                    Id </th>
+                                <th
+                                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                               Image </th>
+                                <th
+                                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                  Nom Complet      </th>
+                                <th
+                                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                                >
+                                    Date d'Ajout
+                                </th>
+                                <th
+                                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                                >
+                                    Email
+                                </th>
+                                <th
+                                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                                >
+                                    Addresse
+                                </th>
+                                <th
+                                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                                >
+                                    Genre
+                                </th>
+                                <th
+                                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                                >
+                                    Etatcivil
+                                </th>
+                                <th
+                                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                                >
+                                    Status d'Emploi
+                                </th>
+                                <th
+                                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                                >
+                                    Numéro du Télephone
+                                </th>
+                                <th
+                                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                                >
+                                    Date du Naissance
+                                </th>
+                            </tr>
+                            <tr>
+                                <th
+                                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                    <form [formGroup]="Filtrer">
+                                    <mat-form-field >
+
+
+                                            <input matInput formControlName="id" (input)="h3(5  ,$event)"  type="number">
+                                            <mat-icon matPrefix>search</mat-icon>
+
+                                    </mat-form-field>
+                                    </form>
+                                </th>
+                                <th
+                                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+
+                                </th>
+                                <th
+                                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                    <form [formGroup]="Filtrer">
+                                    <mat-form-field >
+
+
+                                        <input matInput formControlName="nom_complet" (input)="h3(0,$event)"  type="search">
+                                        <mat-icon matPrefix>search</mat-icon>
+                                    </mat-form-field>
+                                    </form>
+
+                                </th>
+                                <th
+                                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                                >
+                                    <form [formGroup]="Filtrer">
+
+                                    <mat-form-field>
+
+                                        <input matInput formControlName="date_ajout_String" (input)="h2(1,$event)" type="date">
+
+                                    </mat-form-field>
+                                    </form>
+                                </th>
+                                <th
+                                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                                >
+                                    <form [formGroup]="Filtrer">
+
+                                    <mat-form-field >
+
+                                            <input matInput formControlName="email" (input)="h3(2,$event)"  type="search">
+                                            <mat-icon matPrefix>search</mat-icon>
+                                    </mat-form-field>
+                                    </form>
+
+                                </th>
+                                <th
+                                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                                >
+                                    <form [formGroup]="Filtrer">
+
+                                    <mat-form-field >
+
+                                            <input matInput formControlName="address" (input)="h3(3,$event)"  type="search">
+                                            <mat-icon matPrefix>search</mat-icon>
+                                    </mat-form-field>
+                                    </form>
+
+                                </th>
+                                <th
+                                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                                >
+                                    <form [formGroup]="Filtrer">
+                                        <mat-form-field >
+                                            <mat-select [value]="this.genre[3]"  formControlName="sexe" (valueChange)="h4(7,$event)">
+                                                <mat-option   *ngFor="let account of genre" [value]="account">
+                                                    {{ account }}
+                                                </mat-option>
+
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </form>
+
+                                </th>
+                                <th
+                                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                                >
+                                    <form [formGroup]="Filtrer">
+                                        <mat-form-field >
+                                            <mat-select [value]="this.etatcivil[4]"   (valueChange)="h4(4,$event)">
+                                                <mat-option   *ngFor="let account of etatcivil" [value]="account">
+                                                    {{ account }}
+                                                </mat-option>
+
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </form>
+
+                                </th>
+                                <th
+                                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                                >
+                                    <form [formGroup]="Filtrer">
+
+                                        <mat-form-field >
+                                            <mat-select [value]="this.statusemploi[3]"   (valueChange)="h4(9,$event)">
+                                                <mat-option   *ngFor="let account of statusemploi" [value]="account">
+                                                    {{ account }}
+                                                </mat-option>
+
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </form>
+
+                                </th>
+                                <th
+                                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                                >
+                                    <form [formGroup]="Filtrer">
+
+                                    <mat-form-field >
+
+                                            <input matInput formControlName="phone" (input)="h3(6,$event)"  type="search">
+                                            <mat-icon matPrefix>search</mat-icon>
+                                    </mat-form-field>
+                                    </form>
+
+                                </th>
+                                <th
+                                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                                >
+                                    <form [formGroup]="Filtrer">
+                                    <mat-form-field>
+
+
+                                        <input matInput formControlName="date_of_birth_String" (input)="h2(8,$event)" type="date">
+                                    </mat-form-field>
+                                    </form>
+
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody *ngFor="let i of datasourceClientEnPage[pageNumber-1]">
+
+                            <tr>
+                                <th
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+                                >
+                                    {{i.id}}
+                                </th>
+                                <th
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left" style="padding: 0px !important;margin: 0px !important;">
+                                    <img *ngIf="i.image_data"  class="img_full " [src]="i.image64" alt="Image">
+                                    <img *ngIf="!i.image_data" class="img_full"  src="/assets/images/userlogo.png" alt="Default Image">
+                                </th>
+                                <th
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+                                >
+                                    {{i.first_name}} {{i.last_name}}
+                                </th>
+                                <td
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                                >
+                                    {{i.date_ajout_String}}
+                                </td>
+                                <td
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                                >{{i.email}}</td>
+                                <td
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                                >{{i.address}}</td>
+                                <td
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                                >{{i.sexe}}</td>
+                                <td
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                                >{{i.etatCivil}}</td>
+                                <td
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                                >{{i.statutEmploi}}</td>
+                                <td
+                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                                >{{i.phone}}</td>
+                                <td
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                                >{{i.date_of_birth_String}}</td>
+
+                            </tr>
+
+                            </tbody>
+                        </table>
+                <br>
+                    <div style="     display: flex;
+    justify-content: center;
+    align-items: center;"  >
+                        <i class="fa fa-caret-left"  (click)="goback()" *ngIf="pageNumber>1"   aria-hidden="true" style="font-size: 25px"></i>
+<!--                    <div *ngFor="let row of datasources; let i = index">
+(click)="goback()"
+(click)="advance()"-->
+                        <input class="Index" type="number" [value]="pageNumber" [readOnly]="true" />
+<!--                        (click)="gothere(i)" *ngIf="i !== index"-->
+<br>
+<p style="    margin-bottom: 0px;
+    margin-left: 5px;
+    margin-right: 5px;">  du {{this.datasourceClientEnPage.length}}</p>
+                        <i class="fa fa-caret-right"   *ngIf="pageNumber+1<=this.datasourceClientEnPage.length" (click)="gofront()" aria-hidden="true" style="font-size: 25px"></i>
+                    </div>
+                <br>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="w-full xl:w-4/12 px-4">
+
+        <div
+                class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
+        >
+            <div class="rounded-t mb-0 px-4 py-3 border-0">
+                <div class="flex flex-wrap items-center">
+                    <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                        <h3 class="font-semibold text-base text-blueGray-700">Historiques</h3>
+                    </div>
+                    <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+                        <button
+                                class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                type="button"
+                        >
+                            See all
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="block w-full overflow-x-auto">
+                <!-- Projects table -->
+                <table class="items-center w-full bg-transparent border-collapse">
+                    <thead class="thead-light">
+                    <tr>
+                        <th
+                                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                        >
+                            Type Transaction
+                        </th>
+                        <th
+                                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                        >
+                            Montant        </th>
+                        <th
+                                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                        ></th>
+                    </tr>
+                    </thead>
+                    <tbody *ngFor="let i of datasourceClientEnPage[0]">
+                    <tr>
+                        <th
+                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+                        >
+                            {{i.first_name}}+" "+{{i.last_name}}
+                        </th>
+                        <td
+                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                        >
+                            {{i.date_of_birth}}
+                        </td>
+                        <td
+                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                        >{{i.email}}</td>
+                        <td>
+<!--                            <div class="flex items-center">-->
+<!--                                <span *ngIf="this.compareDate(i.date_Expiration)" class="mr-2">EN COURS </span>-->
+<!--                                <span *ngIf="!this.compareDate(i.date_Expiration)" class="mr-2">COMPLETED</span>-->
+<!--                                <div class="relative w-full">-->
+<!--                                    <div-->
+<!--                                            class="overflow-hidden h-2 text-xs flex rounded bg-red-200"-->
+<!--                                    >-->
+<!--                                        <div *ngIf="this.compareDate(i.date_Expiration)"-->
+<!--                                             style="width: 100%"-->
+<!--                                             class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-yellow-500"-->
+<!--                                        ></div>-->
+<!--                                        <div *ngIf="!this.compareDate(i.date_Expiration)"-->
+<!--                                             style="width: 100%"-->
+<!--                                             class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500 "-->
+<!--                                        ></div>-->
+
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
