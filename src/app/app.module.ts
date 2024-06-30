@@ -53,6 +53,9 @@ import {WalletDashboardService} from "./mayssem/WalletDashboard/wallet-dashboard
 import { ResetpasswordComponent } from './authenticate/resetpassword/resetpassword.component';
 import { Interface2Component } from './interface2/interface2.component';
 import {Interface2Module} from "./interface2/interface2.module";
+import { CompteComponent } from './Ahmed/compte/compte.component';
+import { TransactionComponent } from './Ahmed/transaction/transaction.component';
+import { TransfertComponent } from './Ahmed/transfert/transfert.component';
 
 
 @NgModule({
@@ -62,6 +65,9 @@ import {Interface2Module} from "./interface2/interface2.module";
     AppLoaderComponent,
     NotFoundComponent,
     ResetpasswordComponent,
+    CompteComponent,
+    TransactionComponent,
+    TransfertComponent,
 
 
 

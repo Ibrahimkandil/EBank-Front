@@ -4,6 +4,9 @@ import {AuthenticateComponent} from "./authenticate/authenticate.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
 import {ResetpasswordComponent} from "./authenticate/resetpassword/resetpassword.component";
 import {WalletDashboardModule} from "./mayssem/WalletDashboard/wallet-dashboard.module";
+import { CompteComponent } from './Ahmed/compte/compte.component';
+import { TransactionComponent } from './Ahmed/transaction/transaction.component';
+import { TransfertComponent } from './Ahmed/transfert/transfert.component';
 
 const routes: Routes = [
   {
@@ -20,7 +23,15 @@ const routes: Routes = [
 
   { path: 'interface1', loadChildren: () => import("./interface1/interface1.module").then(m => m.Interface1Module) },
   { path: 'interface2', loadChildren: () => import("./interface2/interface2.module").then(m => m.Interface2Module) },
-
+  {
+    path:'compte', component: CompteComponent
+  },
+  {
+    path:'transaction', component: TransactionComponent
+  },
+  {
+    path:'transfert', component: TransfertComponent
+  },
   {path:"**",component:NotFoundComponent}
 
 ];
