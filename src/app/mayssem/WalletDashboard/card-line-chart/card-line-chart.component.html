@@ -14,7 +14,7 @@
         <div style="display: flex;
     justify-content: center;">
           <mat-form-field >
-            <mat-label  style="color:white">Compte Bancaire</mat-label>
+            <mat-label  style="color:white">Currency</mat-label>
             <mat-select [value]="this.currencies[0]"  (valueChange)="h1($event)">
               <mat-option  *ngFor="let account of currencies" [value]="account">
                 {{ account }}

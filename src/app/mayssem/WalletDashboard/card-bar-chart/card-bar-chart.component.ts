@@ -1,14 +1,47 @@
 import { Component, OnInit, AfterViewInit } from "@angular/core";
 import { Chart } from 'chart.js'
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {HttpClient} from "@angular/common/http";
+import {WalletDashboardService} from "../wallet-dashboard.service";
 
 @Component({
   selector: "app-card-bar-chart",
   templateUrl: "./card-bar-chart.component.html",
 })
 export class CardBarChartComponent implements OnInit, AfterViewInit {
-  constructor() {}
+  form: FormGroup;
+  options1: string[] = [];
+  options2: string[] = [];
+  options3: string[] = [];
+  currencies = ['USD', 'EUR', 'JPY', 'GBP', 'AUD', 'CAD', 'CHF', 'CNY', 'SEK', 'NZD'];
+  mode = ['Buy', 'Sell'];
 
-  ngOnInit() {}
+  constructor(private fb: FormBuilder,private http:HttpClient,private walletDashboardService: WalletDashboardService ) {
+    this.form = this.fb.group({
+      dropdown1: [''],
+      dropdown2: [''],
+      dropdown3: [''],
+      input1: ['']
+    });
+  }
+  historicalData: any = [];
+
+  ngOnInit(): void {
+    for(let i =0;i<this.currencies.length;i++){
+      this.historicalData[i]={
+        currency:this.currencies[i],
+        rates:[]
+      }
+    }
+
+  }
+  h1(e:any) {
+    let findByCurrency = this.historicalData.find((element: any) => element.currency === e);
+    console.log("e", e)
+  }
+  onSubmit(): void {
+    console.log(this.form.value);
+  }
   ngAfterViewInit() {
     let config:any = {
       type: "bar",

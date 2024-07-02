@@ -4,17 +4,88 @@
   <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
     <div class="flex flex-wrap items-center">
       <div class="relative w-full max-w-full flex-grow flex-1">
-        <h6 class="uppercase text-blueGray-400 mb-1 text-xs font-semibold">
-          Performance
-        </h6>
-        <h2 class="text-blueGray-700 text-xl font-semibold">Total orders</h2>
+
+        <div class="page-content">
+          <div class="form-v6-content">
+            <!--    <div class="form-left">-->
+            <!--      <img src="images/form-v6.jpg" alt="form">-->
+            <!--    </div>-->
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-detail" style="margin-top: -150px;margin-bottom: -234px;">
+              <h2>Buy or Sell Currency</h2>
+
+              <!-- Première ligne avec une liste déroulante -->
+              <div style="display: contents;justify-content: center;">
+                <mat-form-field >
+                  <mat-label  style="color:black">Type</mat-label>
+                  <mat-select [value]="this.mode[0]"  (valueChange)="h1($event)">
+                    <mat-option  *ngFor="let m of mode" [value]="m">
+                      {{ m }}
+                    </mat-option>
+
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <!-- Deuxième ligne avec deux listes déroulantes et un champ d'entrée -->
+              <div class="row" >
+                <div class="col-md-5">
+                <mat-form-field style="width: 150px;">
+                  <mat-label  style="color:black">Currency</mat-label>
+                  <mat-select [value]="this.currencies[0]"  (valueChange)="h1($event)">
+                    <mat-option  *ngFor="let account of currencies" [value]="account">
+                      {{ account }}
+                    </mat-option>
+
+                  </mat-select>
+                </mat-form-field>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-5">
+
+                <mat-form-field style="width: 150px;" >
+                  <mat-label  style="color:black">Currency</mat-label>
+                  <mat-select [value]="this.currencies[0]"  (valueChange)="h1($event)">
+                    <mat-option  *ngFor="let account of currencies" [value]="account">
+                      {{ account }}
+                    </mat-option>
+
+                  </mat-select>
+                </mat-form-field>
+                </div>
+
+              </div>
+
+              <div class="form-row">
+                <input type="number" id="input1" formControlName="input1" class="input-text" placeholder="Amount" required>
+              </div>
+
+              <!-- Troisième ligne avec un bouton de validation -->
+              <div class="form-row-last">
+                <input type="submit" class="register" value="validate">
+              </div>
+            </form>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
-  <div class="p-4 flex-auto">
-    <!-- Chart -->
-    <div class="relative" style="height: 350px">
-      <canvas id="bar-chart"></canvas>
-    </div>
-  </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

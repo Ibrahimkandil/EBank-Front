@@ -1,5 +1,5 @@
 <!-- Header -->
-<div class="relative bg-red-600 md:pt-32 pb-32 pt-12">
+<div class="relative  animated-background md:pt-32 pb-32 pt-12">
   <div class="px-4 md:px-10 mx-auto w-full">
     <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
       <button
@@ -74,14 +74,14 @@
 <!--        </div>-->
       </div>
       <div class="col trait" >
-        <i class="fa fa-arrow-left ease-linear" aria-hidden="true" (click)="goback()" style="cursor:pointer;font-size: 30px"></i>
+        <i class="fa fa-arrow-left ease-linear" aria-hidden="true" (click)="goback()" style="transform: scale(1);cursor:pointer;font-size: 30px"></i>
 
         <div *ngFor="let row of datasources; let i = index">
-          <i class="fa fa-circle ease-linear" aria-hidden="true" *ngIf="i === index" style="font-size: 30px"></i>
-          <i class="fa fa-regular fa-circle ease-linear" aria-hidden="true" (click)="gothere(i)" *ngIf="i !== index" style="cursor:pointer;font-size: 30px"></i>
+          <i class="fa fa-circle ease-linear" aria-hidden="true" *ngIf="i === index" style="transform: scale(1);font-size: 30px"></i>
+          <i class="fa fa-regular fa-circle ease-linear" aria-hidden="true" (click)="gothere(i)" *ngIf="i !== index" style="transform: scale(1);cursor:pointer;font-size: 30px"></i>
         </div>
 
-        <i class="fa fa-arrow-right ease-linear  " aria-hidden="true" (click)="advance()" style="cursor:pointer;font-size: 30px"></i>
+        <i class="fa fa-arrow-right ease-linear  " aria-hidden="true" (click)="advance()" style="transform: scale(1);cursor:pointer;font-size: 30px"></i>
       </div>
 
     </div>

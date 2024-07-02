@@ -79,9 +79,9 @@ export class HeaderStatsComponent implements OnInit {
   constructor(private  walletDashboardService:WalletDashboardService, private snackBar: MatSnackBar,) {
     this.screenWidth = window.innerWidth;
     this.walletDashboardService.fetchWallets().subscribe((data: any) => {
-      this.snackBar.open("Success"), 'Error', {
+      this.snackBar.open("Success", 'Error', {
         duration: 5000, // duration in milliseconds (optional)
-      };
+      });
       if(data){
         this.originalData=data;
         this.processData(this.originalData);
