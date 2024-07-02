@@ -30,10 +30,11 @@ export class LoginControllerService {
     if(valemp) {
       this.router.navigate(["/interface2"]);
     }
-
-    }else{
+    if(valadm){
       // if(  this.route.snapshot.url[0].path!=='auth')
-      this.router.navigate(["/auth"]);
+      this.router.navigate(["/interface3"]);
+    }
+
     }
   }
 }

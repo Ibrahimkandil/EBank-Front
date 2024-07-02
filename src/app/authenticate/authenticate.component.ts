@@ -75,6 +75,7 @@ export class AuthenticateComponent {
           duration: 5000, // duration in milliseconds (optional)
         });
         console.log('response', response);
+
         this.router.navigateByUrl("interface1");
       }, err => {
         this.submitButton.disabled = false;

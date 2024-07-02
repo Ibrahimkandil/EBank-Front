@@ -53,6 +53,11 @@ import {WalletDashboardService} from "./mayssem/WalletDashboard/wallet-dashboard
 import { ResetpasswordComponent } from './authenticate/resetpassword/resetpassword.component';
 import { Interface2Component } from './interface2/interface2.component';
 import {Interface2Module} from "./interface2/interface2.module";
+import { FicheClientComponent } from './Fiches/fiche-client/fiche-client.component';
+import { SendEmailDialogComponent } from './authenticate/send-email-dialog/send-email-dialog.component';
+import { Interface3Component } from './interface3/interface3.component';
+import {Interface3Module} from "./interface3/interface3.module";
+import {FicheEmployeeComponent} from "./Fiches/fiche-employee/fiche-employee.component";
 
 
 @NgModule({
@@ -62,6 +67,9 @@ import {Interface2Module} from "./interface2/interface2.module";
     AppLoaderComponent,
     NotFoundComponent,
     ResetpasswordComponent,
+    FicheClientComponent,
+    SendEmailDialogComponent,
+    FicheEmployeeComponent
 
 
 
@@ -116,7 +124,8 @@ import {Interface2Module} from "./interface2/interface2.module";
   ],
   exports: [
     Interface1Module,
-      Interface2Module
+      Interface2Module,
+      Interface3Module
 
 
   ],

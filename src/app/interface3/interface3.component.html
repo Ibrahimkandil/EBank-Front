@@ -1,0 +1,555 @@
+<br>
+<div
+        style="    display: flex;
+    justify-content: center;">
+    <mat-tab-group class="sized">
+        <mat-tab label="Transactions">
+
+            <canvas #BarChartEmployeeClient id="BarChartEmployeeClient"></canvas>
+
+        </mat-tab>
+        <mat-tab label="Transfert">
+
+            <canvas #BarChartAgenceClient id="BarChartAgenceClient"></canvas>
+
+        </mat-tab>
+    </mat-tab-group>
+
+
+
+</div>
+<div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
+    <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+
+        <div class="block w-full overflow-x-auto">
+            <mat-tab-group>
+                <mat-tab label="Listes Des Employees ">
+                    <div class="rounded-t mb-0 px-4 py-3 border-0">
+                        <div class="flex flex-wrap items-center">
+                            <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+                                <button class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="redirectversForm()">Ajouter Employee</button>
+                            </div>
+                        </div>
+                    </div>
+            <table class="items-center w-full bg-transparent border-collapse" >
+                <thead class="thead-light">
+                <tr>
+                    <th
+                            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                        Id </th>
+                    <th
+                            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                        Image </th>
+                    <th
+                            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                        Nom Complet      </th>
+                    <th
+                            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                    >
+                        CIN
+                    </th>
+                    <th
+                            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                    >
+                        Date d'Ajout
+                    </th>
+                    <th
+                            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                    >
+                        Mail
+                    </th>
+                    <th
+                            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                    >
+                        Addresse
+                    </th>
+                    <th
+                            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                    >
+                        Genre
+                    </th>
+
+                </tr>
+                <tr>
+                    <th
+                            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                        <form [formGroup]="Filtrer">
+                            <mat-form-field >
+
+
+                                <input matInput formControlName="id" (input)="h3(0  ,$event)"  type="number">
+                                <mat-icon matPrefix>search</mat-icon>
+
+                            </mat-form-field>
+                        </form>
+                    </th>
+                    <th
+                            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+
+                    </th>
+                    <th
+                            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                        <form [formGroup]="Filtrer">
+                            <mat-form-field >
+
+
+                                <input matInput formControlName="nom_complet" (input)="h3(1,$event)"  type="search">
+                                <mat-icon matPrefix>search</mat-icon>
+                            </mat-form-field>
+                        </form>
+
+                    </th>
+                    <th
+                            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                        <form [formGroup]="Filtrer">
+                            <mat-form-field >
+
+
+                                <input matInput formControlName="cin" (input)="h3(4,$event)"  type="search">
+                                <mat-icon matPrefix>search</mat-icon>
+                            </mat-form-field>
+                        </form>
+
+                    </th>
+                    <th
+                            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                    >
+                        <form [formGroup]="Filtrer">
+
+                            <mat-form-field>
+
+                                <input matInput formControlName="date_ajout_String" (input)="h2(5,$event)" type="date">
+
+                            </mat-form-field>
+                        </form>
+                    </th>
+                    <th
+                            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                    >
+                        <form [formGroup]="Filtrer">
+
+                            <mat-form-field >
+
+                                <input matInput formControlName="mail" (input)="h3(2,$event)"  type="search">
+                                <mat-icon matPrefix>search</mat-icon>
+                            </mat-form-field>
+                        </form>
+
+                    </th>
+                    <th
+                            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                    >
+                        <form [formGroup]="Filtrer">
+
+                            <mat-form-field >
+
+                                <input matInput formControlName="address" (input)="h3(3,$event)"  type="search">
+                                <mat-icon matPrefix>search</mat-icon>
+                            </mat-form-field>
+                        </form>
+
+                    </th>
+                    <th
+                            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                    >
+                        <form [formGroup]="Filtrer">
+                            <mat-form-field >
+                                <mat-select [value]="this.genre[3]"  formControlName="sexe" (valueChange)="h4(8,$event)">
+                                    <mat-option   *ngFor="let account of genre" [value]="account">
+                                        {{ account }}
+                                    </mat-option>
+
+                                </mat-select>
+                            </mat-form-field>
+                        </form>
+
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody *ngIf=" datasourceEmployeeEnPage.length==0">
+                <br>
+                <h2 style="position: relative;    left: 110%;">Pas du Data disponible</h2>
+
+                </tbody>
+                <tbody *ngFor="let i of datasourceEmployeeEnPage[pageNumber-1]">
+
+                <tr (dblclick)="goversEmployeeFichTechnique(i.id)" class="Hovring">
+                    <th
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+                    >
+                        {{i.id}}
+                    </th>
+                    <th
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left" style="padding: 0px !important;margin: 0px !important;">
+                        <img *ngIf="i.image_data"  class="img_full " [src]="i.image64" alt="Image">
+                        <img *ngIf="!i.image_data" class="img_full"  src="/assets/images/userlogo.png" alt="Default Image">
+                    </th>
+                    <th
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+                    >
+                        {{i.name}} {{i.last_name}}
+                    </th>
+                    <td
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >{{i.cin}}</td>
+                    <td
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                        {{i.date_ajout_String}}
+                    </td>
+                    <td
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >{{i.mail}}</td>
+                    <td
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >{{i.address}}</td>
+                    <td
+                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >{{i.sexe}}</td>
+
+
+
+                </tr>
+
+                </tbody>
+            </table>
+            <br>
+            <div style="     display: flex;
+    justify-content: center;
+    align-items: center;"  >
+                <i class="fa fa-caret-left"  (click)="goback()" *ngIf="pageNumber>1"   aria-hidden="true" style="font-size: 25px"></i>
+                <!--                    <div *ngFor="let row of datasources; let i = index">
+                (click)="goback()"
+                (click)="advance()"-->
+                <input class="Index" type="number" [value]="pageNumber" [readOnly]="true" />
+                <!--                        (click)="gothere(i)" *ngIf="i !== index"-->
+                <br>
+                <p style="    margin-bottom: 0px;
+    margin-left: 5px;
+    margin-right: 5px;">  du {{this.datasourceEmployeeEnPage.length}}</p>
+                <i class="fa fa-caret-right"   *ngIf="pageNumber+1<=this.datasourceEmployeeEnPage.length" (click)="gofront()" aria-hidden="true" style="font-size: 25px"></i>
+            </div>
+            <br>
+                </mat-tab>
+
+                <mat-tab label="Liste d'Agence">
+                    <table class="items-center w-full bg-transparent border-collapse" >
+                        <thead class="thead-light">
+                        <tr>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                Id </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                Nom </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                Nom Responsable      </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                            >
+                                Code Agence
+                            </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                            >
+                                Budget
+                            </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                            >
+                                Addresse
+                            </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                            >
+                                Ville
+                            </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                            >
+                                Code Postale
+                            </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                            >
+                                Pays
+                            </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                            >
+                                Date Du Création
+                            </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                            >
+                                Description
+                            </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                            >
+                                Email
+                            </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                            >
+                                Numéro télephone
+                            </th>
+
+                        </tr>
+                        <tr>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                <form [formGroup]="FiltrerAgence">
+                                    <mat-form-field >
+
+
+                                        <input matInput formControlName="id" (input)="h3Agence(0  ,$event)"  type="number">
+                                        <mat-icon matPrefix>search</mat-icon>
+
+                                    </mat-form-field>
+                                </form>
+                            </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                <form [formGroup]="FiltrerAgence">
+                                    <mat-form-field >
+
+
+                                        <input matInput formControlName="name" (input)="h3Agence(1  ,$event)"  >
+                                        <mat-icon matPrefix>search</mat-icon>
+
+                                    </mat-form-field>
+                                </form>
+                            </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                <form [formGroup]="FiltrerAgence">
+                                    <mat-form-field >
+
+
+                                        <input matInput formControlName="nom_Responsable" (input)="h3Agence(11,$event)"  type="search">
+                                        <mat-icon matPrefix>search</mat-icon>
+                                    </mat-form-field>
+                                </form>
+
+                            </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                <form [formGroup]="FiltrerAgence">
+                                    <mat-form-field >
+
+
+                                        <input matInput formControlName="code" (input)="h3Agence(9,$event)"  type="search">
+                                        <mat-icon matPrefix>search</mat-icon>
+                                    </mat-form-field>
+                                </form>
+
+                            </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+                            >
+                                <form [formGroup]="FiltrerAgence">
+
+                                    <mat-form-field>
+
+                                        <input matInput formControlName="budget" (input)="h3Agence(12,$event)" >
+
+                                    </mat-form-field>
+                                </form>
+                            </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                            >
+                                <form [formGroup]="FiltrerAgence">
+
+                                    <mat-form-field >
+
+                                        <input matInput formControlName="address" (input)="h3Agence(2,$event)"  type="search">
+                                        <mat-icon matPrefix>search</mat-icon>
+                                    </mat-form-field>
+                                </form>
+
+                            </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                            >
+                                <form [formGroup]="FiltrerAgence">
+
+                                    <mat-form-field >
+
+                                        <input matInput formControlName="city" (input)="h3Agence(6,$event)"  type="search">
+                                        <mat-icon matPrefix>search</mat-icon>
+                                    </mat-form-field>
+                                </form>
+
+                            </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                            >
+                                <form [formGroup]="FiltrerAgence">
+
+                                    <mat-form-field >
+
+                                        <input matInput formControlName="postalCode" (input)="h3Agence(5,$event)"  type="search">
+                                        <mat-icon matPrefix>search</mat-icon>
+                                    </mat-form-field>
+                                </form>
+
+                            </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                            >
+                                <form [formGroup]="FiltrerAgence">
+
+                                    <mat-form-field >
+
+                                        <input matInput formControlName="country" (input)="h3Agence(7,$event)"  type="search">
+                                        <mat-icon matPrefix>search</mat-icon>
+                                    </mat-form-field>
+                                </form>
+
+                            </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                            >
+                                <form [formGroup]="FiltrerAgence">
+
+                                    <mat-form-field >
+
+                                        <input matInput formControlName="creationDate" (input)="h2Agence(10,$event)"  type="date">
+                                    </mat-form-field>
+                                </form>
+
+                            </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                            >
+                                <form [formGroup]="FiltrerAgence">
+
+                                    <mat-form-field >
+
+                                        <input matInput formControlName="description" (input)="h3Agence(8,$event)"  type="search">
+                                        <mat-icon matPrefix>search</mat-icon>
+                                    </mat-form-field>
+                                </form>
+
+                            </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                            >
+                                <form [formGroup]="FiltrerAgence">
+
+                                    <mat-form-field >
+
+                                        <input matInput formControlName="email" (input)="h3Agence(4,$event)"  type="search">
+                                        <mat-icon matPrefix>search</mat-icon>
+                                    </mat-form-field>
+                                </form>
+
+                            </th>
+                            <th
+                                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                            >
+                                <form [formGroup]="FiltrerAgence">
+
+                                    <mat-form-field >
+
+                                        <input matInput formControlName="phone" (input)="h3Agence(3,$event)"  type="search">
+                                        <mat-icon matPrefix>search</mat-icon>
+                                    </mat-form-field>
+                                </form>
+
+                            </th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody *ngIf=" datasourceAgenceEnPage.length==0">
+                        <br>
+                            <h2 style="position: relative;    left: 110%;">Pas du Data disponible</h2>
+
+                        </tbody>
+                        <tbody *ngFor="let i of datasourceAgenceEnPage[pageNumberAgence-1]">
+
+                        <tr (dblclick)="goversEmployeeFichTechnique(i.id)" class="Hovring">
+                            <th
+                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+                            >
+                                {{i.id}}
+                            </th>
+                            <th
+                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+                            >
+                            {{i.name}}
+                            </th>
+                            <th
+                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+                            >
+                                {{i.nom_Responsable}}
+                            </th>
+                            <td
+                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                            >{{i.code}}</td>
+                            <td
+                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                            >
+                                {{i.budget}}
+                            </td>
+                            <td
+                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                            >{{i.address}}</td>
+                            <td
+                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                            >{{i.city}}</td>
+                            <td
+                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                            >{{i.postalCode}}</td>
+                            <td
+                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                            >{{i.country}}</td>
+                            <td
+                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                            >{{i.creationDate}}</td>
+                            <td
+                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                            >{{i.description}}</td>
+                            <td
+                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                            >{{i.email}}</td>
+                            <td
+                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                            >{{i.phone}}</td>
+
+
+
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <br>
+                    <div style="     display: flex;
+    justify-content: center;
+    align-items: center;"  >
+                        <i class="fa fa-caret-left"  (click)="goback()" *ngIf="pageNumber>1"   aria-hidden="true" style="font-size: 25px"></i>
+                        <!--                    <div *ngFor="let row of datasources; let i = index">
+                        (click)="goback()"
+                        (click)="advance()"-->
+                        <input class="Index" type="number" [value]="pageNumber" [readOnly]="true" />
+                        <!--                        (click)="gothere(i)" *ngIf="i !== index"-->
+                        <br>
+                        <p style="    margin-bottom: 0px;
+    margin-left: 5px;
+    margin-right: 5px;">  du {{this.datasourceEmployeeEnPage.length}}</p>
+                        <i class="fa fa-caret-right"   *ngIf="pageNumber+1<=this.datasourceEmployeeEnPage.length" (click)="gofront()" aria-hidden="true" style="font-size: 25px"></i>
+                    </div>
+                    <br>
+                </mat-tab>
+
+            </mat-tab-group>
+        </div>
+
+
+    </div>
+</div>
