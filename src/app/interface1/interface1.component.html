@@ -1,0 +1,203 @@
+<br>
+<div style="display: flex;
+    justify-content: center;">
+    <mat-form-field >
+      <mat-label>Compte Bancaire</mat-label>
+      <mat-select [value]="this.listdesComptes[0]" (valueChange)="h1($event)">
+        <mat-option   *ngFor="let account of listdesComptes" [value]="account">
+          {{ account }}
+        </mat-option>
+
+      </mat-select>
+    </mat-form-field>
+
+</div>
+
+<div style="    display: flex;
+    justify-content: center;">
+<!--  <mat-pie-chart-->
+<!--    [data]="pieChartData"-->
+<!--    [labels]="pieChartLabels"-->
+<!--    [colors]="pieChartColors"-->
+<!--    [options]="pieChartOptions"-->
+<!--    [legend]="pieChartLegend"-->
+<!--    [chartType]="pieChartType"></mat-pie-chart>-->
+  <div style="    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    width: 50%;">
+
+      <canvas id="pieChart"></canvas>
+    </div>
+
+
+
+
+
+</div>
+<br>
+<div style="  background-color: #0000ff63;
+    border: 1px solid blue;
+    height: 13%;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;">
+  <button style="height: 50%;width: 20%;" class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Depôt</button>
+  <button style="height: 50%;width: 20%;"  class="bg-yellow-500 text-white active:bg-indigo-500 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">retirer</button>
+  <button style="height: 50%;width: 20%;"  class="bg-red-500 text-white active:bg-indigo-500 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Transfert</button>
+  <button style="height: 50%;width: 20%;"  class="bg-emerald-500 text-white active:bg-indigo-500 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Créer Compte Bancaire</button>
+
+
+</div>
+<div class="flex flex-wrap mt-4">
+  <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
+    <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+      <div class="rounded-t mb-0 px-4 py-3 border-0">
+        <div class="flex flex-wrap items-center">
+          <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+            <button class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">See all</button>
+          </div>
+        </div>
+      </div>
+      <div class="block w-full overflow-x-auto">
+        <mat-tab-group>
+          <mat-tab label="Demandes/Contrats">
+            <table class="items-center w-full bg-transparent border-collapse">
+              <thead>
+              <tr>
+                <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Type</th>
+                <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Montant</th>
+                <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Description</th>
+                <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Type/Assurance</th>
+              </tr>
+
+              </thead>
+              <tbody  *ngIf="demandeContrat.length!=0">
+              <tr *ngFor="let ele of demandeContrat">
+                <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">{{ele.typeObj ||  ele.type}}</th>
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{{ele.montant}}</td>
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{{ele.raisonDemandeCredit || ele.description }}</td>
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{{ele.informationsAssurance || ele.type }}</td>
+
+              </tr>
+              </tbody>
+              <tbody  *ngIf="demandeContrat.length==0">
+              <h3 class="pt-3" style="    display: flex;
+                justify-content: center;">Pas des Demandes/Contrats</h3>
+              </tbody>
+            </table>
+          </mat-tab>
+          <mat-tab label="Réclamations  ">
+            <table class="items-center w-full bg-transparent border-collapse">
+              <thead>
+              <tr>
+                <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Types</th>
+                <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Date</th>
+                <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Sujet</th>
+                <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Description</th>
+              </tr>
+              </thead>
+              <tbody  *ngIf="demandeContrat.length!=0">
+              <tr *ngFor="let ele of reclamations">
+                <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">{{ele.type}}</th>
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{{ele.date.split("T")[0]+" "+ele.date.split("T")[1].split("Z")[0]  }}</td>
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{{ele.subject }}</td>
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{{ele.description || ele.type }}</td>
+
+              </tr>
+              </tbody>
+              <tbody  *ngIf="reclamations.length==0">
+              <h3 class="pt-3" style="    display: flex;
+                justify-content: center;">Pas des Reclamations</h3>
+              </tbody>
+            </table>
+          </mat-tab>
+        </mat-tab-group>
+
+      </div>
+    </div>
+  </div>
+  <div class="w-full xl:w-4/12 px-4">
+
+  <div
+  class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
+>
+  <div class="rounded-t mb-0 px-4 py-3 border-0">
+    <div class="flex flex-wrap items-center">
+      <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+        <h3 class="font-semibold text-base text-blueGray-700">Historiques</h3>
+      </div>
+      <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+        <button
+          class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+          type="button"
+        >
+          See all
+        </button>
+      </div>
+
+    </div>
+  </div>
+  <div class="block w-full overflow-x-auto">
+    <!-- Projects table -->
+    <table class="items-center w-full bg-transparent border-collapse">
+      <thead class="thead-light">
+      <tr>
+        <th
+          class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+          Type Transaction
+        </th>
+        <th
+          class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+        >
+Montant        </th>
+        <th
+          class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+        ></th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let i of listofbunch">
+      <tr>
+        <th
+          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+        >
+            {{i.type}}
+        </th>
+        <td
+          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+          {{i.amount}}
+        </td>
+        <td
+          class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+        >
+          <div class="flex items-center">
+            <span *ngIf="this.compareDate(i.date_Expiration)" class="mr-2">EN COURS </span>
+            <span *ngIf="!this.compareDate(i.date_Expiration)" class="mr-2">COMPLETED</span>
+            <div class="relative w-full">
+              <div
+                class="overflow-hidden h-2 text-xs flex rounded bg-red-200"
+              >
+                <div *ngIf="this.compareDate(i.date_Expiration)"
+                  style="width: 100%"
+                  class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-yellow-500"
+                ></div>
+                <div *ngIf="!this.compareDate(i.date_Expiration)"
+                     style="width: 100%"
+                     class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500 "
+                ></div>
+
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+</div>

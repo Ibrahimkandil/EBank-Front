@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Send Email</h2>
+<div mat-dialog-content>
+  <!-- Display email address -->
+<!--  <p>Sending email to: {{ data.email }}</p>-->
+
+  <!-- Email form -->
+  <form [formGroup]="Email" style="display: flex;
+    flex-direction: column;" (ngSubmit)="sendEmail()">
+    <mat-form-field appearance="fill" class="subject-input">
+      <mat-label>Subject</mat-label>
+      <input matInput placeholder="Destinataire" [value]="data.email" disabled>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="subject-input">
+      <mat-label>Subject</mat-label>
+      <input matInput  formControlName="sujet" placeholder="Email Subject" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="message-input">
+      <mat-label>Message</mat-label>
+      <textarea matInput formControlName="detail" placeholder="Email Message" rows="5" required></textarea>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">Cancel</button>
+  <button mat-button color="primary" type="submit" [disabled]="!Email.valid" (click)="sendEmail()">Send</button>
+</div>

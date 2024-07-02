@@ -1,0 +1,24 @@
+<div class=" int-error pt-3 d-flex align-items-center h-full mat-bg-default">
+  <div class=" card app-error animated-background ">
+    <br>
+    <div class=" col-12 fix card-text">
+      <mat-icon class="error-icon icon-size"   color="warn">error</mat-icon>
+      <div class="error-text block-text" >
+        <h1 class="error-title">404</h1>
+        <div class="error-subtitle">Page Not Found!</div>
+      </div>
+    </div>
+  <br>
+    <div class="col-12 error-actions block-buttons">
+      <button
+        mat-raised-button
+        color="primary"
+        class="mb-16 mr-8"
+        [routerLink]="['/']">Back to Home Page</button>
+      <button
+        mat-raised-button
+        color="warn">Report this Problem</button>
+    </div>
+  <br>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<!-- Header -->
+<div class="relative bg-red-600 md:pt-32 pb-32 pt-12">
+  <div class="px-4 md:px-10 mx-auto w-full">
+    <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+      <button
+        class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+        type="button"
+      >
+        Acheter des devises
+      </button>
+    </div>
+
+    <div class="px-4">
+      <h3>
+        Listes Des Devises
+      </h3>
+    </div>
+    <div>
+      <!-- Card stats -->
+      <div class="flex flex-wrap">
+        <div class="w-full lg:w-6/12 xl:w-3/12 px-4" *ngFor="let item of datasources[this.index]">
+
+          <app-card-stats
+            statSubtitle="{{item.balance }}"
+            statTitle="{{item.currency }}"
+            statArrow="down"
+            statPercent="{{currencies[item.currency].num}}"
+            statPercentColor="{{currencies[item.currency].color}}"
+            statDescripiron="{{currencies[item.currency].fullname}}"
+            statIconName="{{currencies[item.currency].icon}}"
+          statIconColor="bg-blue-500"
+          ></app-card-stats>
+
+
+
+        </div>
+
+
+<!--        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">-->
+<!--          <app-card-stats-->
+<!--            statSubtitle="Dollar"-->
+<!--            statTitle="2,356"-->
+<!--            statArrow="down"-->
+<!--            statPercent="3.48"-->
+<!--            statPercentColor="text-red-500"-->
+<!--            statDescripiron="Since last week"-->
+<!--            statIconName="fas fa-dollar-sign"-->
+<!--          statIconColor="bg-yellow-500"-->
+<!--          ></app-card-stats>-->
+<!--        </div>-->
+<!--        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">-->
+<!--          <app-card-stats-->
+<!--            statSubtitle="Euro"-->
+<!--            statTitle="924"-->
+<!--            statArrow="down"-->
+<!--            statPercent="1.10"-->
+<!--            statPercentColor="text-orange-500"-->
+<!--            statDescripiron="Since yesterday"-->
+<!--            statIconName="fas fa-euro-sign"-->
+<!--          statIconColor="bg-green-500"-->
+<!--          ></app-card-stats>-->
+<!--        </div>-->
+<!--        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">-->
+<!--          <app-card-stats-->
+<!--            statSubtitle="Pound"-->
+<!--            statTitle="49,65"-->
+<!--            statArrow="up"-->
+<!--            statPercent="12"-->
+<!--            statPercentColor="text-emerald-500"-->
+<!--            statDescripiron="Since last month"-->
+<!--            statIconName="fas fa-pound-sign"-->
+<!--          statIconColor="bg-purple-500"-->
+<!--          ></app-card-stats>-->
+<!--        </div>-->
+      </div>
+      <div class="col trait" >
+        <i class="fa fa-arrow-left ease-linear" aria-hidden="true" (click)="goback()" style="cursor:pointer;font-size: 30px"></i>
+
+        <div *ngFor="let row of datasources; let i = index">
+          <i class="fa fa-circle ease-linear" aria-hidden="true" *ngIf="i === index" style="font-size: 30px"></i>
+          <i class="fa fa-regular fa-circle ease-linear" aria-hidden="true" (click)="gothere(i)" *ngIf="i !== index" style="cursor:pointer;font-size: 30px"></i>
+        </div>
+
+        <i class="fa fa-arrow-right ease-linear  " aria-hidden="true" (click)="advance()" style="cursor:pointer;font-size: 30px"></i>
+      </div>
+
+    </div>
+  </div>
+</div>

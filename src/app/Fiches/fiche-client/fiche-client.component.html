@@ -1,0 +1,115 @@
+<br>
+<div style="    display: flex;
+    flex-direction: column;
+    align-items: center;">
+<div class="client-details" style="    padding-left: 20px;
+    padding-right: 0px;">
+  <div style="    display: flex;
+    justify-content: center;">
+  <h1><b>Client Details</b></h1>
+  </div>
+  <div style="display: flex">
+  <div class="detail-item">
+    <img *ngIf="client.image_data" class="client-image" [src]="client.image64" alt="Client Image" >
+    <img *ngIf="!client.image_data" class="client-image" src="/assets/images/userlogo.png" alt="Default Image">
+  </div>
+  <div style="    display: flex;
+    flex-direction: column;
+    justify-content: space-around;margin-left: 10px;">
+  <div class="detail-item;" >
+    <label>ID:</label>
+    <span>{{ client.id }}</span>
+  </div>
+
+  <div class="detail-item">
+    <label>Last Name:</label>
+    <span>{{ client.last_name }}</span>
+  </div>
+
+  <div class="detail-item">
+    <label>First Name:</label>
+    <span>{{ client.first_name }}</span>
+  </div>
+
+  <div class="detail-item">
+    <label>Address:</label>
+    <span>{{ client.address }}</span>
+  </div>
+
+  <div class="detail-item">
+    <label>Phone:</label>
+    <span>{{ client.phone }}</span>
+  </div>
+
+  <div class="detail-item">
+    <label>Email:</label>
+    <span>{{ client.email }}</span>
+  </div>
+
+  <div class="detail-item">
+    <label>Date of Birth:</label>
+    <span>{{ client.date_of_birth }}</span>
+  </div>
+
+  <div class="detail-item">
+    <label>Sex:</label>
+    <span>{{ client.sexe }}</span>
+  </div>
+
+  <div class="detail-item">
+    <label>Date Added:</label>
+    <span>{{ client.date_d_ajout | date: 'medium' }}</span>
+  </div>
+
+
+
+  <div class="detail-item">
+    <label>Marital Status:</label>
+    <span>{{ client.etatCivil }}</span>
+  </div>
+
+  <div class="detail-item">
+    <label>Employment Status:</label>
+    <span>{{ client.statutEmploi }}</span>
+  </div>
+
+  <div *ngIf="client.reclamations && client.reclamations.length > 0" class="detail-item">
+    <label>Reclamations:</label>
+    <ul>
+      <li *ngFor="let reclamation of client.reclamations">
+        {{ reclamation.description }} ({{ reclamation.date | date: 'medium' }})
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="client.transactions && client.transactions.length > 0" class="detail-item">
+    <label>Transactions:</label>
+    <ul>
+      <li *ngFor="let transaction of client.transactions">
+        {{ transaction.type }} - {{ transaction.amount | currency }}
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="client.comptes && client.comptes.length > 0" class="detail-item">
+    <label>Bank Accounts:</label>
+    <ul>
+      <li *ngFor="let compte of client.comptes">
+        {{ compte.bank_name }} - {{ compte.account_number }}
+      </li>
+    </ul>
+  </div>
+  </div>
+</div>
+</div>
+<div class="rounded-t mb-0 px-4 py-3 border-0">
+  <div class="flex flex-wrap items-center">
+    <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+      <button class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button"  (click)="openEmailDialog(client.email)">Contacter Client</button>
+      <button class="bg-red-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button"  (click)="goback()">Retourner</button>
+
+    </div>
+  </div>
+</div>
+
+</div>

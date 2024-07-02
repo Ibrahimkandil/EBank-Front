@@ -1,0 +1,9 @@
+:host(::ng-deep) .mat-input-element.mat-form-field-autofill-control.ng-tns-c16-9.ng-pristine.ng-valid.cdk-text-field-autofill-monitored.ng-touched {
+    --tw-ring-color: transparent !important;
+    /*.input {*/
+    /*    --tw-ring-color: transparent !important;*/
+    /*}*/
+    /*.input:focus {*/
+    /*    --tw-ring-color: transparent !important;*/
+    /*}*/
+}
