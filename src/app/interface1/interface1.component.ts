@@ -28,10 +28,11 @@ export class Interface1Component implements OnInit{
       private snackBar: MatSnackBar,
       private router:Router
   ) {
+    console.log("this.cookieservice.get('menus')",this.cookieservice.get('menus'))
 
 
 
-    this.LoginControllerService.check_login();
+    this.LoginControllerService.check_login("client");
     console.log("this.cookieservice.get('type')===\"Employee\"",this.cookieservice.get('type')==="Employee")
     console.log("this.cookieservice.get('type')===\"Client\"",this.cookieservice.get('type')==="Client")
      //
@@ -57,6 +58,7 @@ export class Interface1Component implements OnInit{
     this.http.get('http://localhost:8081/ebank/api/v1/client/historiques/'+this.cookieservice.get('id'), {headers: headers}).
     subscribe((res: any) => {
       this.historiques=res;
+      console.log("this.historiques",this.historiques)
       this.snackBar.open("Succefull fetching Historiques", 'Success', {
         duration: 5000, // duration in milliseconds (optional)
 
@@ -78,7 +80,9 @@ export class Interface1Component implements OnInit{
         let total=this.comptes[0].balance;
         let totwith=0
         totwith=this.calcDepense(withdraw)
-        this.compareDate(this.historiques[0][4]['date_Expiration'])
+        console.log("historique",this.historiques[1])
+        totwith=totwith+this.calcDepense(this.historiques[1])
+        // this.compareDate(this.historiques[0][4]['date_Expiration'])
         this.Create_PieChart(totwith,total)
       }, (err: any) => {})
     }, (err: any) => {})
@@ -119,6 +123,7 @@ export class Interface1Component implements OnInit{
     let total=this.comptes.find((i:any)=>i['account_number']===e).balance;
     let totwith=0
     totwith=this.calcDepense(withdraw)
+
     this.Create_PieChart(totwith,total)
 
   }
