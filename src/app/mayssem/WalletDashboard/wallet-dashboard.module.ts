@@ -13,6 +13,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {MatTabsModule} from "@angular/material/tabs";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 const routes: Routes = [
@@ -41,7 +42,8 @@ const routes: Routes = [
         MatFormFieldModule,
         MatOptionModule,
         MatSelectModule,
-        MatTabsModule
+        MatTabsModule,
+        ReactiveFormsModule
     ]
 })
 export class WalletDashboardModule { }
