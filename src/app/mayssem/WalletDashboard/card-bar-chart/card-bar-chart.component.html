@@ -10,14 +10,14 @@
             <!--    <div class="form-left">-->
             <!--      <img src="images/form-v6.jpg" alt="form">-->
             <!--    </div>-->
-            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-detail" style="margin-top: -150px;margin-bottom: -234px;">
+            <form [formGroup]="form"  class="form-detail" style="margin-top: -150px;margin-bottom: -234px;">
               <h2>Buy or Sell Currency</h2>
 
               <!-- Première ligne avec une liste déroulante -->
               <div style="display: contents;justify-content: center;">
                 <mat-form-field >
                   <mat-label  style="color:black">Type</mat-label>
-                  <mat-select [value]="this.mode[0]"  (valueChange)="h1($event)">
+                  <mat-select [value]="this.mode[0]"  (valueChange)="h0($event)">
                     <mat-option  *ngFor="let m of mode" [value]="m">
                       {{ m }}
                     </mat-option>
@@ -30,21 +30,24 @@
               <div class="row" >
                 <div class="col-md-5">
                 <mat-form-field style="width: 150px;">
-                  <mat-label  style="color:black">Currency</mat-label>
-                  <mat-select [value]="this.currencies[0]"  (valueChange)="h1($event)">
-                    <mat-option  *ngFor="let account of currencies" [value]="account">
+                  <mat-label  style="color:black">Comptes Bancaires</mat-label>
+                  <mat-select  (valueChange)="h1($event)"  >
+                    <mat-option  *ngFor="let account of listcomptes" [value]="account">
                       {{ account }}
                     </mat-option>
 
                   </mat-select>
                 </mat-form-field>
+                  <div class="col" *ngIf="this.datas_CompteBancaire">
+                    <p style="color:black" >Your current balance{{datas_CompteBancaire.balance}} TND</p>
+                  </div>
                 </div>
                 <div class="col-md-1"></div>
                 <div class="col-md-5">
 
                 <mat-form-field style="width: 150px;" >
                   <mat-label  style="color:black">Currency</mat-label>
-                  <mat-select [value]="this.currencies[0]"  (valueChange)="h1($event)">
+                  <mat-select [value]="this.currencies[0]"   (valueChange)="h2($event)">
                     <mat-option  *ngFor="let account of currencies" [value]="account">
                       {{ account }}
                     </mat-option>
@@ -55,13 +58,23 @@
 
               </div>
 
-              <div class="form-row">
-                <input type="number" id="input1" formControlName="input1" class="input-text" placeholder="Amount" required>
+              <div class="form-row" style="display: flex;
+    align-items: center;">
+                <input type="number" id="input1" formControlName="input1" class="input-text" placeholder="Amount" (input)="h3($event)"  required>
+             <p style="color:black">{{cuurency}}</p>
+              </div>
+              <div *ngIf="valueInDinar!=0 && datas_CompteBancaire!=null">
+                <p style="color:black">{{this.meth}}:{{valueInDinar}}</p>
+
+              </div>
+              <div *ngIf="valueInDinar!=0 && supthanbalance ">
+                <p style="color:red">Error Sold Insufficent</p>
+
               </div>
 
               <!-- Troisième ligne avec un bouton de validation -->
               <div class="form-row-last">
-                <input type="submit" class="register" value="validate">
+                <button type="submit" (click)="onSubmit()"  [disabled]="supthanbalance" class="register" value="validate">Faire</button>
               </div>
             </form>
           </div>
