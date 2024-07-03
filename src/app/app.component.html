@@ -1,21 +1,15 @@
-<nav *ngIf="this.CookieService.get('token')" >
+<nav *ngIf="this.CookieService.get('token') && this.CookieService.get('menus') " >
     <div class="logo" >
         <img style="width: 50px;height: 50px" src="assets/images/Bank.png" alt="logo" />
         <h1 style="padding: 0px ;margin: 0px">BankFx</h1>
     </div>
-    <ul style="margin: 0px;    padding-right: 30%;">
+    <ul  *ngFor="let element of this.CookieService.get('menus').split(',')" style="    margin: 0px; padding-left: 2%;" >
+
         <li>
-            <a href="#">Home</a>
+            <a href="{{element.split(':')[1] }}">{{element.split(':')[0]}}</a>
+
         </li>
-        <li>
-            <a href="#">Services</a>
-        </li>
-        <li>
-            <a href="#">Blog</a>
-        </li>
-        <li>
-            <a href="#">Contact Us</a>
-        </li>
+
     </ul>
     <div  class="user-logo-nav col " >
         <div style="display: flex; flex-direction: row;align-items: center;">
@@ -25,18 +19,10 @@
         <p style="padding-left: 1% ;margin: 0px;margin-right: -10%"> {{this.CookieService.get('first_name')+" "+this.CookieService.get('last_name')}} </p>
           <div class="menu-container" (mouseenter)="display_menu=true" (focus)="display_menu=false"  >
           <span  class="menu-user" ><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-              <ul  (mouseleave)="display_menu=false" class="menu" [ngClass]="display_menu?'shown-menu':'hidden-menu'" >
+              <ul  *ngFor="let element of this.CookieService.get('menus').split(',')" (mouseleave)="display_menu=false" class="menu" [ngClass]="display_menu?'shown-menu':'hidden-menu'" >
                 <li>
-                  <a href="#">Home</a>
-                </li>
-                <li>
-                  <a href="#">Services</a>
-                </li>
-                <li>
-                  <a href="#">Blog</a>
-                </li>
-                <li>
-                  <a href="#">Contact Us</a>
+                  <a href="{{element.split(':')[1] }}">{{element.split(':')[0]}}</a>
+
                 </li>
               </ul>
         </div>
@@ -49,7 +35,7 @@
         <span class="line"></span>
     </div>
 </nav>
-<div class="menubar" *ngIf="this.CookieService.get('token')" [ngClass]="this.nav?'active':''"  (focusin)="this.toggleNav()">
+<div class="menubar" *ngIf="this.CookieService.get('token')" [ngClass]="this.nav?'active':''"  (focus)="this.toggleNav()">
     <span   class="iconss" (click)="toggleNav()" ><i class=" fas fa-times"></i>
 </span>
 
@@ -64,19 +50,11 @@ justify-content: space-around;">
             </div>
                 <mat-icon class="Icon-Hovered" fontIcon="logout" (click)="logout()" ></mat-icon>
     </div>
-    <ul style="position: relative;bottom: 25%">
-        <li>
-            <a href="#">Home</a>
-        </li>
-        <li>
-            <a href="#">Services</a>
-        </li>
-        <li>
-            <a href="#">Blog</a>
-        </li>
-        <li>
-            <a href="#">Contact Us</a>
-        </li>
+    <ul style="position: relative;bottom: 25%" *ngFor="let element of this.CookieService.get('menus').split(',')">
+      <li>
+        <a href="{{element.split(':')[1] }}">{{element.split(':')[0]}}</a>
+
+      </li>
     </ul>
 </div>
 <router-outlet ></router-outlet>

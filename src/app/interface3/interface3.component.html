@@ -18,6 +18,7 @@
 
 
 </div>
+<div class="flex flex-wrap mt-4">
 <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
     <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
 
@@ -532,17 +533,17 @@
                     <div style="     display: flex;
     justify-content: center;
     align-items: center;"  >
-                        <i class="fa fa-caret-left"  (click)="goback()" *ngIf="pageNumber>1"   aria-hidden="true" style="font-size: 25px"></i>
+                        <i class="fa fa-caret-left"  (click)="goback()" *ngIf="pageNumberAgence>1"   aria-hidden="true" style="font-size: 25px"></i>
                         <!--                    <div *ngFor="let row of datasources; let i = index">
                         (click)="goback()"
                         (click)="advance()"-->
-                        <input class="Index" type="number" [value]="pageNumber" [readOnly]="true" />
+                        <input class="Index" type="number" [value]="pageNumberAgence" [readOnly]="true" />
                         <!--                        (click)="gothere(i)" *ngIf="i !== index"-->
                         <br>
                         <p style="    margin-bottom: 0px;
     margin-left: 5px;
-    margin-right: 5px;">  du {{this.datasourceEmployeeEnPage.length}}</p>
-                        <i class="fa fa-caret-right"   *ngIf="pageNumber+1<=this.datasourceEmployeeEnPage.length" (click)="gofront()" aria-hidden="true" style="font-size: 25px"></i>
+    margin-right: 5px;">  du {{this.datasourceAgenceEnPage.length}}</p>
+                        <i class="fa fa-caret-right"   *ngIf="pageNumberAgence+1<=this.datasourceAgenceEnPage.length" (click)="gofront()" aria-hidden="true" style="font-size: 25px"></i>
                     </div>
                     <br>
                 </mat-tab>
@@ -552,4 +553,367 @@
 
 
     </div>
+</div>
+<div class="w-full xl:w-4/12 px-4">
+
+  <div
+    class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
+  >
+    <div class="rounded-t mb-0 px-4 py-3 border-0">
+      <div class="flex flex-wrap items-center">
+        <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+          <h3 class="font-semibold text-base text-blueGray-700">Notifications</h3>
+        </div>
+        <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+          <button
+            class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            type="button"
+          >
+            See all
+          </button>
+        </div>
+
+      </div>
+    </div>
+    <div class="block w-full overflow-x-auto">
+
+      <!-- Projects table -->
+      <mat-tab-group>
+
+        <mat-tab label="Réclamation">
+
+          <table class="items-center w-full bg-transparent border-collapse">
+            <thead class="thead-light">
+            <tr>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                Id
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                Client
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                description        </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+              >
+                Montant
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+              >
+                Date du Début
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+              >
+                Date du fin
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+              >
+                Etat du contrat
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+              >
+                Type du  Crédit
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+              >
+                Type d'Intéret
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+              >
+                informations d'Assurance              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+              >
+                mensualites             </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+              >
+                Durée             </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+              >
+                frais du Dossier             </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+              >
+                frequence du Paiement             </th>
+
+            </tr>
+            <tr>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                <form [formGroup]="FiltrerContrat  ">
+                  <mat-form-field>
+
+
+                    <input matInput formControlName="id" type="number" (input)="h3Contrat(0,$event)" >
+                  </mat-form-field>
+                </form>
+
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                <form [formGroup]="FiltrerContrat  ">
+                  <mat-form-field>
+
+
+                    <input matInput formControlName="client"  (input)="h3Contrat(1,$event)" >
+                  </mat-form-field>
+                </form>
+
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                <form [formGroup]="FiltrerContrat  ">
+                  <mat-form-field>
+
+
+                    <input matInput formControlName="description"  (input)="h3Contrat(2,$event)" >
+                  </mat-form-field>
+                </form>
+
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                <form [formGroup]="FiltrerContrat  ">
+                  <mat-form-field>
+
+
+                    <input matInput formControlName="demande" type="number" (input)="h3Contrat(3,$event)" >
+                  </mat-form-field>
+                </form>
+
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                <form [formGroup]="FiltrerContrat  ">
+                  <mat-form-field>
+
+
+                    <input matInput formControlName="date_debut_String" type="date" (input)="h4Contrat(4,$event)" >
+                  </mat-form-field>
+                </form>
+
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                <form [formGroup]="FiltrerContrat  ">
+                  <mat-form-field>
+
+
+                    <input matInput formControlName="date_fin_String" type="date" (input)="h4Contrat(5,$event)" >
+                  </mat-form-field>
+                </form>
+
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                <form [formGroup]="FiltrerContrat  ">
+                  <mat-form-field>
+
+
+                    <input matInput formControlName="etatContrat"  (input)="h3Contrat(6,$event)" >
+                  </mat-form-field>
+                </form>
+
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                <form [formGroup]="FiltrerContrat  ">
+                  <mat-form-field>
+
+
+                    <input matInput formControlName="typeCredit"  (input)="h3Contrat(7,$event)" >
+                  </mat-form-field>
+                </form>
+
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                <form [formGroup]="FiltrerContrat  ">
+                  <mat-form-field>
+
+
+                    <input matInput formControlName="typeInteret"  (input)="h3Contrat(8,$event)" >
+                  </mat-form-field>
+                </form>
+
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                <form [formGroup]="FiltrerContrat  ">
+                  <mat-form-field>
+
+
+                    <input matInput formControlName="informationsAssurance"  (input)="h3Contrat(9,$event)" >
+                  </mat-form-field>
+                </form>
+
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                <form [formGroup]="FiltrerContrat  ">
+                  <mat-form-field>
+
+
+                    <input matInput formControlName="mensualites"  (input)="h3Contrat(10,$event)" >
+                  </mat-form-field>
+                </form>
+
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                <form [formGroup]="FiltrerContrat  ">
+                  <mat-form-field>
+
+
+                    <input matInput formControlName="duree"  (input)="h3Contrat(11,$event)" >
+                  </mat-form-field>
+                </form>
+
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                <form [formGroup]="FiltrerContrat  ">
+                  <mat-form-field>
+
+
+                    <input matInput formControlName="fraisDossier"  (input)="h3Contrat(12,$event)" >
+                  </mat-form-field>
+                </form>
+
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                <form [formGroup]="FiltrerContrat  ">
+                  <mat-form-field>
+
+
+                    <input matInput formControlName="frequencePaiement"  (input)="h3Contrat(13,$event)" >
+                  </mat-form-field>
+                </form>
+
+              </th>
+
+
+            </tr>
+            </thead>
+
+            <tbody *ngIf=" datasourceEmployeeEnPage.length==0">
+            <br>
+            <h2 style="position: relative;    left: 110%;">Pas du Data disponible</h2>
+
+            </tbody>
+            <tbody *ngFor="let i of datasourcecontratEnPage[pageNumbercontrat-1]">
+
+            <tr (dblclick)="goversEmployeeFichTechnique(i.id)" class="Hovring">
+              <th
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+              >
+                {{i.id}}
+              </th>
+              <th
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+              >
+                {{i.client.first_name}} {{i.client.last_name}}
+              </th>
+              <th
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+              >
+                {{i.description}}
+              </th>
+
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >{{i.demande.montant}}</td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >{{i.date_debut_String}}</td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >{{i.date_fin_String}}</td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >{{i.etatContrat}}</td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >{{i.typeCredit}}</td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >{{i.typeInteret}}</td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >{{i.informationsAssurance}}</td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >{{i.mensualites}}</td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >{{i.duree}}</td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >{{i.fraisDossier}}</td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >{{i.frequencePaiement}}</td>
+
+
+
+
+
+
+
+            </tr>
+
+            </tbody>
+          </table>
+          <br>
+          <div style="     display: flex;
+    justify-content: center;
+    align-items: center;"  >
+            <i class="fa fa-caret-left"  (click)="goback()" *ngIf="pageNumbercontrat>1"   aria-hidden="true" style="font-size: 25px"></i>
+            <!--                    <div *ngFor="let row of datasources; let i = index">
+            (click)="goback()"
+            (click)="advance()"-->
+            <input class="Index" type="number" [value]="pageNumbercontrat" [readOnly]="true" />
+            <!--                        (click)="gothere(i)" *ngIf="i !== index"-->
+            <br>
+            <p style="    margin-bottom: 0px;
+    margin-left: 5px;
+    margin-right: 5px;">  du {{this.datasourcecontratEnPage.length}}</p>
+            <i class="fa fa-caret-right"   *ngIf="pageNumbercontrat+1<=this.datacontrat.length" (click)="gofront()" aria-hidden="true" style="font-size: 25px"></i>
+          </div>
+          <br>
+        </mat-tab>
+      </mat-tab-group>
+
+    </div>
+  </div>
+</div>
 </div>

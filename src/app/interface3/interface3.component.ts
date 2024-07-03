@@ -41,6 +41,24 @@ export class Interface3Component {
 
 
   })
+  FiltrerContrat = new FormGroup({
+    id:new FormControl(0),
+    client:new FormControl(null),
+    description:new FormControl(null),
+    demande:new FormControl(0),
+    date_debut_String:new FormControl(null),
+    date_fin_String:new FormControl(null),
+    etatContrat:new FormControl(null),
+    typeCredit:new FormControl(null),
+    typeInteret:new FormControl(null),
+    informationsAssurance:new FormControl(null),
+    mensualites:new FormControl(null),
+    duree:new FormControl(null),
+    fraisDossier:new FormControl(null),
+    frequencePaiement:new FormControl(null),
+
+
+  })
 
   genre=[
     "Homme",
@@ -51,6 +69,10 @@ export class Interface3Component {
   datasourceAgenceEnPage:any=[]
   dataAgence:any=[]
   nombreDePageAgence=0;
+  pageNumbercontrat=1
+  datasourcecontratEnPage:any=[]
+  datacontrat:any=[]
+  nombreDePagecontrat=0;
   pageNumber=1
   datasourceEmployeeEnPage:any=[]
   dataEmployees:any=[]
@@ -59,7 +81,7 @@ constructor(private loginControllerService:LoginControllerService,
             private http:HttpClient,
             private cookieService:CookieService,
             private router:Router) {
-  loginControllerService.check_login()
+  loginControllerService.check_login("admin")
   const headers = new HttpHeaders({
     'Authorization': 'Bearer '+this.cookieService.get('token')
   });
@@ -99,6 +121,22 @@ constructor(private loginControllerService:LoginControllerService,
 
 
       },(err:any)=>{})
+  this.http.get('http://localhost:8081/ebank/api/v1/admin/getContrats',{headers: headers})
+    .subscribe((res:any)=>{
+      this.datacontrat=res
+      this.datacontrat.forEach((contrat:any,i:number)=>{
+// console.log(contrat.date)
+        this.datacontrat[i]['date_debut_String']=contrat.date_debut.split("T")[0]
+        this.datacontrat[i]['date_fin_String']=contrat.date_fin.split("T")[0]
+      })
+      console.log("this.datacontrat",this.datacontrat)
+
+
+      this.DivisonParCing(this.datacontrat,'contrat')
+
+      console.log("this.datasourcecontratEnPage",this.datasourcecontratEnPage)
+
+    },(err:any)=>{})
 
 }
   redirectversForm(){
@@ -115,7 +153,10 @@ constructor(private loginControllerService:LoginControllerService,
           this.datasourceAgenceEnPage[i] = []
 
 
-        }}
+        }else{
+          this.datasourcecontratEnPage[i] = []
+        }
+      }
         //else {
       //     this.datasourceDemandeEnPage[i] = []
       //
@@ -133,7 +174,10 @@ constructor(private loginControllerService:LoginControllerService,
               this.datasourceAgenceEnPage[i][j]=data[j+(i*5)]
 
 
-            }}
+            }else{
+              this.datasourcecontratEnPage[i][j]=data[j+(i*5)]
+            }
+          }
           //else{
           //     this.datasourceDemandeEnPage[i][j]=data[j+(i*5)]
           //
@@ -174,6 +218,22 @@ constructor(private loginControllerService:LoginControllerService,
       "creationDate",
       "nom_Responsable",
       "budget"
+  ]
+  schemaContrat=[
+    "id",
+    "client",
+  "description",
+  "demande",
+  "date_debut_String",
+  "date_fin_String",
+  "etatContrat",
+  "typeCredit",
+  "typeInteret",
+  "informationsAssurance",
+  "mensualites",
+  "duree",
+  "fraisDossier",
+  "frequencePaiement",
   ]
   filtrer:any = null
   h3(id: number, e: any) {
@@ -463,4 +523,92 @@ constructor(private loginControllerService:LoginControllerService,
       new Chart(ctx, config);
     }
   }
+
+  h3Contrat(id:number,e:any){
+    let nouveauDatasource: any=[];
+    let v =this.FiltrerContrat.get(`${this.schemaContrat[id]}`)!.value
+    if (v!==null && v!==undefined && v!=="" && v){
+      this.filtrer = this.FiltrerContrat.get(`${this.schemaContrat[id]}`)!.value
+      let j=0
+      this.datacontrat.forEach((contrat: any,i:number) => {
+        if(id!=0 && id!=3){
+          console.log("contrat[this.schema[id]]",contrat[this.schemaContrat[id]])
+          const t = id == 1
+            ? `${contrat.client.first_name.toLowerCase()} ${contrat.client.last_name.toLowerCase()}`
+            :  contrat[this.schemaContrat[id]].toLowerCase();
+          console.log("t",t)
+          if (t.includes(this.filtrer.toLowerCase())) {
+            nouveauDatasource[j]= this.datacontrat[i];
+            j=j+1
+          }
+        }else {
+          console.log("contrat[this.schema[id]]",contrat[this.schema[id]])
+          if(id==0){
+          if (contrat[this.schema[id]] == this.filtrer) {
+            nouveauDatasource[j] = this.datacontrat[i];
+            j = j + 1
+          }
+          }else{
+            if (contrat[this.schema[id]].montant == this.filtrer) {
+              nouveauDatasource[j] = this.datacontrat[i];
+              j = j + 1
+            }
+
+          }
+          }
+      });
+    } else {
+      this.filtrer = null;
+      nouveauDatasource = this.datacontrat;
+    }
+    if(nouveauDatasource.length==0){
+      this.datasourcecontratEnPage=[]
+    }else {
+      this.DivisonParCing(nouveauDatasource,"contrat")
+    }
+  }
+  h4Contrat(id:number,e:any){
+
+    const valueDate: any = this.FiltrerContrat.get(`${this.schemaContrat[id]}`)!.value;
+
+    if (valueDate !== null && valueDate !== undefined && valueDate !== "") {
+      const valueString = valueDate.toString();
+      const tab = valueString.split("-");
+
+      // Adjust day and year positions in the split array if id is not 1
+      // if (id !== 1 && tab.length >= 3) {
+      //   const day = tab[2];
+      //   tab[2] = tab[0];
+      //   tab[0] = day;
+      // }
+
+
+      const FiltredDataSource: any[] = [];
+      let j = 0;
+
+      this.datacontrat.forEach((element: any) => {
+
+
+        let   t = element[this.schemaContrat[id]]; // Use date_ajout_String if id is not 1
+        const ttab = t.split("-");
+        // Check if ttab has enough elements and compare dates
+        if (ttab.length >= 3 && tab[0] === ttab[0] && tab[1] === ttab[1] && tab[2] === ttab[2]) {
+          FiltredDataSource[j] = element;
+          j++;
+        }
+      });
+
+
+      if (FiltredDataSource.length !== 0) {
+
+        this.DivisonParCing(FiltredDataSource,"contrat")
+      } else {
+        this.datasourcecontratEnPage = []; // Set to empty array if no data matches filter
+      }
+
+    } else {
+      this.DivisonParCing(this.datacontrat,"contrat")
+    }
+  }
+
 }

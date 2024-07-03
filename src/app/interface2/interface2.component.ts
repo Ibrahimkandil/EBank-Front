@@ -82,7 +82,7 @@ export class Interface2Component {
                private sanitizer: DomSanitizer
 
   ) {
-    this.LoginControllerService.check_login();
+    this.LoginControllerService.check_login("employee");
     const headers = new HttpHeaders({
       'Authorization': 'Bearer '+this.cookieservice.get('token')
     });

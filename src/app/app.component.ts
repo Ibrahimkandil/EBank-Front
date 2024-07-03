@@ -18,14 +18,17 @@ export class AppComponent {
 })
   display_menu : boolean=false;
   constructor(
-      private cookieGestionnaireService:CookiesGestionnaireService,
+      public cookieGestionnaireService:CookiesGestionnaireService,
       private LoginControllerService:LoginControllerService,
       public CookieService:CookieService,
       private route:Router
 
   ) {
 
+
     // this.LoginControllerService.check_login();
+// if( this.cookieGestionnaireService.MenusParCompte){
+    console.log("this.cookieGestionnaireService.MenusParCompte",this.cookieGestionnaireService.MenusParCompte)
 
   }
   toggleNav(){

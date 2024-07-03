@@ -35,7 +35,7 @@ export class AuthenticateComponent {
     private snackBar: MatSnackBar,
     private LoginControllerService:LoginControllerService
   ) {
-    this.LoginControllerService.check_login();
+    this.LoginControllerService.check_login("none");
     this._unsubscribeAll = new Subject();
   }
 
