@@ -1,1 +1,42 @@
-<p>transfert works!</p>
+<div class="header">
+  <h1>Make your Tranfert</h1>
+</div>
+<mat-card class="container">
+    <mat-card-content>
+        <form class="example-form" #transfertForm="ngForm" (ngSubmit)="onCreate()">
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Amount</mat-label>
+              <input matInput type="text" placeholder="enter your amount" [(ngModel)]="TransfertObject.amount" name="amount" #amount="ngModel" required>
+              <mat-error *ngIf="amount.errors?.['required']">Amount is required</mat-error>
+            </mat-form-field><br>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Date</mat-label>
+              <input matInput [matDatepicker]="Date" [(ngModel)]="TransfertObject.Date" name="Date">
+              <mat-datepicker-toggle matSuffix [for]="Date"></mat-datepicker-toggle>
+              <mat-datepicker #Date></mat-datepicker>
+            </mat-form-field><br>
+
+              <mat-form-field class="example-full-width">
+                <mat-label>idCompteSource</mat-label>
+                <input matInput placeholder="enter your idCompteSource" type="text" [(ngModel)]="TransfertObject.idCompteSource" name="idCompteSource" #idCompteSource="ngModel" required>
+                <mat-error *ngIf="idCompteSource.errors?.['required']">idCompteSource is required</mat-error>
+              </mat-form-field><br>
+
+              <mat-form-field class="example-full-width">
+                <mat-label>idCompteDestinations</mat-label>
+                <input matInput placeholder="enter your idCompteDestinations" type="number" [(ngModel)]="TransfertObject.idCompteDestinations" name="idCompteDestinations" #idCompteDestinations="ngModel" required>
+                <mat-error *ngIf="idCompteDestinations.errors?.['required']">idCompteDestinations is required</mat-error>
+              </mat-form-field><br>
+
+              <div>
+                <button mat-raised-button color="primary" style="margin: 10px;" type="submit" [disabled]="transfertForm.form.invalid">Send</button>
+              </div>
+          </form>
+    </mat-card-content>
+  </mat-card>
+
+
+
+

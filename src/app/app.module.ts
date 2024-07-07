@@ -40,7 +40,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatSliderModule } from "@angular/material/slider";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 import {AppLoaderComponent} from "./authenticate/app-loader/app-loader.component";
@@ -117,6 +117,7 @@ import { TransfertComponent } from './Ahmed/transfert/transfert.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatIconModule,
+    FormsModule
 
 
   ],
