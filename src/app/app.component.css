@@ -164,11 +164,14 @@ nav ul li a:hover {
     .user-logo-nav {
         display: none;
     }
+    .hovered {
+      display: none !important;
+    }
 }
 .Icon-Hovered {
     cursor: pointer !important;
     position: relative;
-    left: 10%;
+    left: 5%;
     transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1), color 0.5s ease-in;
     transform-origin: center; /* Ensures scaling from the center */
 }
@@ -208,7 +211,7 @@ nav ul li a:hover {
 
   transition: max-height 3s ease;
   position: absolute;
-  top: 7.75%;
+  top:12%;
   list-style-type: none;
   padding-top: 10px;
   padding-right: 10px;
@@ -242,5 +245,57 @@ nav ul li a:hover {
 }
 
 
+.Meeenu {
+  border: outset;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+
+}
+.A {
+  position: relative;
+  z-index: 1;
+}
+.Meeenu2 {
+  border: 3px outset rgb(128, 128, 128);
+  border-top: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+}
+
+.hovered {
+  background-color: #2C3E50;
+  width: 5.5%;
+  height: 50px;
+  cursor : pointer;
+  border-radius: 6px;
+}
+.A:hover {
+  background: #ab1919 !important;
+  position: relative;
+  padding-top: 21% !important;
+  padding-bottom: 24% !important;
+
+}
 
 
+/*.A:hover + .hovered {*/
+/*  background: #ab1919 !important; !* Change hovered's background color when A is hovered *!*/
+/*}*/
+
+
+
+/*.hovered:hover {*/
+/*  --hovered-background: #ab1919 !important; !* Change hovered's background color on hover *!*/
+/*}*/
+/*.A:hover + .hovered {*/
+/*  background-color: #ab1919 !important;*/
+
+/*}*/
+/*.A:hover  {*/
+/*  --hovered-background: #ab1919!important;*/
+/*  background-color: #ab1919!important;*/
+/*}*/
+/*.hovered:hover {*/
+/*  background-color:var(--hovered-background);*/
+/*}*/

@@ -97,7 +97,6 @@ export class Interface2Component {
             this.datasourceClient[i]['date_of_birth_String']=client.date_of_birth.split("T")[0]
           })
           this.DivisonParCing(this.datasourceClient,"client")
-          console.log("this.clientenpage",this.datasourceClientEnPage)
 
         },error => { })
     this.http.get("http://localhost:8081/ebank/api/v1/employee/allDatas",{headers: headers})
@@ -116,12 +115,9 @@ export class Interface2Component {
         },error => { })
     this.http.get("http://localhost:8081/ebank/api/v1/employee/notifiactions",{headers: headers})
         .subscribe((res:any)=>{
-          console.log("res",res)
           this.notifications=res
-          console.log("this.notifications",this.notifications["reclamations"].length)
           this.notifications["reclamations"].forEach((elem:any,i:number)=> {
             let v= new Date(elem.date)
-            console.log("v",v)
             this.notifications["reclamations"][i]['date_String'] =elem.date.split("T")[0]
           })
 
@@ -129,8 +125,7 @@ export class Interface2Component {
 
           this.DivisonParCing(this.notifications["reclamations"],"reclamation")
           this.DivisonParCing(this.notifications["demandes"],"demande")
-          console.log("this.datasourceReclamationEnPage",this.datasourceReclamationEnPage)
-          console.log("this.datasourceDemandeEnPage",this.datasourceDemandeEnPage)
+
           // this.datasourceDemandeEnPage=this.DivisonParCing(this.notifications["demandes"],"demande")
 
         },error => { })
@@ -545,7 +540,7 @@ if(nouveauDatasource.length==0){
   }
 
   hh(){
-    console.log("Hello")
+
   }
   goversClientFichTechnique(id:number) {
     this.router.navigate(['fiche/Client/'+id])

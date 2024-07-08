@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {CookieService} from "ngx-cookie-service";
 
+
 @Component({
   selector: 'app-client-form',
   templateUrl: './client-form.component.html',
@@ -54,8 +55,7 @@ export class ClientFormComponent {
   onSubmit(): void {
     if (this.clientForm.valid) {
       const formData = this.clientForm.value;
-      console.log('Form data:', formData);
-      console.log('Form data:', this.clientForm);
+
 
 
       let id=this.cookieService.get('id');
@@ -64,7 +64,6 @@ export class ClientFormComponent {
       });
       this.http.post<any>('http://localhost:8081/ebank/api/v1/employee/addClient/'+id, formData,{headers: headers}).subscribe(
           response => {
-            console.log('Form submission successful:', response);
             this.snackBar.open('Client data saved successfully', 'Close', {
               duration: 3000,
             });

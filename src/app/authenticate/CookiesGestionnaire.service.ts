@@ -14,7 +14,7 @@ MenusParCompte:any
     let list = Object.keys(object);
     list.forEach(element => {
         if(element==="menus"){
-          console.log("menus",object[element])
+
           let MenuParProfils=""
           this.MenusParCompte=object[element]
           for(let i =0;i<object[element].length;i++){
@@ -26,7 +26,7 @@ MenusParCompte:any
             }
           }
 
-          console.log("MenuParProfils",MenuParProfils)
+
           this.cookieservice.set(element, MenuParProfils);
 
         }

@@ -31,24 +31,23 @@
                 <div class="col-md-5">
                 <mat-form-field style="width: 150px;">
                   <mat-label  style="color:black">Comptes Bancaires</mat-label>
-                  <mat-select  (valueChange)="h1($event)"  >
+                  <mat-select [disabled]="input_Compte" [value]="account_number"   (valueChange)="h1($event)"  >
                     <mat-option  *ngFor="let account of listcomptes" [value]="account">
                       {{ account }}
                     </mat-option>
 
                   </mat-select>
                 </mat-form-field>
-                  <div class="col" *ngIf="this.datas_CompteBancaire">
-                    <p style="color:black" >Your current balance{{datas_CompteBancaire.balance}} TND</p>
-                  </div>
+
                 </div>
                 <div class="col-md-1"></div>
                 <div class="col-md-5">
 
+
                 <mat-form-field style="width: 150px;" >
                   <mat-label  style="color:black">Currency</mat-label>
-                  <mat-select [value]="this.currencies[0]"   (valueChange)="h2($event)">
-                    <mat-option  *ngFor="let account of currencies" [value]="account">
+                  <mat-select [disabled]="input_currency" [value]="this.cuurency"   (valueChange)="h2($event)">
+                    <mat-option  *ngFor="let account of Currenciess" [value]="account">
                       {{ account }}
                     </mat-option>
 
@@ -56,25 +55,36 @@
                 </mat-form-field>
                 </div>
 
-              </div>
 
+              </div>
+              <div class="row col" *ngIf="this.datas_CompteBancaire">
+                <p style="color:black" > balance:{{ Math.floor(datas_CompteBancaire.balance * 1000) / 1000}} TND</p>
+              </div>
               <div class="form-row" style="display: flex;
     align-items: center;">
-                <input type="number" id="input1" formControlName="input1" class="input-text" placeholder="Amount" (input)="h3($event)"  required>
+                <input type="number"     id="input1" formControlName="input1" class="input-text" placeholder="Amount" (input)="h3($event)"  required>
              <p style="color:black">{{cuurency}}</p>
               </div>
-              <div *ngIf="valueInDinar!=0 && datas_CompteBancaire!=null">
+              <div *ngIf=" this.meth==='Buy' && this.cuurency !=null && this.selectedRate!=null && valueInDinar!=0 && datas_CompteBancaire!=null">
                 <p style="color:black">{{this.meth}}:{{valueInDinar}}</p>
 
               </div>
-              <div *ngIf="valueInDinar!=0 && supthanbalance ">
+              <div *ngIf=" this.meth==='Sell' && this.objWallet !=null">
+                <p style="color:black">You have:{{this.objWallet.balance}}{{this.objWallet.currency}}</p>
+
+              </div>
+              <div *ngIf=" this.meth==='Buy' && supthanbalance">
                 <p style="color:red">Error Sold Insufficent</p>
+
+              </div>
+              <div *ngIf=" this.meth==='Sell' && supthanbalance">
+                <p style="color:red">Error Dépassement du Balance In Wallet </p>
 
               </div>
 
               <!-- Troisième ligne avec un bouton de validation -->
               <div class="form-row-last">
-                <button type="submit" (click)="onSubmit()"  [disabled]="supthanbalance" class="register" value="validate">Faire</button>
+                <button mat-raised-button class="mat-primary full-width mb-16" (click)="onSubmit()" [disabled]="!(this.cuurency!==null && this.datas_CompteBancaire!==null && this.form.get('input1')?.value !=0) || supthanbalance ">Faire</button>
               </div>
             </form>
           </div>

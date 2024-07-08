@@ -36,13 +36,12 @@ export class JwtAuthService {
   }
 
   public signin(username:any, password:any) {
-    console.log('username', username);
-    console.log('password', password);
+
     let body = {
       "identificationnumber": username,
       "password": password
     }
-    console.log('body', body);
+
     return this.http.post('http://localhost:8081/ebank/api/v1/auth/signin', body)
   }
 }

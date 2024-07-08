@@ -40,7 +40,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatSliderModule } from "@angular/material/slider";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 import {AppLoaderComponent} from "./authenticate/app-loader/app-loader.component";
@@ -58,7 +58,10 @@ import { SendEmailDialogComponent } from './authenticate/send-email-dialog/send-
 import { Interface3Component } from './interface3/interface3.component';
 import {Interface3Module} from "./interface3/interface3.module";
 import {FicheEmployeeComponent} from "./Fiches/fiche-employee/fiche-employee.component";
+import { ProfilComponent } from './profil/profil.component';
+import { SignatureComponent } from './tools/signature/signature.component';
 
+import SignaturePad from "signature_pad";
 
 @NgModule({
   declarations: [
@@ -69,7 +72,9 @@ import {FicheEmployeeComponent} from "./Fiches/fiche-employee/fiche-employee.com
     ResetpasswordComponent,
     FicheClientComponent,
     SendEmailDialogComponent,
-    FicheEmployeeComponent
+    FicheEmployeeComponent,
+    ProfilComponent,
+    SignatureComponent
 
 
 
@@ -119,6 +124,8 @@ import {FicheEmployeeComponent} from "./Fiches/fiche-employee/fiche-employee.com
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatIconModule,
+    FormsModule,
+
 
 
   ],

@@ -43,12 +43,10 @@ export class EmployeeFormComponent {
       let id=this.cookieService.get('id')
       this.http.post('http://localhost:8081/ebank/api/v1/admin/addEmployee/'+id,formData,{headers: headers})
           .subscribe((res:any)=>{
-          console.log("SUCCESS")
 
           },(err:any)=>{
-            console.log("err",err)
+
           })
-      console.log(formData); // Replace with actual submission logic
     } else {
       // Handle form validation errors
     }
