@@ -257,7 +257,7 @@ nav ul li a:hover {
   z-index: 1;
 }
 .Meeenu2 {
-  border: 3px outset gray;
+  border: 3px outset rgb(128, 128, 128);
   border-top: 0px;
   border-right: 0px;
   border-bottom: 0px;
