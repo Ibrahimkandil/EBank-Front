@@ -26,9 +26,7 @@ Email=new FormGroup({
 
     sendEmail(): void {
         // Implement your logic to send email using this.data.email
-        console.log('Sending email to:', this.data.email);
-        console.log("Data!",this.Email.get('sujet')?.value)
-        console.log("Data!",this.Email.get('detail')?.value)
+
         const headers = new HttpHeaders({
             'Authorization': 'Bearer '+this.cookieService.get('token')
         });
@@ -39,7 +37,7 @@ Email=new FormGroup({
         }
         this.http.post<any>('http://localhost:8081/ebank/api/v1/employee/contact', formData,{headers: headers})
             .subscribe((res:any)=>{
-                console.log("res",res)
+
             },(err: any) => {
                 console.log("err",err)
             })

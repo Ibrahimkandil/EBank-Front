@@ -26,7 +26,6 @@ export class SignatureComponent implements OnInit {
   ImageData:any
 
   emitImageData() {
-    console.log(this.signaturePad.isEmpty())
     if(!this.signaturePad.isEmpty()){
     this.ImageData = this.signaturePad.toDataURL();
     this.imageDataChange.emit(this.ImageData);
@@ -100,7 +99,6 @@ export class SignatureComponent implements OnInit {
   }
 
   isCanvasEmpty() {
-    console.log(this.signaturePad.isEmpty())
     this.ImageData = this.signaturePad.toDataURL();
     return this.signaturePad.isEmpty();
 

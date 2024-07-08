@@ -17,13 +17,13 @@ export class FicheClientComponent {
   private cookieService:CookieService,
               private router:Router) {
     let id=this.route.snapshot.params['id']
-    console.log("id",id)
+
     const headers = new HttpHeaders({
       'Authorization': 'Bearer '+this.cookieService.get('token')
     });
     this.http.get("http://localhost:8081/ebank/api/v1/client/"+id,{ headers: headers })
       .subscribe((data: any) => {
-        console.log("data",data)
+
         this.client=data
         this.client['image64']= this.convertImageDataToBase64(this.client.image_data)
 

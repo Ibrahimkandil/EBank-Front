@@ -34,7 +34,7 @@ export class CardLineChartComponent implements OnInit {
           rates:[]
         }
       }
-      console.log("this.historicalData",this.historicalData)
+
       const today=new Date();
       for (let j = 4; j >= 0; j--) {
         const clonedDate = new Date(today);
@@ -42,9 +42,7 @@ export class CardLineChartComponent implements OnInit {
         const formattedDate = this.formatDate(clonedDate);
         this.dates.push(formattedDate);
       }
-      console.log("this.dates",this.dates)
       this.getExchangeRates().subscribe((data: any) => {
-        console.log("data",data)
         this.values=data
         for(let x=0;x<this.dates.length;x++){
           for(let i =0;i<this.currencies.length;i++){
@@ -59,7 +57,6 @@ export class CardLineChartComponent implements OnInit {
             }
           }
         }
-        console.log("this.historicalData",this.historicalData)
         let now = new Date();
         for (let i = 4; i >= 0; i--) {
           let clonedDate = new Date(now);
@@ -70,7 +67,10 @@ export class CardLineChartComponent implements OnInit {
         this.createChart(this.historicalData[0], this.dates,"line-chart")
         this.createChart(this.historicalData[0],this.dateEnheures,"line-heure-chart")
 
-      }, (error: any) => {})
+      }, (error: any) => {
+        console.log("err",error)
+
+      })
 
 
 
@@ -81,10 +81,7 @@ export class CardLineChartComponent implements OnInit {
 dateEnheures:any=[]
 
   ngAfterViewInit() {
-    // this.element=this.historicalData[0]
-    //
-    // console.log("this.dateEnheures",this.dateEnheures)
-    // this.createChart(this.element, this.dates,"line-chart")
+
   }
   createChart(currencyData: any, dates: any, id: string) {
     var config: any = {
@@ -216,7 +213,6 @@ dateEnheures:any=[]
 
   h1(e:any) {
     let findByCurrency = this.historicalData.find((element: any) => element.currency === e);
-    console.log("e", e)
     this.createChart(findByCurrency, this.dates,"line-chart")
   }
 

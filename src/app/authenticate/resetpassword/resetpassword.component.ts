@@ -79,10 +79,8 @@ export class ResetpasswordComponent {
 
 
   reset(){
-      console.log("this.password",this.password)
       const codeValue = this.restForm.get('code')?.value; // Retrieve the value
 
-      console.log("codeValue !== null && codeValue !== undefined && codeValue === this.password",codeValue !== null && codeValue !== undefined && codeValue === this.password)
 // && codeValue === this.password
       if (codeValue !== null && codeValue !== undefined  && codeValue === this.password) {
           this.verified = true;
@@ -140,16 +138,12 @@ export class ResetpasswordComponent {
             mode: CryptoJS.mode.ECB,
             padding: CryptoJS.pad.Pkcs7
         });
-        console.log('encrypted::', encrypted.toString());
+
 
 
         return encrypted.toString();
     }
-  // cryptage(password:String){
-  //     console.log('password',password)
-  //     return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64);
-  //
-  // }
+
   password: string = '';
   suivant() {
     this.progressBar.mode = 'indeterminate';
@@ -167,21 +161,20 @@ export class ResetpasswordComponent {
             this.emailvalide = true;
 
                 this.isTimeUp=false
-            console.log("this.password",this.password)
 
             this.startTimer(this.totalTime);
 
             this.snackBar.open(response.response, 'Close', {
                 duration: 5000, // duration in milliseconds (optional)
             });
-            console.log('response', response);
+
 
 
         }, err => {
             // this.submitButton.disabled = false;
             this.progressBar.mode = 'determinate';
 
-            console.log(err);
+            console.log("err",err);
             this.snackBar.open(err.toString(), 'Error', {
                 duration: 5000, // duration in milliseconds (optional)
             });
@@ -203,8 +196,7 @@ export class ResetpasswordComponent {
 
       this.http.post<any>('http://localhost:8081/ebank/api/v1/auth/getEmail',obj)
         .subscribe(response => {
-          console.log('response', response);
-          console.log('response.token', response.token);
+
           const headers = new HttpHeaders({
               'Authorization': 'Bearer '+response.token
           });

@@ -27,22 +27,14 @@ export class AppComponent {
       private router:Router
 
   ) {
-    console.log("orgscreenWidth",this.orgscreenWidth)
+
     window.addEventListener('resize', this.onResize.bind(this));
 
-console.log(this.screenWidth)
-    console.log(window.location.href.split("/")[window.location.href.split("/").length-1]); // Outputs the current URL to the console
-
-
-    // this.LoginControllerService.check_login();
-// if( this.cookieGestionnaireService.MenusParCompte){
-    console.log("this.cookieGestionnaireService.MenusParCompte",this.cookieGestionnaireService.MenusParCompte)
 
   }
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.screenWidth = window.innerWidth;
-    console.log(this.screenWidth)
 
   }
   toggleNav(){

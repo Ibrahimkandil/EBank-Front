@@ -97,7 +97,9 @@ constructor(private loginControllerService:LoginControllerService,
         this.DivisonParCing(this.dataEmployees,"employee")
 
 
-      },(err:any)=>{})
+      },(err:any)=>{
+        console.log("err",err)
+      })
   this.http.get('http://localhost:8081/ebank/api/v1/admin/agencce/all',{headers: headers})
       .subscribe((res:any)=>{
         this.dataAgence=res
@@ -110,7 +112,10 @@ constructor(private loginControllerService:LoginControllerService,
 
 
 
-      },(err:any)=>{})
+      },(err:any)=>{
+        console.log("err",err)
+
+      })
   this.http.get('http://localhost:8081/ebank/api/v1/admin/clients-by-employee',{headers: headers})
       .subscribe((res:any)=>{
         this.chartData=res
@@ -120,23 +125,27 @@ constructor(private loginControllerService:LoginControllerService,
 
 
 
-      },(err:any)=>{})
+      },(err:any)=>{
+        console.log("err",err)
+
+      })
   this.http.get('http://localhost:8081/ebank/api/v1/admin/getContrats',{headers: headers})
     .subscribe((res:any)=>{
       this.datacontrat=res
       this.datacontrat.forEach((contrat:any,i:number)=>{
-// console.log(contrat.date)
+
         this.datacontrat[i]['date_debut_String']=contrat.date_debut.split("T")[0]
         this.datacontrat[i]['date_fin_String']=contrat.date_fin.split("T")[0]
       })
-      console.log("this.datacontrat",this.datacontrat)
 
 
       this.DivisonParCing(this.datacontrat,'contrat')
 
-      console.log("this.datasourcecontratEnPage",this.datasourcecontratEnPage)
 
-    },(err:any)=>{})
+    },(err:any)=>{
+      console.log("err",err)
+
+    })
 
 }
   redirectversForm(){
@@ -157,11 +166,7 @@ constructor(private loginControllerService:LoginControllerService,
           this.datasourcecontratEnPage[i] = []
         }
       }
-        //else {
-      //     this.datasourceDemandeEnPage[i] = []
-      //
-      //   }
-      // }
+
     }
     for(let i=0;i<this.nombreDePage;i++){
       for(let j=0;j<5;j++){
@@ -178,11 +183,7 @@ constructor(private loginControllerService:LoginControllerService,
               this.datasourcecontratEnPage[i][j]=data[j+(i*5)]
             }
           }
-          //else{
-          //     this.datasourceDemandeEnPage[i][j]=data[j+(i*5)]
-          //
-          //   }
-          // }
+
         }
 
       }
@@ -276,12 +277,7 @@ constructor(private loginControllerService:LoginControllerService,
       const valueString = valueDate.toString();
       const tab = valueString.split("-");
 
-      // Adjust day and year positions in the split array if id is not 1
-      // if (id !== 1 && tab.length >= 3) {
-      //   const day = tab[2];
-      //   tab[2] = tab[0];
-      //   tab[0] = day;
-      // }
+
 
 
       const FiltredDataSource: any[] = [];
@@ -291,12 +287,11 @@ constructor(private loginControllerService:LoginControllerService,
         let t: string;
 
         if (id == 5) {
-          t = element.date_ajout_String; // Use date_ajout_String if id is not 1
+          t = element.date_ajout_String;
         } else {
-          t = element.date_of_birth_String; // Otherwise use date_of_birth_String
+          t = element.date_of_birth_String;
         }
         const ttab = t.split("-");
-        // Check if ttab has enough elements and compare dates
         if (ttab.length >= 3 && tab[0] === ttab[0] && tab[1] === ttab[1] && tab[2] === ttab[2]) {
           FiltredDataSource[j] = element;
           j++;
@@ -308,7 +303,7 @@ constructor(private loginControllerService:LoginControllerService,
 
         this.DivisonParCing(FiltredDataSource,"employee")
       } else {
-        this.datasourceEmployeeEnPage = []; // Set to empty array if no data matches filter
+        this.datasourceEmployeeEnPage = [];
       }
 
     } else {
@@ -532,17 +527,14 @@ constructor(private loginControllerService:LoginControllerService,
       let j=0
       this.datacontrat.forEach((contrat: any,i:number) => {
         if(id!=0 && id!=3){
-          console.log("contrat[this.schema[id]]",contrat[this.schemaContrat[id]])
           const t = id == 1
             ? `${contrat.client.first_name.toLowerCase()} ${contrat.client.last_name.toLowerCase()}`
             :  contrat[this.schemaContrat[id]].toLowerCase();
-          console.log("t",t)
           if (t.includes(this.filtrer.toLowerCase())) {
             nouveauDatasource[j]= this.datacontrat[i];
             j=j+1
           }
         }else {
-          console.log("contrat[this.schema[id]]",contrat[this.schema[id]])
           if(id==0){
           if (contrat[this.schema[id]] == this.filtrer) {
             nouveauDatasource[j] = this.datacontrat[i];

@@ -74,14 +74,14 @@ export class AuthenticateComponent {
         this.snackBar.open("Success", 'Error', {
           duration: 5000, // duration in milliseconds (optional)
         });
-        console.log('response', response);
+
 
         this.router.navigateByUrl("interface1");
       }, err => {
         this.submitButton.disabled = false;
         this.progressBar.mode = 'determinate';
         this.errorMsg = err.error;
-        console.log(err);
+        console.log("err",err);
         this.Errror=true;
         this.snackBar.open(err.toString(), 'Error', {
           duration: 5000, // duration in milliseconds (optional)
@@ -96,7 +96,7 @@ export class AuthenticateComponent {
     this.matxLoader.open(`Automatically Signing you in! \n Return url: ${this.jwtAuth.return.substring(0, 20)}...`, {width: '320px'});
     setTimeout(() => {
       this.signin();
-      console.log('autoSignIn');
+
       this.matxLoader.close()
     }, 2000);
   }

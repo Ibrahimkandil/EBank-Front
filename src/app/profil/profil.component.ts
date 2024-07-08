@@ -64,11 +64,9 @@ export class ProfilComponent {
           this.pathchingurl=this.pathchingurl+"api/v1/admin"
 
       }
-      console.log("this.list",this.list)
-      console.log("url",this.url)
+
       this.fetchData().subscribe((data:any)=>{
               this.Objet=data
-              console.log("this.objet",this.Objet)
               this.list.forEach((input:any) => {
                   if(input!=="image_data"){
 
@@ -82,7 +80,7 @@ export class ProfilComponent {
               });
               this.Form = this.formBuilder.group(formGroupConfig);
 
-          },(err:any)=>{console.log(err)})
+          },(err:any)=>{console.log("err",err)})
 
 
       // Create the FormGroup
@@ -131,7 +129,6 @@ id_div:number=1;
       // Reset password logic (e.g., call API)
       this.http.post<any>('http://localhost:8081/ebank/api/v1/client/changerPass/'+this.cookieservice.get('id'),body, {headers: this.headers})
           .subscribe((data:any)=>{
-            console.log("data",data)
                 this.Sucess=true
                 this.Errror=false
                 this.MsgToDisplay=data.message
@@ -149,7 +146,6 @@ id_div:number=1;
             this.MsgToDisplay=error.error
           })
 
-      console.log('Password reset successfully');
     } else {
         if(this.newPassword===this.OldPassword){
             this.MsgToDisplay="Votre nouveau mot du passe Saisie doit être different de l'ancien mot du passe"
@@ -164,7 +160,6 @@ id_div:number=1;
             this.Errror=true
         this.Sucess=false
         }
-      console.log('Votre nouveau  mot du passe ne correspondant not match');
     }
   }
 
@@ -173,13 +168,11 @@ id_div:number=1;
   }
     onSubmit() {
         if (this.Form.valid) {
-            console.log('Form submitted successfully');
             const url=this.pathchingurl+this.cookieservice.get('id')
             this.http.patch<any>(url, this.Form.value, { headers: this.headers })
                 .subscribe((data:any) => {
-                    console.log("data",data)
                 }, (err:any) => {
-                    console.error('Error:', err)
+                    console.log('Error:', err)
                 })
         } else {
             console.error('Form is invalid');
@@ -209,7 +202,6 @@ id_div:number=1;
     }
     handleImageDataChange(imageData: any) {
         // Process imageData received from child component
-        console.log('Received Image Data:', imageData);
         const url=this.deletingurl+this.cookieservice.get('id')
 
 
@@ -218,12 +210,10 @@ id_div:number=1;
         }
         this.http.patch<any>(url, body, { headers: this.headers })
             .subscribe((data:any) => {
-                console.log("data",data)
                 this.cookieGestionnaireService.clearCookies();
                 this.router.navigateByUrl("auth");
             }, (err:any) => {
                 console.error('Error:', err)
             })
-        // You can perform further actions with imageData here
     }
 }

@@ -41,7 +41,8 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
     this.getExchangeRates().subscribe((res:any)=>
     {
       this.rates=res.rates
-      console.log("res",this.rates)
+
+
       this.selectedRate=this.rates['USD']
 
 
@@ -58,10 +59,8 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
 
     this.http.post<any>('http://localhost:8081/ebank/api/v1/client/wallets/Bycurrency',body, {headers: this.headers})
         .subscribe((resp: any) => {
-          console.log("resp===\"CREATE\"",resp==="CREATE")
 
 
-          console.log("resp",resp)
 
           this.objWallet=resp
           // this.task=resp
@@ -72,13 +71,7 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
 
         })
     this.input_Compte=false
-    console.log("this.cuurency!==null ", this.cuurency!==null )
-    console.log("this.datas_CompteBancaire!==null" ,
-    this.datas_CompteBancaire!==null )
-    console.log("this.form.get('input1')?.value !=0 " ,
-    this.form.get('input1')?.value !=0 )
 
-    console.log("this.cuurency!==null && this.datas_CompteBancaire!==null && this.form.get('input1')?.value !=0 && this.datas_CompteBancaire.balance>this.valueInDinar",this.cuurency!==null && this.datas_CompteBancaire!==null && this.form.get('input1')?.value !=0 )
   }
   historicalData: any = [];
 
@@ -103,10 +96,7 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
       for(let i =0;i<this.comptes.length;i++){
         this.listcomptes[i]=this.comptes[i].account_number
       }
-      console.log("this.comptes",this.comptes)
-      console.log("this.comptes.length",this.comptes.length)
-      console.log("this.comptes.account_number",this.comptes[0].account_number)
-      console.log("this.listcomptes",this.listcomptes)
+
 
   })
   }
@@ -121,8 +111,7 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
       }
     this.datas_CompteBancaire = this.comptes.find((element: any) => element.account_number === e);
     this.account_number = this.datas_CompteBancaire.account_number
-    console.log("e", e)
-    console.log("this.Compte", this.datas_CompteBancaire)
+
     if(this.meth==="Buy") {
 
 
@@ -135,10 +124,9 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
       }
       this.http.post<any>('http://localhost:8081/ebank/api/v1/client/wallets/Bycurrency',body, {headers: this.headers})
           .subscribe((resp: any) => {
-            console.log("resp===\"CREATE\"",resp==="CREATE")
 
 
-            console.log("resp",resp)
+
 
             this.objWallet=resp
             // this.task=resp
@@ -156,7 +144,6 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
           for(let i =0;i<resp.length;i++){
             this.Currenciess[i]=resp[i].currency
           }
-          console.log("currency",this.Currenciess)
           this.cuurency=null
           this.selectedRate=null
 
@@ -173,11 +160,9 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
 
   }
   onSubmit(): void {
-    console.log("test")
     if(this.meth==="Buy"){
 
-    console.log("this.task",this.task)
-    console.log("this.objWallet",this.objWallet)
+
     if(this.task==="CREATE" && this.objWallet===null ){
       if(this.form.get('input1')?.value!=0){
       let body={
@@ -188,7 +173,6 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
          "balance":this.form.get('input1')?.value,
         "rate":this.selectedRate
       }
-      console.log("this.form.get('input1')?.value",this.form.get('input1')?.value)
         this.http.post('http://localhost:8081/ebank/api/v1/client/wallets/'+this.datas_CompteBancaire.id,body, {headers: this.headers}).
         subscribe((resp: any) => {
           this.cuurency=null
@@ -196,7 +180,6 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
           this.account_number=null
           this.form.get('input1')?.setValue(0)
         },(err:any)=>{})
-console.log("body",body)
       }
 
     }
@@ -215,8 +198,9 @@ console.log("body",body)
         this.datas_CompteBancaire=null
         this.account_number=null
         this.form.get('input1')?.setValue(0)
-      },(err:any)=>{})
-      console.log("body",body)
+      },(err:any)=>{
+        console.log("err",err)
+      })
 
 
 
@@ -236,7 +220,6 @@ console.log("body",body)
           subscribe((resp: any) => {
               this.form.value.clear()
           },(err:any)=>{})
-          console.log("body",body)
 
 
 
@@ -247,7 +230,7 @@ console.log("body",body)
 
 
     }
-    // console.log(this.form.value);
+
   }
   getExchangeRates(): Observable<any> {
     let url=`https://api.exchangerate-api.com/v4/latest/TND`
@@ -255,109 +238,9 @@ console.log("body",body)
   }
 
   ngAfterViewInit() {
-    let config:any = {
-      type: "bar",
-      data: {
-        labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-        ],
-        datasets: [
-          {
-            label: new Date().getFullYear(),
-            backgroundColor: "#ed64a6",
-            borderColor: "#ed64a6",
-            data: [30, 78, 56, 34, 100, 45, 13],
-            fill: false,
-            barThickness: 8,
-          },
-          {
-            label: new Date().getFullYear() - 1,
-            fill: false,
-            backgroundColor: "#4c51bf",
-            borderColor: "#4c51bf",
-            data: [27, 68, 86, 74, 10, 4, 87],
-            barThickness: 8,
-          },
-        ],
-      },
-      options: {
-        maintainAspectRatio: false,
-        responsive: true,
-        title: {
-          display: false,
-          text: "Orders Chart",
-        },
-        tooltips: {
-          mode: "index",
-          intersect: false,
-        },
-        hover: {
-          mode: "nearest",
-          intersect: true,
-        },
-        legend: {
-          labels: {
-            fontColor: "rgba(0,0,0,.4)",
-          },
-          align: "end",
-          position: "bottom",
-        },
-        scales: {
-          xAxes: [
-            {
-              display: false,
-              scaleLabel: {
-                display: true,
-                labelString: "Month",
-              },
-              gridLines: {
-                borderDash: [2],
-                borderDashOffset: [2],
-                color: "rgba(33, 37, 41, 0.3)",
-                zeroLineColor: "rgba(33, 37, 41, 0.3)",
-                zeroLineBorderDash: [2],
-                zeroLineBorderDashOffset: [2],
-              },
-            },
-          ],
-          yAxes: [
-            {
-              display: true,
-              scaleLabel: {
-                display: false,
-                labelString: "Value",
-              },
-              gridLines: {
-                borderDash: [2],
-                drawBorder: false,
-                borderDashOffset: [2],
-                color: "rgba(33, 37, 41, 0.2)",
-                zeroLineColor: "rgba(33, 37, 41, 0.15)",
-                zeroLineBorderDash: [2],
-                zeroLineBorderDashOffset: [2],
-              },
-            },
-          ],
-        },
-      },
-    };
-    let ctx: any = document.getElementById("bar-chart");
-    ctx = ctx.getContext("2d");
-    new Chart(ctx, config);
+
   }
   rate_Init=this.rates[`${this.currencies[0]}`]
-
-
-
-
-
-
 
 task=""
   objWallet:any=null
@@ -367,7 +250,7 @@ task=""
   selectedRate:any
   cuurency:any="USD"
   h2(e:any) {
-    console.log("e", this.rates[`${e}`])
+
     this.cuurency=e
     this.selectedRate=this.rates[`${e}`]
     let body={
@@ -379,10 +262,8 @@ task=""
 
     this.http.post<any>('http://localhost:8081/ebank/api/v1/client/wallets/Bycurrency',body, {headers: this.headers})
       .subscribe((resp: any) => {
-      console.log("resp===\"CREATE\"",resp==="CREATE")
 
 
-        console.log("resp",resp)
 
          this.objWallet=resp
         this.task=""
@@ -421,7 +302,6 @@ task=""
               for(let i =0;i<resp.length;i++){
                 this.Currenciess[i]=resp[i].currency
               }
-              console.log("currency",this.Currenciess)
 
             },(err:any)=>{
               console.log("errrr",err)
@@ -436,7 +316,7 @@ task=""
     }
   }
   h3(e:any){
-    console.log('selectedRate',this.selectedRate)
+
     if(this.meth==="Buy"){
 
 
@@ -457,8 +337,9 @@ task=""
     }
 
 
-    console.log(e)
-    console.log(this.form.get('input1')?.value)
+
+
+
   }
 
   protected readonly Math = Math;
