@@ -4,13 +4,21 @@
     <mat-progress-bar mode="determinate" class=" col-10 session-progress"></mat-progress-bar>
     <mat-card>
       <mat-card-content>
-        <div class="text-center pt-8 pb-16">
+        <div class="text-center pt-8 pb-12" style="    display: flex;
+    flex-direction: column;
+    align-items: center;">
           <img width="100px" src="assets/images/Logo.ico" alt="">
           <p class="text-muted m-0">Sign in to your account</p>
         </div>
+        <div style="    display: flex;
+    justify-content: center;">
+        <div  [ngClass]="Errror ? 'DivError' : ''" class="DivContent col-8" *ngIf="Errror" >
+          <h4 class="MsgError text-center"  *ngIf="errorMsg" >{{errorMsg}}</h4>
+          <i   class=" IconError fa fa-times" aria-hidden="true" (click)="hide()"></i>
+        </div>
+        </div>
 
-        <p *ngIf="errorMsg" class="text-center"><small class="text-red">{{errorMsg}}</small></p>
-
+<br>
         <form [formGroup]="signinForm" (ngSubmit)="signin()" style="    display: flex;
     flex-direction: column;
     align-items: center;">
@@ -20,7 +28,7 @@
                 matInput
                 name="username"
                 formControlName="username"
-                placeholder="Username"
+                placeholder="Numéro d'Identification"
                 value="">
             </mat-form-field>
 <!--            <small-->
@@ -43,17 +51,17 @@
 <!--              class="form-error-msg"> Password is required </small>-->
           </div>
 
-          <div class="pb-16">
+          <div class="pb-8">
             <mat-checkbox
               name="rememberMe"
               formControlName="rememberMe"
-              class="pb-16">Remember this computer</mat-checkbox>
+              class="pb-12">Remember this Account</mat-checkbox>
           </div>
-
-          <button mat-raised-button class="mat-primary full-width mb-16" [disabled]="signinForm.invalid">Sign in</button>
-          <div class="text-center" style="display: flex;
-    flex-direction: column;">
-            <a [routerLink]="'/reset'" class="mat-primary text-center full-width">Forgot password</a>
+<div class="pb-2">
+          <button mat-raised-button class="mat-primary full-width mb-16 " [disabled]="signinForm.invalid">Sign in</button>
+</div>
+          <div class="text-center" style="display: flex;flex-direction: column;">
+            <a [routerLink]="'/reset'" class="mat-primary text-center full-width" style="color: blue"><u>Forgot password</u></a>
 
           </div>
         </form>

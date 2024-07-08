@@ -1,0 +1,25 @@
+.DivContent {
+
+    display: flex;
+    border-radius: 10px;
+    justify-content: space-between;
+}
+.MsgError {
+    margin: 0px;
+    padding: 20px;
+}
+.IconError {
+    font-size: large;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.DivError {
+    background-color: #ff000054;
+    border: 1px solid red;
+}
+
+
+input:focus {
+    --tw-ring-color: transparent !important;
+}

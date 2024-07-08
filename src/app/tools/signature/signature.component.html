@@ -1,0 +1,15 @@
+
+<canvas  style="border: 1px solid gray" #canvas width="1000" height="300"></canvas>
+<br>
+<div class="col-10" style="    display: flex;
+    justify-content: space-around;">
+
+<button  mat-raised-button  class="t" (click)="saveSignatureAsPNG()">Save as PNG</button>
+<button  mat-raised-button class="t" (click)="saveSignatureAsJPEG()">Save as JPEG</button>
+<button  mat-raised-button  class="t" (click)="saveSignatureAsSVG()">Save as SVG</button>
+<button mat-raised-button class="t" (click)="clearCanvas()">Clear Canvas</button>
+<button  mat-raised-button class="t" (click)="Insertpdf()">Create as PDF</button>
+<button mat-raised-button  class="t" (click)="Insertdocx()">Create as docx</button>
+    <button  mat-raised-button color="primary" (click)="emitImageData()">Save Canvas</button>
+
+</div>

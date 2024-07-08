@@ -6,6 +6,7 @@ import {ResetpasswordComponent} from "./authenticate/resetpassword/resetpassword
 import {WalletDashboardModule} from "./mayssem/WalletDashboard/wallet-dashboard.module";
 import {FicheClientComponent} from "./Fiches/fiche-client/fiche-client.component";
 import {FicheEmployeeComponent} from "./Fiches/fiche-employee/fiche-employee.component";
+import {ProfilComponent} from "./profil/profil.component";
 
 const routes: Routes = [
   {
@@ -25,7 +26,7 @@ const routes: Routes = [
   { path: 'interface1', loadChildren: () => import("./interface1/interface1.module").then(m => m.Interface1Module) },
   { path: 'interface2', loadChildren: () => import("./interface2/interface2.module").then(m => m.Interface2Module) },
   { path: 'interface3', loadChildren: () => import("./interface3/interface3.module").then(m => m.Interface3Module) },
-
+  {path:"Settings",component:ProfilComponent},
   {path:"**",component:NotFoundComponent}
 
 ];

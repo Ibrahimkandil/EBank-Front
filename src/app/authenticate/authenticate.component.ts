@@ -21,8 +21,8 @@ export class AuthenticateComponent {
 
   signinForm!: FormGroup;
   errorMsg = '';
-  // return: string;
-
+  // return: string;.
+  Errror:boolean=false
   private _unsubscribeAll: Subject<any>;
   show_Error: boolean = false;
 
@@ -80,8 +80,9 @@ export class AuthenticateComponent {
       }, err => {
         this.submitButton.disabled = false;
         this.progressBar.mode = 'determinate';
-        this.errorMsg = err.message;
+        this.errorMsg = err.error;
         console.log(err);
+        this.Errror=true;
         this.snackBar.open(err.toString(), 'Error', {
           duration: 5000, // duration in milliseconds (optional)
         });
@@ -98,6 +99,10 @@ export class AuthenticateComponent {
       console.log('autoSignIn');
       this.matxLoader.close()
     }, 2000);
+  }
+  hide() {
+    this.Errror = false;
+
   }
 
 }

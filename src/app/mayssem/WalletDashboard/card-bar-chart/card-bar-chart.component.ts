@@ -17,7 +17,15 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
   options1: string[] = [];
   options2: string[] = [];
   options3: string[] = [];
+  account_number=null
+
+  input_Compte:boolean=true
+  input_currency:boolean=true
+  input_montant:boolean=false
+
+
   currencies = ['USD', 'EUR', 'JPY', 'GBP', 'AUD', 'CAD', 'CHF', 'CNY', 'SEK', 'NZD'];
+  Currenciess:any[]=[]
   mode = ['Buy', 'Sell'];
 
   constructor(      private cookieservice:CookieService,
@@ -28,6 +36,7 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
       dropdown3: [''],
       input1: [0]
     });
+    this.Currenciess=this.currencies
     this.GetCompteBancaire()
     this.getExchangeRates().subscribe((res:any)=>
     {
@@ -36,10 +45,40 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
       this.selectedRate=this.rates['USD']
 
 
+
     },
       (err:any)=>{
 
       })
+    let body={
+      "currency":this.Currenciess[0],
+      "id_client":parseInt(this.cookieservice.get('id'))
+
+    }
+
+    this.http.post<any>('http://localhost:8081/ebank/api/v1/client/wallets/Bycurrency',body, {headers: this.headers})
+        .subscribe((resp: any) => {
+          console.log("resp===\"CREATE\"",resp==="CREATE")
+
+
+          console.log("resp",resp)
+
+          this.objWallet=resp
+          // this.task=resp
+
+        },(err:any)=>{
+          console.log("errrr",err)
+          this.task=err.error.text
+
+        })
+    this.input_Compte=false
+    console.log("this.cuurency!==null ", this.cuurency!==null )
+    console.log("this.datas_CompteBancaire!==null" ,
+    this.datas_CompteBancaire!==null )
+    console.log("this.form.get('input1')?.value !=0 " ,
+    this.form.get('input1')?.value !=0 )
+
+    console.log("this.cuurency!==null && this.datas_CompteBancaire!==null && this.form.get('input1')?.value !=0 && this.datas_CompteBancaire.balance>this.valueInDinar",this.cuurency!==null && this.datas_CompteBancaire!==null && this.form.get('input1')?.value !=0 )
   }
   historicalData: any = [];
 
@@ -73,14 +112,72 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
   }
   datas_CompteBancaire:any=null
   h1(e:any) {
-      this.datas_CompteBancaire= this.comptes.find((element: any) => element.account_number === e);
+
+
+      if (this.datas_CompteBancaire != null) {
+        this.cuurency = null
+        this.selectedRate = null
+
+      }
+    this.datas_CompteBancaire = this.comptes.find((element: any) => element.account_number === e);
+    this.account_number = this.datas_CompteBancaire.account_number
     console.log("e", e)
-    console.log("this.Co,pt",this.datas_CompteBancaire)
+    console.log("this.Compte", this.datas_CompteBancaire)
+    if(this.meth==="Buy") {
+
+
+
+      let body = {
+        "currency": this.cuurency,
+        "id_client": parseInt(this.cookieservice.get('id')),
+        "account_number": this.datas_CompteBancaire.account_number
+
+      }
+      this.http.post<any>('http://localhost:8081/ebank/api/v1/client/wallets/Bycurrency',body, {headers: this.headers})
+          .subscribe((resp: any) => {
+            console.log("resp===\"CREATE\"",resp==="CREATE")
+
+
+            console.log("resp",resp)
+
+            this.objWallet=resp
+            // this.task=resp
+
+          },(err:any)=>{
+            console.log("errrr",err)
+            this.task=err.error.text
+
+          })
+    }else{
+      if(this.datas_CompteBancaire!==null){
+    this.http.get<any>('http://localhost:8081/ebank/api/v1/client/wallets/allById_clientANDid_compte/'+this.cookieservice.get('id')+'/'+this.datas_CompteBancaire.id, {headers: this.headers})
+        .subscribe((resp: any) => {
+          this.Currenciess=[]
+          for(let i =0;i<resp.length;i++){
+            this.Currenciess[i]=resp[i].currency
+          }
+          console.log("currency",this.Currenciess)
+          this.cuurency=null
+          this.selectedRate=null
+
+        },(err:any)=>{
+          console.log("errrr",err)
+
+
+        })
+      }else {
+        this.Currenciess=this.currencies
+      }
+      }
+    this.input_currency = false
+
   }
   onSubmit(): void {
+    console.log("test")
+    if(this.meth==="Buy"){
 
     console.log("this.task",this.task)
-    console.log("this.task",this.task)
+    console.log("this.objWallet",this.objWallet)
     if(this.task==="CREATE" && this.objWallet===null ){
       if(this.form.get('input1')?.value!=0){
       let body={
@@ -88,12 +185,66 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
         "currency":this.cuurency,
 
          "id_client":this.cookieservice.get("id"),
-         "double balance":this.form.get('input1')?.value
+         "balance":this.form.get('input1')?.value,
+        "rate":this.selectedRate
       }
+      console.log("this.form.get('input1')?.value",this.form.get('input1')?.value)
         this.http.post('http://localhost:8081/ebank/api/v1/client/wallets/'+this.datas_CompteBancaire.id,body, {headers: this.headers}).
-        subscribe((resp: any) => {},(err:any)=>{})
+        subscribe((resp: any) => {
+          this.cuurency=null
+          this.datas_CompteBancaire=null
+          this.account_number=null
+          this.form.get('input1')?.setValue(0)
+        },(err:any)=>{})
+console.log("body",body)
+      }
+
+    }
+    else{
+      let body={
+
+         'id_wallet':this.objWallet.id,
+        "rate":this.selectedRate,
+         'new_Balance':this.objWallet.balance+this.form.get('input1')?.value,
 
       }
+
+      this.http.patch<any>('http://localhost:8081/ebank/api/v1/client/wallets/updateWallet',body, {headers: this.headers}).
+      subscribe((resp: any) => {
+        this.cuurency=null
+        this.datas_CompteBancaire=null
+        this.account_number=null
+        this.form.get('input1')?.setValue(0)
+      },(err:any)=>{})
+      console.log("body",body)
+
+
+
+    }
+    }else{
+      if(this.objWallet!==null){
+
+          let body={
+
+              'id_wallet':this.objWallet.id,
+              "rate":this.selectedRate,
+              'new_Balance':this.objWallet.balance-this.form.get('input1')?.value,
+
+          }
+
+          this.http.patch<any>('http://localhost:8081/ebank/api/v1/client/wallets/updateWallet',body, {headers: this.headers}).
+          subscribe((resp: any) => {
+              this.form.value.clear()
+          },(err:any)=>{})
+          console.log("body",body)
+
+
+
+
+      }else{
+        if(this.objWallet.balance==this.form.get('input1')?.value){}
+      }
+
 
     }
     // console.log(this.form.value);
@@ -208,9 +359,6 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
 
 
 
-
-
-
 task=""
   objWallet:any=null
    headers = new HttpHeaders({
@@ -224,42 +372,94 @@ task=""
     this.selectedRate=this.rates[`${e}`]
     let body={
       "currency":e,
-      "id_client":parseInt(this.cookieservice.get('id'))
+      "id_client":parseInt(this.cookieservice.get('id')) ,
+      "account_number":this.datas_CompteBancaire.account_number
 
     }
 
-    this.http.post('http://localhost:8081/ebank/api/v1/client/wallets/Bycurrency',body, {headers: this.headers}).
-    subscribe((resp: any) => {
-      if(resp==="CREATE"){
-        this.task=resp
-      }else{
-        this.objWallet=resp
-      }
-    },(err:any)=>{})
+    this.http.post<any>('http://localhost:8081/ebank/api/v1/client/wallets/Bycurrency',body, {headers: this.headers})
+      .subscribe((resp: any) => {
+      console.log("resp===\"CREATE\"",resp==="CREATE")
+
+
+        console.log("resp",resp)
+
+         this.objWallet=resp
+        this.task=""
+        // this.task=resp
+
+    },(err:any)=>{
+        console.log("errrr",err)
+        this.task=err.error.text
+        this.objWallet=null
+
+      })
   }
   valueInDinar:any=0
+  valueIncurrency:any=0
   supthanbalance:boolean=false
   meth:any="Buy"
 
   h0(e:any){
+    if(this.meth!==e){
+      this.cuurency = null
+      this.selectedRate = null
+      this.objWallet=null
+      this.datas_CompteBancaire=null
+      this.account_number=null
+      this.input_currency=true
+      this.valueIncurrency=0
+      this.supthanbalance=false
+      this.form.get('input1')?.setValue(0)
+    }
  this.meth=e
+    if(this.meth==="Sell"){
+      if(this.datas_CompteBancaire!==null){
+        this.http.get<any>('http://localhost:8081/ebank/api/v1/client/wallets/allById_clientANDid_compte/'+this.cookieservice.get('id')+'/'+this.datas_CompteBancaire.id, {headers: this.headers})
+            .subscribe((resp: any) => {
+              this.Currenciess=[]
+              for(let i =0;i<resp.length;i++){
+                this.Currenciess[i]=resp[i].currency
+              }
+              console.log("currency",this.Currenciess)
+
+            },(err:any)=>{
+              console.log("errrr",err)
+
+
+            })
+      }else {
+        this.Currenciess=this.currencies
+      }
+    }else{
+      this.Currenciess=this.currencies
+    }
   }
   h3(e:any){
     console.log('selectedRate',this.selectedRate)
     if(this.meth==="Buy"){
 
-      this.valueInDinar=this.form.get('input1')?.value/this.selectedRate
-    }else{
-      this.valueInDinar=this.form.get('input1')?.value/this.selectedRate
 
+      this.valueInDinar= Math.floor(this.form.get('input1')?.value/this.selectedRate * 1000) / 1000
+      if(this.valueInDinar>this.datas_CompteBancaire.balance) {
+        this.supthanbalance=true
+      }else{
+        this.supthanbalance=false
+      }
+    }else{
+
+      this.valueIncurrency= this.form.get('input1')?.value
+      if(this.valueIncurrency>this.objWallet.balance) {
+        this.supthanbalance=true
+      }else{
+        this.supthanbalance=false
+      }
     }
 
-    if(this.valueInDinar>this.datas_CompteBancaire.balance) {
-      this.supthanbalance=true
-    }else{
-      this.supthanbalance=false
-    }
+
     console.log(e)
     console.log(this.form.get('input1')?.value)
   }
+
+  protected readonly Math = Math;
 }
