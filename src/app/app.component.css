@@ -210,8 +210,8 @@ nav ul li a:hover {
 .menu {
 
   transition: max-height 3s ease;
-  position: absolute;
-  top:12%;
+  position: fixed;
+  top: 6.5%;
   list-style-type: none;
   padding-top: 10px;
   padding-right: 10px;
@@ -221,7 +221,7 @@ nav ul li a:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   width: 150px;
-  right: 5%;
+  right: 3%;
   padding-left: 0px;
 
 }
@@ -299,3 +299,9 @@ nav ul li a:hover {
 /*.hovered:hover {*/
 /*  background-color:var(--hovered-background);*/
 /*}*/
+
+
+
+::ng-deep .mat-select-panel.mat-primary {
+  margin-top: 20%;
+}

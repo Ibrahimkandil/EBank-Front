@@ -224,6 +224,12 @@
                                 </th>
                             </tr>
                             </thead>
+                            <tbody *ngIf=" datasourceClientEnPage.length==0">
+                            <br>
+                            <h2 style="position: relative;    left: 110%;">Pas du Data disponible</h2>
+
+                            </tbody>
+
                             <tbody *ngFor="let i of datasourceClientEnPage[pageNumber-1]">
 
                             <tr (dblclick)="goversClientFichTechnique(i.id)" class="Hovring">
@@ -563,7 +569,8 @@
                             </tbody>
                         </table>
                       <br>
-                      <div style="     display: flex;
+                      <div
+                        style="     display: flex;
     justify-content: center;
     align-items: center;"  >
                         <i class="fa fa-caret-left"  (click)="gobackReclamation()" *ngIf="pageNumberReclamations>1"   aria-hidden="true" style="font-size: 25px"></i>

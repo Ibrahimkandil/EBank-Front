@@ -11,23 +11,49 @@ import { SendEmailDialogComponent } from 'src/app/authenticate/send-email-dialog
 })
 export class FicheClientComponent {
   client:any
+    pageNumberReclamations:number=1
+    datasourceReclamationEnPage:any=[]
+    dataSourceHistorique:any=[]
+    dataSourceHistoriqueEnPage:any=[]
+    numberPage:number=1
+    id:any
   constructor(public dialog: MatDialog,
     private route:ActivatedRoute,
   private http:HttpClient,
-  private cookieService:CookieService,
+  public cookieService:CookieService,
               private router:Router) {
-    let id=this.route.snapshot.params['id']
+     this.id=this.route.snapshot.params['id']
 
     const headers = new HttpHeaders({
       'Authorization': 'Bearer '+this.cookieService.get('token')
     });
-    this.http.get("http://localhost:8081/ebank/api/v1/client/"+id,{ headers: headers })
+    this.http.get("http://localhost:8081/ebank/api/v1/client/"+this.id,{ headers: headers })
       .subscribe((data: any) => {
 
         this.client=data
         this.client['image64']= this.convertImageDataToBase64(this.client.image_data)
 
-      }, (err: any) => {})
+      }, (err: any) => {
+      console.log("err",err)}
+  )
+
+    this.http.get('http://localhost:8081/ebank/api/v1/client/historiques/'+this.id, {headers: headers})
+.subscribe((res: any) => {
+  console.log("res",res)
+    let j=0
+    for(let i =0;i<res.length;i++){
+        for(let x=0;x<res[i].length;x++) {
+
+            this.dataSourceHistorique[j] = res[i][x]
+            if(i==1){
+                this.dataSourceHistorique[j].type="VIREMENT"
+            }
+            j++;
+        }
+        this.DivisonParCing(this.dataSourceHistorique)
+    }
+    console.log("this.dataSourceHistorique",this.dataSourceHistorique)
+}, (err: any) => {})
   }
 
   convertImageDataToBase64(image: any): any {
@@ -51,5 +77,48 @@ export class FicheClientComponent {
     }
     goback(){
       this.router.navigate(["interface2"])
+    }
+
+gofrontHistorique(){
+  this.numberPage=this.numberPage+1
+}
+gobackHistorique(){
+  this.numberPage=this.numberPage-1
+}
+    nombreDePage:number=0
+    DivisonParCing(data:any){
+        this.nombreDePage  = Math.ceil(data.length/5);
+        for(let i =0;i<this.nombreDePage;i++) {
+
+                this.dataSourceHistoriqueEnPage[i] = []
+
+        }
+        for(let i=0;i<this.nombreDePage;i++){
+            for(let j=0;j<5;j++){
+                if(data[j+(i*5)]){
+
+                        this.dataSourceHistoriqueEnPage[i][j]=data[j+(i*5)]
+
+                }
+
+            }
+        }
+    }
+    getDisplayName(i: any): string {
+        if (i.idCompteDestinations && i.idCompteDestinations.id === this.id) {
+            return `${i.idCompteDestinations.last_name} ${i.idCompteDestinations.first_name}`;
+        } else if (i.idCompteSource && i.idCompteSource.id === this.id) {
+            return `${i.idCompteSource.last_name} ${i.idCompteSource.first_name}`;
+        } else {
+            return `${this.client.last_name} ${this.client.first_name}`;
+        }
+    }
+    getDate(i: any): string {
+        if (i.type !== "VIREMENT") {
+            return i.date_Expiration.split("T")[0]+ " "+i.date_Expiration.split("T")[1].split("Z")[0];
+        } else  {
+            return i.date.split("T")[0]+ " "+i.date.split("T")[1].split("Z")[0];
+
+        }
     }
 }

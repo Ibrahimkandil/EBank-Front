@@ -62,6 +62,7 @@ import { ProfilComponent } from './profil/profil.component';
 import { SignatureComponent } from './tools/signature/signature.component';
 
 import SignaturePad from "signature_pad";
+import { CreationComponent } from './authenticate/creation/creation.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,10 @@ import SignaturePad from "signature_pad";
     SendEmailDialogComponent,
     FicheEmployeeComponent,
     ProfilComponent,
-    SignatureComponent
+    SignatureComponent,
+    CreationComponent,
+
+
 
 
 
@@ -131,8 +135,8 @@ import SignaturePad from "signature_pad";
   ],
   exports: [
     Interface1Module,
-      Interface2Module,
-      Interface3Module
+    Interface2Module,
+    Interface3Module,
 
 
   ],

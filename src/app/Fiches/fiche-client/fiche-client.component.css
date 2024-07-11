@@ -1,5 +1,5 @@
 .client-details {
-  max-width: 600px;
+  max-width: 1000px;
   margin: auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -17,3 +17,21 @@
 /*.detail-item {*/
 /*  margin-bottom: 15px*/
 /*}*/
+
+.Index {
+  height: 100%;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  width: 5% !important;
+}
+@media (min-width :900px){
+
+  .Index {
+    width: 3% !important;
+  }
+
+}
+img {
+  max-width: 50%;
+  height: auto;
+}

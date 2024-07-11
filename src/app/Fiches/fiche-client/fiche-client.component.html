@@ -1,18 +1,20 @@
 <br>
-<div style="    display: flex;
+<div
+  style="    display: flex;
     flex-direction: column;
     align-items: center;">
-<div class="client-details" style="    padding-left: 20px;
+<div class="client-details"
+     style="    padding-left: 20px;
     padding-right: 0px;">
   <div style="    display: flex;
     justify-content: center;">
   <h1><b>Client Details</b></h1>
   </div>
   <div style="display: flex">
-  <div class="detail-item">
-    <img *ngIf="client.image_data" class="client-image" [src]="client.image64" alt="Client Image" >
-    <img *ngIf="!client.image_data" class="client-image" src="/assets/images/userlogo.png" alt="Default Image">
-  </div>
+
+    <img *ngIf="client['image64']!==null && client['image64']!==undefined" class="client-image" [src]="client.image64" alt="Client Image" >
+    <img *ngIf="client['image64']===null && client['image64']===undefined" class="client-image" src="/assets/images/userlogo.png" alt="Default Image">
+
   <div style="    display: flex;
     flex-direction: column;
     justify-content: space-around;margin-left: 10px;">
@@ -111,5 +113,94 @@
     </div>
   </div>
 </div>
+<br>
+  <mat-tab-group class="col-12">
 
+    <mat-tab label="Historiques">
+
+      <table class="class-12
+      items-center w-full bg-transparent border-collapse">
+        <thead class="thead-light">
+        <tr>
+
+          <th
+            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+          >
+            Client
+          </th>
+          <th
+            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+          >
+            type        </th>
+          <th
+            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+          >
+            Date
+          </th>
+          <th
+            class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
+          >
+            Montant
+          </th>
+
+        </tr>
+        </thead>
+        <tbody *ngFor="let i of dataSourceHistoriqueEnPage[numberPage-1]">
+        <tr class="Hovring" >
+
+          <th
+            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+          >
+         {{getDisplayName(i) }}
+          </th>
+          <td
+            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+          >
+            {{i.type}}
+          </td>
+          <td
+            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+          >{{getDate(i)}}</td>
+          <td *ngIf="i.type==='DEPOSIT'" class=" text-emerald-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+          >+{{i.amount}}</td>
+          <td *ngIf="i.type==='WITHDRAWAL'" class=" text-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+          >-{{i.amount}}</td>
+          <td *ngIf="i.type==='VIREMENT' && i.idCompteSource.id==id" class=" text-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+          >-{{i.amount}}</td>
+          <td *ngIf="i.type==='VIREMENT' && i.idCompteSource.id!=id" class=" text-emerald-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+          >+{{i.amount}}</td>
+
+
+
+
+
+
+        </tr>
+
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <div
+        style="     display: flex;
+    justify-content: center;
+    align-items: center;"  >
+        <i class="fa fa-caret-left"  (click)="gobackHistorique()" *ngIf="numberPage>1"   aria-hidden="true" style="font-size: 25px"></i>
+        <!--                    <div *ngFor="let row of datasources; let i = index">
+        (click)="goback()"
+        (click)="advance()"-->
+        <input class="Index" type="number"  [value]="numberPage" [readOnly]="true" />
+        <!--                        (click)="gothere(i)" *ngIf="i !== index"-->
+        <br>
+        <p style="    margin-bottom: 0px;
+    margin-left: 5px;
+    margin-right: 5px;">  du {{this.dataSourceHistoriqueEnPage.length}}</p>
+        <i class="fa fa-caret-right"   *ngIf="numberPage+1<=this.dataSourceHistoriqueEnPage.length" (click)="gofrontHistorique()  " aria-hidden="true" style="font-size: 25px"></i>
+      </div>
+      <br>
+      <br>
+
+    </mat-tab>
+
+  </mat-tab-group>
 </div>

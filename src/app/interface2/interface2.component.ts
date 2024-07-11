@@ -79,7 +79,7 @@ export class Interface2Component {
                private router:Router,
                private LoginControllerService:LoginControllerService,
                private http:HttpClient,
-               private sanitizer: DomSanitizer
+               private sanitizer: DomSanitizer,
 
   ) {
     this.LoginControllerService.check_login("employee");
@@ -318,7 +318,7 @@ if(nouveauDatasource.length==0){
       this.pageNumber=this.pageNumber-1
     }
   gofrontReclamation(){
-    this.pageNumberReclamations=this.pageNumber+1
+    this.pageNumberReclamations=this.pageNumberReclamations+1
   }
   gobackReclamation(){
     this.pageNumberReclamations=this.pageNumberReclamations-1
