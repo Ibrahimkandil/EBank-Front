@@ -4,6 +4,9 @@ import {CookieService} from "ngx-cookie-service";
 import { Router} from "@angular/router";
 import {LoginControllerService} from "./authenticate/login-controller.service";
 import {CookiesGestionnaireService} from "./authenticate/CookiesGestionnaire.service";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {SendEmailDialogComponent} from "./authenticate/send-email-dialog/send-email-dialog.component";
+import {CreationComponent} from "./authenticate/creation/creation.component";
 
 @Component({
   selector: 'app-root',
@@ -20,13 +23,16 @@ export class AppComponent {
 })
   display_menu : boolean=false;
   currentUrl: string = window.location.href;
-  constructor(
+  constructor(public dialog: MatDialog,
       public cookieGestionnaireService:CookiesGestionnaireService,
       private LoginControllerService:LoginControllerService,
       public CookieService:CookieService,
       private router:Router
 
   ) {
+    if(this.CookieService.get('etat')==="VERIFICATION"){
+      this.openConfirmation()
+    }
 
     window.addEventListener('resize', this.onResize.bind(this));
 
@@ -60,6 +66,20 @@ export class AppComponent {
   //
   //   window.location.reload();
   // }
+  openConfirmation(): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true; // Prevents closing the dialog by clicking outside of it
+
+    dialogConfig.width = '1000px'; // Adjust width as needed
+dialogConfig.height = '500px'; // Adjust height as needed
+    const dialogRef = this.dialog.open(CreationComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // Handle actions after the dialog is closed, if needed
+    });
+  }
+
 
   protected readonly window = window;
 }

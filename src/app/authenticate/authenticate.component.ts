@@ -83,7 +83,7 @@ export class AuthenticateComponent {
         this.errorMsg = err.error;
         console.log("err",err);
         this.Errror=true;
-        this.snackBar.open(err.toString(), 'Error', {
+        this.snackBar.open(err.error, 'Error', {
           duration: 5000, // duration in milliseconds (optional)
         });
       })

@@ -1,3 +1,9 @@
 :host(::ng-deep).mat-select-min-line.ng-tns-c31-1.ng-star-inserted {
     color: black !important;
 }
+
+
+.Hovring:hover {
+  background-color: rgba(69, 71, 176, 0.5);
+  cursor: pointer;
+}
