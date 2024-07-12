@@ -1,0 +1,68 @@
+<mat-card class="agence-card">
+  <h2>Modifier une  Agence</h2>
+
+  <form *ngIf="!!agenceForm" [formGroup]="agenceForm" >
+    <mat-form-field appearance="fill">
+      <mat-label>Nom</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Adresse</mat-label>
+      <input matInput formControlName="address" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Responsable</mat-label>
+      <mat-select formControlName="responsable" >
+        <mat-option *ngFor="let employe of employes" [value]="employe">
+          {{employe.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Téléphone</mat-label>
+      <input matInput formControlName="phone" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Code Postal</mat-label>
+      <input matInput formControlName="postalCode" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Ville</mat-label>
+      <input matInput formControlName="city" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Pays</mat-label>
+      <input matInput formControlName="country" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Code Agence</mat-label>
+      <input matInput formControlName="code" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Etat</mat-label>
+      <mat-select formControlName="state">
+        <mat-option [value]="true">Actif</mat-option>
+        <mat-option [value]="false">Inactif</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Date de Création</mat-label>
+      <input matInput type="date" formControlName="creationDate" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Budget</mat-label>
+      <input matInput type="number" formControlName="budget" />
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="putAgence()"  type="submit">Modifier</button>
+  </form>
+</mat-card>

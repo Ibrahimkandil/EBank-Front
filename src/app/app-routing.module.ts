@@ -17,6 +17,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   { path: 'wallet', loadChildren: () => import("./mayssem/WalletDashboard/wallet-dashboard.module").then(m => m.WalletDashboardModule) },
+  { path: 'agence', loadChildren: () => import("./agence/agence.module").then(m => m.AgenceModule) },
 
   { path: 'interface1', loadChildren: () => import("./interface1/interface1.module").then(m => m.Interface1Module) },
   {path:"**",component:NotFoundComponent}

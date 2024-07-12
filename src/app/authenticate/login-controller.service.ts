@@ -19,7 +19,7 @@ export class LoginControllerService {
     console.log("this.route.snapshot",this.route.snapshot)
     if (this.cookieService.get('token')) {
       console.log('token exist')
-      this.router.navigateByUrl("interface1");
+     // this.router.navigateByUrl("interface1");
     }else{
       // if(  this.route.snapshot.url[0].path!=='auth')
       this.router.navigateByUrl("auth");
