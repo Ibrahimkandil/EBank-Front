@@ -1,9 +1,37 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { Compte_Bancaire } from '../Shared/Compte';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompteService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  private apiUrl = environment.apiUrl;
+
+  addCompte(compte: Compte_Bancaire): Observable<Compte_Bancaire>{
+    return this.http.post<Compte_Bancaire>(`${this.apiUrl}/Comptes/add`, compte);
+  }
+
+  getAllComptes(): Observable<Compte_Bancaire[]>{
+    return this.http.get<Compte_Bancaire[]>(`${this.apiUrl}/Comptes/get`);
+  }
+
+  getOneCompte(id: number): Observable<Compte_Bancaire>{
+    return this.http.get<Compte_Bancaire>(`${this.apiUrl}/Comptes/get/${id}`);
+  }
+
+  updateCompte(compte: Compte_Bancaire): Observable<Compte_Bancaire>{
+    return this.http.put<Compte_Bancaire>(`${this.apiUrl}/Comptes/update/${compte.id}`, compte);
+  }
+
+  deleteCompte(id: number): Observable<any>{
+    return this.http.delete<any>(`${this.apiUrl}/Comptes/delete/${id}`);
+  }
+
+
 }

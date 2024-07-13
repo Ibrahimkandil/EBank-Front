@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CompteService } from '../Services/compte.service';
 import { Router } from '@angular/router';
 import { Compte_Bancaire } from '../Shared/Compte';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-compte',
@@ -10,7 +11,7 @@ import { Compte_Bancaire } from '../Shared/Compte';
 })
 export class CompteComponent implements OnInit{
 
-  constructor(private compte: CompteService, private router: Router) {}
+  constructor(private compteService: CompteService, private router: Router,private toastr: ToastrService) {}
 
   ngOnInit(): void {
 
@@ -28,12 +29,19 @@ export class CompteComponent implements OnInit{
   };
 
   onCreate(){
-    console.log(this.CompteObject);
+    this.CompteObject.opening_date.toISOString();
+    this.CompteObject.closing_date.toISOString();
+    this.CompteObject.Date_d_ajout.toISOString();
+    this.compteService.addCompte(this.CompteObject).subscribe(
+      (data)=> {
+        if(data && Object.keys(data).length > 0){
+          console.log(this.CompteObject)
+          this.toastr.success("Saved")
+          this.router.navigate(['interface1']);
+        }
+      },
+      (error: any) => this.toastr.error("Error")
+    )
   }
-
-  OnModify(){
-
-  }
-
 }
 

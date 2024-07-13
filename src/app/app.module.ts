@@ -56,6 +56,7 @@ import {Interface2Module} from "./interface2/interface2.module";
 import { CompteComponent } from './Ahmed/compte/compte.component';
 import { TransactionComponent } from './Ahmed/transaction/transaction.component';
 import { TransfertComponent } from './Ahmed/transfert/transfert.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -117,7 +118,8 @@ import { TransfertComponent } from './Ahmed/transfert/transfert.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot(),
 
 
   ],

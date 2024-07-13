@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TransfertService } from '../Services/transfert.service';
 import { Router } from '@angular/router';
 import { Transfert } from '../Shared/Transfert';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-transfert',
@@ -10,7 +11,7 @@ import { Transfert } from '../Shared/Transfert';
 })
 export class TransfertComponent implements OnInit{
 
-  constructor(private transfert: TransfertService, private router: Router) {}
+  constructor(private transfertService: TransfertService, private router: Router,private toastr: ToastrService) {}
 
   ngOnInit(): void {
 
@@ -24,7 +25,17 @@ export class TransfertComponent implements OnInit{
   };
 
   onCreate(){
+    this.TransfertObject.Date.toISOString();
     console.log(this.TransfertObject);
+    this.transfertService.addTransfert(this.TransfertObject).subscribe(
+      (data)=> {
+        if(data && Object.keys(data).length > 0){
+          this.toastr.success("Saved")
+          this.router.navigate(['interface1']);
+        }
+      },
+      (error: any) => this.toastr.error("error")
+    )
   }
 
 }
