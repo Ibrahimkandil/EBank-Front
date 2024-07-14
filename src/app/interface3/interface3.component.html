@@ -911,6 +911,78 @@
           </div>
           <br>
         </mat-tab>
+          <mat-tab label="Demande du suppression">
+
+              <table class="items-center w-full bg-transparent border-collapse">
+                  <thead class="thead-light">
+                  <tr>
+                      <th
+                              class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                      >
+                          Id
+                      </th>
+                      <th
+                              class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                      >
+                          User        </th>
+                      <th
+                              class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                      >
+                          TYPE
+                      </th>
+                      <th
+                              class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+                      >
+                          Etat        </th>
+
+
+                  </tr>
+
+                  </thead>
+
+                  <tbody *ngIf=" demande_suppression.length==0">
+                  <br>
+                  <h2 style="position: relative;    left: 110%;">Pas du Data disponible</h2>
+
+                  </tbody>
+                  <tbody *ngFor="let i of demande_suppression">
+
+                  <tr (dblclick)="goversSuppression(i[0])" class="Hovring">
+                      <th
+                              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+                      >
+                          {{i[0]}}
+                      </th>
+                      <th
+                              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+                      >
+                          {{i[3].first_name}} {{i[3].last_name}}
+                      </th>
+                      <th
+                              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+                      >
+                          {{i[1]}}
+                      </th>
+
+                      <td
+                              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                      >{{i[2]}}</td>
+
+
+
+
+
+
+
+
+                  </tr>
+
+                  </tbody>
+              </table>
+              <br>
+
+          </mat-tab>
+
       </mat-tab-group>
 
     </div>

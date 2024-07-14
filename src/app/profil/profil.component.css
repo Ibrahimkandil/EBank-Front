@@ -100,3 +100,21 @@ input:focus {
     margin-bottom: 10px; /* Adjust paragraph margin as needed */
 }
 
+
+.DivAsking {
+    background-color: rgba(0, 89, 255, 0.33);;
+    border: 1px solid rgba(0, 89, 255, 1);
+}
+.DivError {
+    background-color:  rgb(171, 25, 25, 0.33);
+    border: 1px solid red;
+}
+.DivContent {
+
+    display: flex;
+    border-radius: 10px;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+

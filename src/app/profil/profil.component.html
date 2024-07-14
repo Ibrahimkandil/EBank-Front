@@ -65,6 +65,34 @@
 
 </div>
 <div  *ngIf="this.cookieservice.get('type')!=='Admin' && id_div==3" class="main-content">
+<!--Confirmation de suppression-->
+    <div *ngIf="confirmationDelete"
+         style="    display: flex;
+    justify-content: center;">
+        <div   class=" DivAsking DivContent col-8" >
+            <h4 class="MsgError text-center" >êtes vous Sure du supprimer Votre Compte?</h4>
+            <!--            <i   class=" IconError fa fa-times" aria-hidden="true" (click)="hide()"></i>-->
+            <div class="col-12" style="    display: flex;
+    justify-content: space-around;">
+                <button  class="bg-yellow-500  text-white active:bg-yellow-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="Refresh()">Annuler</button>
+                <button   class="bg-red-500 text-white active:bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="signSuppression()">Supprimer</button>
+
+            </div>    </div>
+    </div>
+    <!--Message d'erreur si on ne peut pas supprimer le compte-->
+    <div *ngIf="cantDelete"
+         style="    display: flex;
+    justify-content: center;">
+        <div   class=" DivError DivContent col-8" >
+            <h4 class="MsgError text-center" >Vous ne pouvez pas supprimer Votre Compte Car vous avez Un contrat no payé</h4>
+            <!--            <i   class=" IconError fa fa-times" aria-hidden="true" (click)="hide()"></i>-->
+            <div class="col-12" style="    display: flex;
+    justify-content: space-around;">
+                <button  class="bg-yellow-500  text-white active:bg-yellow-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="Refresh()">Annuler</button>
+
+            </div>    </div>
+    </div>
+    <br>
     <div class="terms-container" style="width: 100%">
         <h2>Termes et Conditions pour la Clôture de Compte</h2>
         <div class="terms-content" >
@@ -85,9 +113,13 @@
         </div>
     </div>
     <br>
-    <mat-checkbox [(ngModel)]="agreeToTerms">I agree to the Terms and Conditions</mat-checkbox>
+    <mat-checkbox   (change)="h2()" >I agree to the Terms and Conditions</mat-checkbox>
+
 
     <br>
+
+
+
     <app-signature (imageDataChange)="handleImageDataChange($event)" *ngIf="agreeToTerms"></app-signature>
 </div>
 

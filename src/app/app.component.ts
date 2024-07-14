@@ -71,7 +71,7 @@ export class AppComponent {
     dialogConfig.disableClose = true; // Prevents closing the dialog by clicking outside of it
 
     dialogConfig.width = '1000px'; // Adjust width as needed
-dialogConfig.height = '500px'; // Adjust height as needed
+    dialogConfig.height = '500px'; // Adjust height as needed
     const dialogRef = this.dialog.open(CreationComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {

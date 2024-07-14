@@ -65,6 +65,7 @@ export class Interface3Component {
     "Femme",
     ""
   ]
+  demande_suppression:any=[]
   pageNumberAgence=1
   datasourceAgenceEnPage:any=[]
   dataAgence:any=[]
@@ -146,7 +147,16 @@ constructor(private loginControllerService:LoginControllerService,
       console.log("err",err)
 
     })
+  this.http.get('http://localhost:8081/ebank/api/v1/admin/demande_suppression',{headers: headers})
+      .subscribe((res:any)=>{
+        this.demande_suppression=res
+        console.log("demande_suppression",this.demande_suppression)
 
+
+      },(err:any)=>{
+        console.log("err",err)
+
+      })
 }
   redirectversForm(){
     this.router.navigate(["/interface3/form"])
@@ -601,6 +611,9 @@ constructor(private loginControllerService:LoginControllerService,
     } else {
       this.DivisonParCing(this.datacontrat,"contrat")
     }
+  }
+  goversSuppression(id:number){
+    this.router.navigate(['suppression/'+id])
   }
 
 }
