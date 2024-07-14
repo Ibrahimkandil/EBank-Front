@@ -1,0 +1,57 @@
+<div class="header">
+  <h1>Update your Account</h1>
+</div>
+<mat-card class="container">
+    <mat-card-content>
+        <form class="example-form" #updatePopupForm="ngForm" (ngSubmit)="onUpdate(updatePopupForm.value)">
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Id</mat-label>
+            <input matInput name="id" #id="ngModel" type="number" ngModel readonly>
+          </mat-form-field><br>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Account number</mat-label>
+              <input matInput type="text" name="accountNumber" #accountNumber="ngModel" ngModel readonly>
+            </mat-form-field><br>
+
+              <mat-form-field class="example-full-width">
+                <mat-label>Balance</mat-label>
+                <input matInput type="number" name="balance" #balance="ngModel" ngModel readonly>
+              </mat-form-field><br>
+
+              <mat-form-field class="example-full-width">
+                <mat-label>Opening date</mat-label>
+                <input matInput type="text" name="opening_date" #opening_date="ngModel" ngModel readonly>
+              </mat-form-field><br>
+
+              <mat-form-field class="example-full-width">
+              <mat-label>Account type</mat-label>
+              <mat-select name="account_type" #account_type="ngModel" required ngModel>
+                <mat-option value="Compte_Épargne">Compte Épargne</mat-option>
+                <mat-option value="Compte_Courant">Compte Courant</mat-option>
+              </mat-select>
+              <mat-error *ngIf="account_type.errors?.['required']">Account_type is required</mat-error>
+            </mat-form-field><br>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Closing date</mat-label>
+              <input matInput [matDatepicker]="closing_date" name="closing_date" ngModel>
+              <mat-datepicker-toggle matSuffix [for]="closing_date"></mat-datepicker-toggle>
+              <mat-datepicker #closing_date></mat-datepicker>
+            </mat-form-field><br>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Interest rate</mat-label>
+              <input matInput type="number" name="interest_rate" #interest_rate="ngModel" ngModel readonly>
+            </mat-form-field><br>
+
+              <div>
+                <button mat-raised-button color="accent"  style="margin: 10px;" type="submit" [disabled]="updatePopupForm.form.invalid">Update account</button>
+              </div>
+          </form>
+    </mat-card-content>
+  </mat-card>
+
+
+

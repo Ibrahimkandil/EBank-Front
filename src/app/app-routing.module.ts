@@ -7,6 +7,8 @@ import {WalletDashboardModule} from "./mayssem/WalletDashboard/wallet-dashboard.
 import { CompteComponent } from './Ahmed/compte/compte.component';
 import { TransactionComponent } from './Ahmed/transaction/transaction.component';
 import { TransfertComponent } from './Ahmed/transfert/transfert.component';
+import { UpdateAccountComponent } from './Ahmed/update-account/update-account.component';
+import { DeleteAccountComponent } from './Ahmed/delete-account/delete-account.component';
 
 const routes: Routes = [
   {
@@ -25,6 +27,12 @@ const routes: Routes = [
   { path: 'interface2', loadChildren: () => import("./interface2/interface2.module").then(m => m.Interface2Module) },
   {
     path:'compte', component: CompteComponent
+  },
+  {
+    path:'update-compte', component: UpdateAccountComponent
+  },
+  {
+    path:'delete-compte', component: DeleteAccountComponent
   },
   {
     path:'transaction', component: TransactionComponent

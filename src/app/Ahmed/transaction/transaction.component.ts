@@ -17,6 +17,8 @@ export class TransactionComponent implements OnInit{
 
   }
 
+    QRcode: any
+
   TransactionObject: Transaction = {
     amount: 0,
     clientId: 0,
@@ -24,17 +26,20 @@ export class TransactionComponent implements OnInit{
     Date_Expiration: new Date(),
   }
 
-  onCreate(){
+  onCreate() {
     this.TransactionObject.Date_Expiration.toISOString();
     this.transactionService.addTransaction(this.TransactionObject).subscribe(
-      (data)=> {
-        if(data && Object.keys(data).length > 0){
-          this.toastr.success("Saved")
-          this.router.navigate(['interface1']);
+      (data) => {
+        if (data && Object.keys(data).length > 0) {
+          this.toastr.success("Saved");
+          this.QRcode = JSON.stringify(this.TransactionObject);
+          setTimeout(() => {
+            this.router.navigate(['interface1']);
+          }, 10000);
         }
       },
       (error: any) => this.toastr.error("error")
-    )
+    );
   }
 
   };

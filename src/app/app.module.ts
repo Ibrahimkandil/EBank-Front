@@ -57,6 +57,10 @@ import { CompteComponent } from './Ahmed/compte/compte.component';
 import { TransactionComponent } from './Ahmed/transaction/transaction.component';
 import { TransfertComponent } from './Ahmed/transfert/transfert.component';
 import { ToastrModule } from 'ngx-toastr';
+import { UpdateAccountComponent } from './Ahmed/update-account/update-account.component';
+import { DeleteAccountComponent } from './Ahmed/delete-account/delete-account.component';
+import { UpdatePopupComponent } from './Ahmed/update-popup/update-popup.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 
 @NgModule({
@@ -69,6 +73,9 @@ import { ToastrModule } from 'ngx-toastr';
     CompteComponent,
     TransactionComponent,
     TransfertComponent,
+    UpdateAccountComponent,
+    DeleteAccountComponent,
+    UpdatePopupComponent,
 
 
 
@@ -119,6 +126,7 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     MatIconModule,
     FormsModule,
+    QRCodeModule,
     ToastrModule.forRoot(),
 
 

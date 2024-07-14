@@ -1,0 +1,22 @@
+<div class="header">
+  <h1>Delete Account</h1>
+</div>
+<mat-card class="container">
+    <mat-card-content>
+        <form class="example-form" #deleteForm="ngForm" (ngSubmit)="onDelete()">
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Account number</mat-label>
+            <input matInput type="text" placeholder="enter your accountNumber" [(ngModel)]="CompteObject.accountNumber" name="accountNumber" #accountNumber="ngModel" required>
+            <mat-error *ngIf="accountNumber.errors?.['required']">Account number is required</mat-error>
+          </mat-form-field><br>
+
+              <div>
+                <button mat-raised-button color="accent"style="margin: 10px;" type="submit" [disabled]="deleteForm.form.invalid">Delete</button>
+              </div>
+          </form>
+    </mat-card-content>
+  </mat-card>
+
+
+

@@ -18,20 +18,18 @@ export class CompteComponent implements OnInit{
   }
 
   CompteObject: Compte_Bancaire = {
-    account_number: '',
+    accountNumber: '',
     balance: 0,
     opening_date: new Date(),
     account_type: '',
     closing_date: new Date(),
     interest_rate: 0,
-    Date_d_ajout: new Date(),
     client_id: 0,
   };
 
   onCreate(){
     this.CompteObject.opening_date.toISOString();
     this.CompteObject.closing_date.toISOString();
-    this.CompteObject.Date_d_ajout.toISOString();
     this.compteService.addCompte(this.CompteObject).subscribe(
       (data)=> {
         if(data && Object.keys(data).length > 0){

@@ -21,16 +21,16 @@ export class CompteService {
     return this.http.get<Compte_Bancaire[]>(`${this.apiUrl}/Comptes/get`);
   }
 
-  getOneCompte(id: number): Observable<Compte_Bancaire>{
-    return this.http.get<Compte_Bancaire>(`${this.apiUrl}/Comptes/get/${id}`);
+  getOneCompte(accountNumber: string): Observable<Compte_Bancaire>{
+    return this.http.get<Compte_Bancaire>(`${this.apiUrl}/Comptes/get/${accountNumber}`);
   }
 
   updateCompte(compte: Compte_Bancaire): Observable<Compte_Bancaire>{
     return this.http.put<Compte_Bancaire>(`${this.apiUrl}/Comptes/update/${compte.id}`, compte);
   }
 
-  deleteCompte(id: number): Observable<any>{
-    return this.http.delete<any>(`${this.apiUrl}/Comptes/delete/${id}`);
+  deleteCompte(accountNumber: string): Observable<any>{
+    return this.http.delete<any>(`${this.apiUrl}/Comptes/delete/${accountNumber}`);
   }
 
 

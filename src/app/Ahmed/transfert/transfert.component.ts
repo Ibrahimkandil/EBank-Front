@@ -26,7 +26,6 @@ export class TransfertComponent implements OnInit{
 
   onCreate(){
     this.TransfertObject.Date.toISOString();
-    console.log(this.TransfertObject);
     this.transfertService.addTransfert(this.TransfertObject).subscribe(
       (data)=> {
         if(data && Object.keys(data).length > 0){
