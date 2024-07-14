@@ -1,0 +1,23 @@
+
+<div style="    display: flex;
+    flex-direction: column;
+    align-items: center;">
+    <div class="col-12" style="    background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -3.5%;
+    width: 106.3%;">
+    <h2 style="    padding: 0px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    color: white;"> Suppression du Compte</h2>
+    </div>
+    <br>
+    <br>
+    <br>
+    <h4>Aprés La confirmation du Suppression ,Voici Votre Argents pour effectuer Un Retrait</h4>
+<ngx-qrcode *ngIf="qrCodeValue"  [value]="qrCodeValue"></ngx-qrcode>
+
+<button mat-button color="primary" type="submit" (click)="closeDialog()">Affectuer</button>
+</div>

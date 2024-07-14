@@ -7,6 +7,8 @@ import {WalletDashboardModule} from "./mayssem/WalletDashboard/wallet-dashboard.
 import {FicheClientComponent} from "./Fiches/fiche-client/fiche-client.component";
 import {FicheEmployeeComponent} from "./Fiches/fiche-employee/fiche-employee.component";
 import {ProfilComponent} from "./profil/profil.component";
+import {SupprimerComponent} from "./profil/supprimer/supprimer.component";
+import {QrcodeComponent} from "./tools/qrcode/qrcode.component";
 
 const routes: Routes = [
   {
@@ -19,6 +21,8 @@ const routes: Routes = [
     redirectTo: 'auth',
     pathMatch: 'full'
   },
+  { path: 'suppression/:id',component:SupprimerComponent },
+
   { path: 'wallet', loadChildren: () => import("./mayssem/WalletDashboard/wallet-dashboard.module").then(m => m.WalletDashboardModule) },
   { path: 'fiche/Client/:id', component:FicheClientComponent },
   { path: 'fiche/Employee/:id', component:FicheEmployeeComponent },

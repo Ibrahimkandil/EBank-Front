@@ -63,6 +63,9 @@ import { SignatureComponent } from './tools/signature/signature.component';
 
 import SignaturePad from "signature_pad";
 import { CreationComponent } from './authenticate/creation/creation.component';
+import { SupprimerComponent } from './profil/supprimer/supprimer.component';
+import { QrcodeComponent } from './tools/qrcode/qrcode.component';
+import {NgxQRCodeModule} from "ngx-qrcode2";
 
 @NgModule({
   declarations: [
@@ -77,6 +80,8 @@ import { CreationComponent } from './authenticate/creation/creation.component';
     ProfilComponent,
     SignatureComponent,
     CreationComponent,
+    SupprimerComponent,
+    QrcodeComponent,
 
 
 
@@ -129,7 +134,7 @@ import { CreationComponent } from './authenticate/creation/creation.component';
     BrowserAnimationsModule,
     MatIconModule,
     FormsModule,
-
+    NgxQRCodeModule,
 
 
   ],

@@ -16,7 +16,7 @@
         </div>
     </div>
     <br>
-    <mat-checkbox [(ngModel)]="agreeToTerms">I agree to the Terms and Conditions</mat-checkbox>
+    <mat-checkbox  [(ngModel)]="agreeToTerms">I agree to the Terms and Conditions</mat-checkbox>
 
     <br>
     <app-signature (imageDataChange)="handleImageDataChange($event)" *ngIf="agreeToTerms"></app-signature>

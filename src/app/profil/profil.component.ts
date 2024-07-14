@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
 import {ProfilService} from "./profil.service";
@@ -7,6 +7,9 @@ import {Observable} from "rxjs";
 import {SignatureComponent} from "../tools/signature/signature.component";
 import {Router} from "@angular/router";
 import {CookiesGestionnaireService} from "../authenticate/CookiesGestionnaire.service";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {CreationComponent} from "../authenticate/creation/creation.component";
+import {QrcodeComponent} from "../tools/qrcode/qrcode.component";
 
 @Component({
   selector: 'app-profil',
@@ -38,9 +41,11 @@ export class ProfilComponent {
    list:any=[]
     Form!: FormGroup;
     Objet:any
+    cantDelete:boolean=false
 
-  constructor(private router:Router,private cookieGestionnaireService:CookiesGestionnaireService,
-      private formBuilder: FormBuilder,private http:HttpClient,public cookieservice:CookieService,private profilservice:ProfilService) {
+  constructor(public dialog: MatDialog,private router:Router,private cookieGestionnaireService:CookiesGestionnaireService,
+      private formBuilder: FormBuilder,private http:HttpClient,public cookieservice:CookieService,private profilservice:ProfilService,
+   ) {
       let formGroupConfig:  any = {};
        if(this.cookieservice.get('type')==="Client"){
           this.list=this.profilservice.Client_Input
@@ -110,6 +115,7 @@ id_div:number=1;
   Errror:boolean=false;
   Sucess:boolean=false;
   MsgToDisplay:string="";
+    confirmationDelete:boolean=false;
   hide() {
     this.Errror = false;
     this.Sucess=false
@@ -215,5 +221,117 @@ id_div:number=1;
             }, (err:any) => {
                 console.error('Error:', err)
             })
+    }
+     data_wallet:any
+     data_compte :any
+     data_demande :any
+     data_contrat :any
+    h2() {
+        console.log("HHH")
+
+        const headers = new HttpHeaders({
+            'Authorization': 'Bearer ' + this.cookieservice.get('token'),
+            'Content-Type': 'application/json'
+        });
+        this.http.get('http://localhost:8081/ebank/api/v1/client/fetchData/' + this.cookieservice.get('id'), {headers: headers})
+            .subscribe((res: any) => {
+
+                    console.log("res", res)
+                 this.data_wallet=res[0]
+                this.data_compte = res[1]
+                this.data_demande = res[2]
+                this.data_contrat = res[3]
+                console.log("data_compte.compteBancaires.length",this.data_compte.compteBancaires.length)
+                console.log("data_compte.compteBancaires",this.data_compte.compteBancaires)
+                console.log("data_compte.compteBancaires.length>0",this.data_compte.compteBancaires.length>0)
+                if(this.data_contrat.contrats.length==0){
+
+                    this.confirmationDelete=true
+                    this.cantDelete=false
+                }else{
+                    this.confirmationDelete=false
+                    this.cantDelete=true
+
+                }
+                console.log("this.confirmationDelete",this.confirmationDelete)
+                    console.log("this.cantDelete",this.cantDelete)
+
+                    console.log("res", res[0])
+                    console.log("res", res[1])
+                    console.log("res", res[2])
+                }, (err: any) => {
+                    console.log("err", err)
+                }
+            )
+    }
+    getExchangeRates(): Observable<any> {
+        let url=`https://api.exchangerate-api.com/v4/latest/TND`
+        return this.http.get<any>(url);
+    }
+    signSuppression() {
+        this.agreeToTerms=true
+        let total:number=0
+        for(let i=0;i<this.data_compte.compteBancaires.length;i++){
+            total=total+this.data_compte.compteBancaires[i].balance
+
+        }
+
+        this.getExchangeRates().subscribe((data: any) => {
+            console.log("data", data.rates)
+            console.log("this.data_wallet.wallets.length",this.data_wallet.wallets.length)
+            for(let i=0;i<this.data_wallet.wallets.length;i++){
+                console.log("this.data_wallet.wallets[i].currency",this.data_wallet.wallets[i].currency)
+                console.log("this.data",data.rates[`${this.data_wallet.wallets[i].currency}`])
+                let rate=data.rates[`${this.data_wallet.wallets[i].currency}`]
+                total=total+this.data_wallet.wallets[i].balance/rate
+
+            }
+            total=Math.floor(total)
+
+            let  date =new Date()
+            date.setHours(date.getHours()+1)
+            let numTransaction=""
+            for(let i=0;i<12;i++){
+                numTransaction=numTransaction+Math.floor(Math.random() * 10)
+            }
+
+
+            let body=  "Numéro:"+numTransaction+ '\''
+            +" Client:"+this.cookieservice.get('first_name')+" "+this.cookieservice.get('last_name')+ '\'' +
+            " total:"+total+ '\'' +" date:"+date
+
+            this.openConfirmation(body.toString())
+
+            console.log("total",total)
+
+        }, (err: any) => {})
+
+    }
+    Refresh() {
+        window.location.reload();
+    }
+
+
+    openConfirmation(data:any): void {
+
+
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.disableClose = true; // Prevents closing the dialog by clicking outside of it
+
+        dialogConfig.width = '800px'; // Adjust width as needed
+        dialogConfig.height = '400px'; // Adjust height as needed
+        dialogConfig.disableClose = true; // Prevents closing the dialog by clicking outside of it
+
+        dialogConfig.data = { data: data }
+        const dialogRef = this.dialog.open(QrcodeComponent, dialogConfig);
+
+        dialogRef.afterClosed().subscribe(result => {
+            this.http.delete("http://localhost:8081/ebank/api/v1/client/ClearDatas/"+this.cookieservice.get('id'),{headers:this.headers})
+                .subscribe((res:any)=>{
+                    console.log("res",res)
+                },(err:any)=>{console.log("err",err)})
+            console.log('The dialog was closed');
+            // Handle actions after the dialog is closed, if needed
+        });
     }
 }

@@ -1,0 +1,14 @@
+.Div {
+    background-color: rgba(0, 89, 255, 0.33);
+    border: 1px solid blue;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 5%;
+    padding-top: 5%;
+    width: 40%;
+    height: 30%;
+    border-radius: 1rem;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
