@@ -98,7 +98,7 @@ export class Interface1Component implements OnInit{
     return inputDate > currentDate;
   }
   TransactionByCompteNumber(transaction:any,compteNumber:string):any{
-    return transaction.filter((element:any) => element.compte_Bancaire.account_number === compteNumber)
+    return transaction.filter((element:any) => element.compte_Bancaire.accountNumber === compteNumber)
   }
 
 
@@ -108,7 +108,7 @@ export class Interface1Component implements OnInit{
     this.fetchfive(this.listofbunch,transactionByCompteNumber)
     let depot =this.filterByType(transactionByCompteNumber,"DEPOSIT")
     let withdraw =this.filterByType(transactionByCompteNumber,"WITHDRAWAL")
-    let total=this.comptes.find((i:any)=>i['account_number']===e).balance;
+    let total=this.comptes.find((i:any)=>i['accountNumber']===e).balance;
     let totwith=0
     totwith=this.calcDepense(withdraw)
 
@@ -150,7 +150,7 @@ fetch_CompteNumber(transaction:any):any{
   let listdesComptes:any=[]
 
   transaction.forEach((element: any) => {
-    let accountNumber = element.account_number;
+    let accountNumber = element.accountNumber;
 
     // Check if the account number hasn't been added already
     if (!seenAccountNumbers.has(accountNumber)) {

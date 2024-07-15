@@ -31,7 +31,7 @@
                 <div class="col-md-5">
                 <mat-form-field style="width: 150px;">
                   <mat-label  style="color:black">Comptes Bancaires</mat-label>
-                  <mat-select [disabled]="input_Compte" [value]="account_number"   (valueChange)="h1($event)"  >
+                  <mat-select [disabled]="input_Compte" [value]="accountNumber"   (valueChange)="h1($event)"  >
                     <mat-option  *ngFor="let account of listcomptes" [value]="account">
                       {{ account }}
                     </mat-option>

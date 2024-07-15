@@ -140,17 +140,15 @@ content="Welcome Mr/Mrs\n" +
       content: [
         { text: 'Document Content:', fontSize: 16 },
         { text: content, fontSize: 12 },
-        { text: "" +
-            "" +
-            "", fontSize: 12 },
+        { text: "" + "" + "", fontSize: 12 },
         { image: signatureDataUrl, width: 600, height: 400 } // Insert signature as an image
       ]
     };
 
-    const pdfDoc = pdfMake.createPdf(docDefinition);
-    pdfDoc.getBlob((blob: Blob) => {
-      saveAs(blob, 'document.pdf');
-    });
+    // const pdfDoc = pdfMake.createPdf(docDefinition);
+    // pdfDoc.getBlob((blob: Blob) => {
+    //   saveAs(blob, 'document.pdf');
+    // });
   }
   private generateDOCX(content: string, signatureDataUrl: string) {
     const doc = new Document({
