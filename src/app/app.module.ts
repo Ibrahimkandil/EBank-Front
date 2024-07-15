@@ -60,7 +60,6 @@ import {Interface3Module} from "./interface3/interface3.module";
 import {FicheEmployeeComponent} from "./Fiches/fiche-employee/fiche-employee.component";
 import { ProfilComponent } from './profil/profil.component';
 import { SignatureComponent } from './tools/signature/signature.component';
-import {SignaturePad} from 'signature_pad';
 import { CreationComponent } from './authenticate/creation/creation.component';
 import { SupprimerComponent } from './profil/supprimer/supprimer.component';
 import { QrcodeComponent } from './tools/qrcode/qrcode.component';
