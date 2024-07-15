@@ -28,6 +28,7 @@ export class FicheEmployeeComponent {
           if(this.employee.image_data!==null){
           this.employee['image64']= this.convertImageDataToBase64(this.employee.image_data)
           }
+          console.log("this.employee",this.employee)
         }, (err: any) => {})
   }
 

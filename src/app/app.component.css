@@ -1,9 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 .iconss {
-position: absolute;
-left: 95%;
-bottom: 95%;
-cursor: pointer;
+    position: absolute;
+    left: 95%;
+    bottom: 90%;
+    cursor: pointer;
+    font-size: x-large;
 }
 
 * {
@@ -49,9 +50,9 @@ nav ul {
     list-style: none;
     display: flex;
 }
-nav ul li {
-    margin-left: 1.5rem;
-}
+/*nav ul li {*/
+/*    margin-left: 1.5rem;*/
+/*}*/
 nav ul li a {
     text-decoration: none;
     color: #000;
@@ -61,8 +62,8 @@ nav ul li a {
     border-radius: 5px;
 }
 
-nav ul li a:hover {
-    background-color: #f5f5f5;
+nav ul li:hover {
+    background-color: #6c757d9c;
 }
 
 .hamburger {
@@ -110,27 +111,25 @@ nav ul li a:hover {
     align-items: flex-start;
     width: 60%;
     height: 100vh;
-    padding: 20% 0;
+    padding: 20% 5%;
     background: rgba(255, 255, 255);
     transition: all 0.5s ease-in;
     z-index: 2;
     flex-direction: column;
-    align-content: center;
-    flex-wrap: wrap;
 
 }
 .active {
     left: 0;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    box-shadow: rgba(149, 157, 165, 1) 0px 8px 24px;
 }
 
 .menubar ul {
     padding: 0;
     list-style: none;
 }
-.menubar ul li {
-    margin-bottom: 32px;
-}
+/*.menubar ul li {*/
+/*    margin-bottom: 32px;*/
+/*}*/
 
 .menubar ul li a {
     text-decoration: none;
@@ -141,8 +140,13 @@ nav ul li a:hover {
     border-radius: 5px;
 }
 
-.menubar ul li a:hover {
-    background-color: #f5f5f5;
+.menubar ul li:hover {
+    background-color: #6c757d9c;
+
+}
+.MMM  {
+    background-color: rgba(0, 0, 255, 0.51);
+
 }
 .user-logo-nav {
       display: flex;
@@ -171,9 +175,11 @@ nav ul li a:hover {
 .Icon-Hovered {
     cursor: pointer !important;
     position: relative;
-    left: 5%;
+    left: 50%;
     transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1), color 0.5s ease-in;
-    transform-origin: center; /* Ensures scaling from the center */
+    transform-origin: center;
+    font-size: x-large;
+    font-weight: bold;
 }
 .Icon-Hovered:hover {
     color: #b927fc; /* New color on hover */
@@ -211,7 +217,7 @@ nav ul li a:hover {
 
   transition: max-height 3s ease;
   position: fixed;
-  top: 6.5%;
+  top: 12.5%;
   list-style-type: none;
   padding-top: 10px;
   padding-right: 10px;
@@ -240,9 +246,9 @@ nav ul li a:hover {
   text-decoration: none;
   color: #333;
 }
-.menu li a:hover {
-  background-color: #f0f0f0;
-}
+/*.menu li a:hover {*/
+/*  background-color: #f0f0f0;*/
+/*}*/
 
 
 .Meeenu {

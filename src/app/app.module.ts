@@ -66,6 +66,7 @@ import { CreationComponent } from './authenticate/creation/creation.component';
 import { SupprimerComponent } from './profil/supprimer/supprimer.component';
 import { QrcodeComponent } from './tools/qrcode/qrcode.component';
 import {NgxQRCodeModule} from "ngx-qrcode2";
+import { NgxCaptchaModule } from 'ngx-captcha'; // Import NgxCaptchaModule
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import {NgxQRCodeModule} from "ngx-qrcode2";
     CreationComponent,
     SupprimerComponent,
     QrcodeComponent,
+
 
 
 
@@ -135,7 +137,7 @@ import {NgxQRCodeModule} from "ngx-qrcode2";
     MatIconModule,
     FormsModule,
     NgxQRCodeModule,
-
+    NgxCaptchaModule
 
   ],
   exports: [
@@ -146,7 +148,8 @@ import {NgxQRCodeModule} from "ngx-qrcode2";
 
   ],
 
-  providers: [AppLoaderService,CookieService,WalletDashboardService],
+  providers: [AppLoaderService,CookieService,WalletDashboardService,
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

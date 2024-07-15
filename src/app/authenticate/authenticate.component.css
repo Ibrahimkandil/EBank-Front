@@ -23,3 +23,6 @@
 input:focus {
     --tw-ring-color: transparent !important;
 }
+:host(::ng-deep) mat-primary:hover {
+    background-color: #ff000054;
+}

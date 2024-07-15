@@ -2,18 +2,17 @@
 <div style="    display: flex;
     flex-direction: column;
     align-items: center;">
-    <div class="client-details" style="    padding-left: 0px;
-    padding-right: 0px;
-    width: 100%;">
+    <div class="client-details" style="    padding-left: 20px;
+    padding-right: 0px;">
         <div style="    display: flex;
     justify-content: center;">
             <h1><b>Employee Details</b></h1>
         </div>
         <div style="display: flex">
-            <div class="detail-item">
-                <img *ngIf="employee.image_data" class="client-image" [src]="employee.image64" alt="Employee Image" >
-                <img *ngIf="!employee.image_data" class="client-image" src="/assets/images/userlogo.png" alt="Default Image">
-            </div>
+
+                <img *ngIf="employee['image64']!==null && employee['image64']!==undefined" class="client-image" [src]="employee['image64']"  >
+                <img *ngIf="employee['image64']===null && employee['image64']===undefined" class="client-image" src="/assets/images/userlogo.png" >
+
             <div style="    display: flex;
     flex-direction: column;
     justify-content: space-around;margin-left: 10px;">
@@ -40,7 +39,7 @@
 
                 <div class="detail-item">
                     <label>Agence:</label>
-                    <span>{{ employee.agence.name }}</span>
+                    <span>{{ employee.agence ? employee.agence.name : null }} </span>
                 </div>
                 <div class="detail-item">
                     <label>Email:</label>

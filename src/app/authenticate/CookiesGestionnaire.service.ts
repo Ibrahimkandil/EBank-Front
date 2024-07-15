@@ -48,5 +48,7 @@ MenusParCompte:any
 
   clearCookies(){
     this.cookieservice.deleteAll();
+      window.location.reload();
+
   }
 }

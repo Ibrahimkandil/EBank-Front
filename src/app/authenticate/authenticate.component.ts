@@ -9,6 +9,8 @@ import {AppLoaderService} from "./app-loader/app-loader.service";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {CookiesGestionnaireService} from "./CookiesGestionnaire.service";
 import {LoginControllerService} from "./login-controller.service";
+import { NgxCaptchaModule, ReCaptcha2Component } from 'ngx-captcha'; // Import NgxCaptchaModule and ReCaptcha2Component
+
 
 @Component({
   selector: 'app-authenticate',
@@ -18,6 +20,9 @@ import {LoginControllerService} from "./login-controller.service";
 export class AuthenticateComponent {
   @ViewChild(MatProgressBar) progressBar!: MatProgressBar;
   @ViewChild(MatButton) submitButton!: MatButton;
+  captchaResponse!: string;
+  captchaValid: boolean = false;
+  loginDisabled: boolean = true;
 
   signinForm!: FormGroup;
   errorMsg = '';
@@ -27,7 +32,9 @@ export class AuthenticateComponent {
   show_Error: boolean = false;
 
   constructor(
-    private jwtAuth: JwtAuthService,
+      // private recaptchaLoaderService: RecaptchaLoaderService,
+
+  private jwtAuth: JwtAuthService,
     private matxLoader: AppLoaderService,
     private router: Router,
     private route: ActivatedRoute,
@@ -104,5 +111,27 @@ export class AuthenticateComponent {
     this.Errror = false;
 
   }
+  public captchaIsLoaded: boolean = false;
+  public captchaSuccess: boolean = false;
+  public captchaIsExpired: boolean = false;
 
+  handleReset(): void {
+    this.captchaSuccess = false;
+    this.captchaResponse = '';
+  }
+
+  handleExpire(): void {
+    this.captchaSuccess = false;
+    this.captchaIsExpired = true;
+  }
+
+  handleLoad(): void {
+    this.captchaIsLoaded = true;
+    this.captchaIsExpired = false;
+  }
+
+  handleSuccess(event: any): void {
+    this.captchaSuccess = true;
+    this.captchaResponse = event;
+  }
 }

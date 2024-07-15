@@ -7,3 +7,8 @@
     /*    --tw-ring-color: transparent !important;*/
     /*}*/
 }
+
+
+input:focus {
+    --tw-ring-color: transparent !important;
+}

@@ -1,7 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {Route, Router} from "@angular/router";
+import {MatProgressBar} from "@angular/material/progress-bar";
+import {MatButton} from "@angular/material/button";
 
 @Component({
   selector: 'app-fiche-employee',
@@ -9,6 +13,8 @@ import {CookieService} from "ngx-cookie-service";
   styleUrls: ['./employee-form.component.css']
 })
 export class EmployeeFormComponent {
+  @ViewChild(MatProgressBar) progressBar!: MatProgressBar;
+  @ViewChild(MatButton) submitButton!: MatButton;
   employeeForm: FormGroup;
   sexes = [ "Homme", "Femme"];
 
@@ -16,7 +22,7 @@ export class EmployeeFormComponent {
   // admins: Admin[] = []; // Populate with actual data
   // agences: Agence[] = []; // Populate with actual data
 
-  constructor(private http:HttpClient,private cookieService:CookieService,private fb: FormBuilder) {
+  constructor(private router:Router,private snackBar: MatSnackBar,private http:HttpClient,private cookieService:CookieService,private fb: FormBuilder) {
     this.employeeForm = this.fb.group({
       name: ['', Validators.required],
       mail: ['', [Validators.required, Validators.email]],
@@ -34,20 +40,32 @@ export class EmployeeFormComponent {
   }
 
   onSubmit(): void {
+
     if (this.employeeForm.valid) {
+      this.submitButton.disabled = true;
+      this.progressBar.mode = 'indeterminate';
       const formData: any = this.employeeForm.value ;
 
       const headers = new HttpHeaders({
         'Authorization': 'Bearer '+this.cookieService.get('token')
       });
+
       let id=this.cookieService.get('id')
       this.http.post('http://localhost:8081/ebank/api/v1/admin/addEmployee/'+id,formData,{headers: headers})
           .subscribe((res:any)=>{
+            this.snackBar.open("Success", 'Error', {
+              duration: 5000, // duration in milliseconds (optional)
+            });
+          this.router.navigate(['/fiche/Employee/'+res.id]);
 
           },(err:any)=>{
+            console.log(err)
+            this.submitButton.disabled = false;
+            this.progressBar.mode = 'determinate';
 
           })
     } else {
+
       // Handle form validation errors
     }
   }
