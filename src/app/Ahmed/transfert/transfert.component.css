@@ -1,0 +1,17 @@
+.header{
+  margin-top: 20px;
+  margin-left: 350px;
+}
+
+.container {
+width: 700px;
+display: flex;
+justify-content: center; /* Center items horizontally */
+align-items: center;
+}
+
+form {
+  width: 500px; /* Adjust width of the form */
+  padding: 20px;
+  border-radius: 5px;
+}

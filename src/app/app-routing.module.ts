@@ -9,6 +9,11 @@ import {FicheEmployeeComponent} from "./Fiches/fiche-employee/fiche-employee.com
 import {ProfilComponent} from "./profil/profil.component";
 import {SupprimerComponent} from "./profil/supprimer/supprimer.component";
 import {QrcodeComponent} from "./tools/qrcode/qrcode.component";
+import { CompteComponent } from './Ahmed/compte/compte.component';
+import { TransactionComponent } from './Ahmed/transaction/transaction.component';
+import { TransfertComponent } from './Ahmed/transfert/transfert.component';
+import { UpdateAccountComponent } from './Ahmed/update-account/update-account.component';
+import { DeleteAccountComponent } from './Ahmed/delete-account/delete-account.component';
 
 const routes: Routes = [
   {
@@ -31,6 +36,21 @@ const routes: Routes = [
   { path: 'interface2', loadChildren: () => import("./interface2/interface2.module").then(m => m.Interface2Module) },
   { path: 'interface3', loadChildren: () => import("./interface3/interface3.module").then(m => m.Interface3Module) },
   {path:"Settings",component:ProfilComponent},
+  {
+    path:'compte', component: CompteComponent
+  },
+  {
+    path:'update-compte', component: UpdateAccountComponent
+  },
+  {
+    path:'delete-compte', component: DeleteAccountComponent
+  },
+  {
+    path:'transaction', component: TransactionComponent
+  },
+  {
+    path:'transfert', component: TransfertComponent
+  },
   {path:"**",component:NotFoundComponent}
 
 ];

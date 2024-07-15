@@ -60,13 +60,20 @@ import {Interface3Module} from "./interface3/interface3.module";
 import {FicheEmployeeComponent} from "./Fiches/fiche-employee/fiche-employee.component";
 import { ProfilComponent } from './profil/profil.component';
 import { SignatureComponent } from './tools/signature/signature.component';
-
-import SignaturePad from "signature_pad";
 import { CreationComponent } from './authenticate/creation/creation.component';
 import { SupprimerComponent } from './profil/supprimer/supprimer.component';
 import { QrcodeComponent } from './tools/qrcode/qrcode.component';
-import {NgxQRCodeModule} from "ngx-qrcode2";
+import {NgxQRCodeModule} from 'ngx-qrcode2';
 import { NgxCaptchaModule } from 'ngx-captcha'; // Import NgxCaptchaModule
+import { CompteComponent } from './Ahmed/compte/compte.component';
+import { TransactionComponent } from './Ahmed/transaction/transaction.component';
+import { TransfertComponent } from './Ahmed/transfert/transfert.component';
+import { ToastrModule } from 'ngx-toastr';
+import { UpdateAccountComponent } from './Ahmed/update-account/update-account.component';
+import { DeleteAccountComponent } from './Ahmed/delete-account/delete-account.component';
+import { UpdatePopupComponent } from './Ahmed/update-popup/update-popup.component';
+import { QRCodeModule } from 'angularx-qrcode';
+
 
 @NgModule({
   declarations: [
@@ -86,6 +93,12 @@ import { NgxCaptchaModule } from 'ngx-captcha'; // Import NgxCaptchaModule
 
 
 
+    CompteComponent,
+    TransactionComponent,
+    TransfertComponent,
+    UpdateAccountComponent,
+    DeleteAccountComponent,
+    UpdatePopupComponent,
 
 
 
@@ -137,7 +150,10 @@ import { NgxCaptchaModule } from 'ngx-captcha'; // Import NgxCaptchaModule
     MatIconModule,
     FormsModule,
     NgxQRCodeModule,
-    NgxCaptchaModule
+    NgxCaptchaModule,
+    QRCodeModule,
+    ToastrModule.forRoot(),
+
 
   ],
   exports: [

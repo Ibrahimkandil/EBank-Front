@@ -1,0 +1,64 @@
+<div class="header">
+  <h1>Create your Account</h1>
+</div>
+<mat-card class="container">
+    <mat-card-content>
+        <form class="example-form" #compteForm="ngForm" (ngSubmit)="onCreate()">
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Account number</mat-label>
+              <input matInput type="text" placeholder="enter your accountNumber" [(ngModel)]="CompteObject.accountNumber" name="accountNumber" #accountNumber="ngModel" required>
+              <mat-error *ngIf="accountNumber.errors?.['required']">Account number is required</mat-error>
+            </mat-form-field><br>
+
+              <mat-form-field class="example-full-width">
+                <mat-label>Balance</mat-label>
+                <input matInput placeholder="enter your balance" type="number" [(ngModel)]="CompteObject.balance" name="balance" #balance="ngModel" required>
+                <mat-error *ngIf="balance.errors?.['required']">Balance is required</mat-error>
+              </mat-form-field><br>
+
+              <mat-form-field class="example-full-width">
+                <mat-label>Opening date</mat-label>
+                <input matInput [matDatepicker]="opening_date" [(ngModel)]="CompteObject.opening_date" name="opening_date">
+                <mat-datepicker-toggle matSuffix [for]="opening_date"></mat-datepicker-toggle>
+                <mat-datepicker #opening_date></mat-datepicker>
+              </mat-form-field><br>
+
+              <mat-form-field class="example-full-width">
+              <mat-label>Account type</mat-label>
+              <mat-select [(ngModel)]="CompteObject.account_type" name="account_type" #account_type="ngModel" required>
+                <mat-option value="Compte_Épargne">Compte Épargne</mat-option>
+                <mat-option value="Compte_Courant">Compte Courant</mat-option>
+              </mat-select>
+              <mat-error *ngIf="account_type.errors?.['required']">Account type is required</mat-error>
+            </mat-form-field><br>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Closing date</mat-label>
+              <input matInput [matDatepicker]="closing_date" [(ngModel)]="CompteObject.closing_date" name="closing_date">
+              <mat-datepicker-toggle matSuffix [for]="closing_date"></mat-datepicker-toggle>
+              <mat-datepicker #closing_date></mat-datepicker>
+            </mat-form-field><br>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Interest rate</mat-label>
+              <input matInput type="number" [(ngModel)]="CompteObject.interest_rate" name="interest_rate" #interest_rate="ngModel" required>
+              <mat-error *ngIf="interest_rate.errors?.['required']">Interest rate is required</mat-error>
+            </mat-form-field><br>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Client id</mat-label>
+              <input matInput placeholder="enter your Client_id" type="number" [(ngModel)]="CompteObject.client_id" name="client_id" #client_id="ngModel" required>
+              <mat-error *ngIf="client_id.errors?.['required']">Client id is required</mat-error>
+            </mat-form-field><br>
+
+              <div>
+                <button mat-raised-button color="primary" style="margin: 10px;" type="submit" [disabled]="compteForm.form.invalid">Create account</button>
+                <button mat-stroked-button color="primary" style="margin: 10px;"><a routerLink="/update-compte">Update account</a></button>
+                <button mat-raised-button color="accent" style="margin: 10px;"><a routerLink="/delete-compte">Delete account</a></button>
+              </div>
+          </form>
+    </mat-card-content>
+  </mat-card>
+
+
