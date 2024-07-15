@@ -22,7 +22,7 @@ export class AppComponent {
   a : new FormControl(null)
 })
   display_menu : boolean=false;
-  currentUrl: string = window.location.href;
+  currentUrl:string;
   constructor(public dialog: MatDialog,
       public cookieGestionnaireService:CookiesGestionnaireService,
       private LoginControllerService:LoginControllerService,
@@ -30,6 +30,9 @@ export class AppComponent {
       private router:Router
 
   ) {
+    this.currentUrl  = window.location.href;
+
+    console.log("currentUrl.split('/')[currentUrl.split('/').length-1]",this.currentUrl.split('4200/')[this.currentUrl.split('4200/').length-1])
     if(this.CookieService.get('etat')==="VERIFICATION"){
       this.openConfirmation()
     }
@@ -49,7 +52,7 @@ export class AppComponent {
   }
   logout() {
     this.cookieGestionnaireService.clearCookies();
-    this.router.navigateByUrl("auth");
+
   }
 
   redirectversForm(link: string) {
@@ -80,6 +83,21 @@ export class AppComponent {
     });
   }
 
+  vers(path:string) {
+    const currentPath = window.location.pathname;
+    const targetPath = `/${path}`;
 
+    if (currentPath !== targetPath) {
+      // If the target path is different from the current, use Angular's router and then reload
+      this.router.navigate([targetPath]).then(() => {
+        window.location.reload();
+      });
+    } else {
+      // If the target path is the same as the current, directly reload the page
+      window.location.href = targetPath;
+      window.location.reload();
+    }
+
+  }
   protected readonly window = window;
 }

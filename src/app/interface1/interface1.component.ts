@@ -48,12 +48,17 @@ export class Interface1Component implements OnInit{
       });
       this.http.get('http://localhost:8081/ebank/api/v1/client/comptes/'+this.cookieservice.get('id'), {headers: headers}).
       subscribe((resp: any) => {
+        console.log("comptes",resp)
         this.comptes=resp;
-        this.snackBar.open(resp, 'Success fetching les comptes Bancaires', {
+        this.snackBar.open("Success fetching les comptes Bancaires", "Close", {
           duration: 5000,
         });
         this.transaction=this.historiques[0]
-        this.listdesComptes=this.fetch_CompteNumber(this.transaction)
+
+        this.listdesComptes=this.fetch_CompteNumber(this.comptes)
+        console.log("listdesComptes",this.listdesComptes)
+        console.log("listdesComptes",this.listdesComptes)
+
 
         let transactionByCompteNumber=this.TransactionByCompteNumber(this.transaction,this.listdesComptes[0])
         this.fetchfive(this.listofbunch,transactionByCompteNumber)
@@ -144,8 +149,8 @@ fetch_CompteNumber(transaction:any):any{
   let seenAccountNumbers = new Set<string>();
   let listdesComptes:any=[]
 
-  this.transaction.forEach((element: any) => {
-    let accountNumber = element.compte_Bancaire.account_number;
+  transaction.forEach((element: any) => {
+    let accountNumber = element.account_number;
 
     // Check if the account number hasn't been added already
     if (!seenAccountNumbers.has(accountNumber)) {
@@ -153,6 +158,7 @@ fetch_CompteNumber(transaction:any):any{
       seenAccountNumbers.add(accountNumber); // Add to the Set to track uniqueness
     }
   });
+  console.log("listes",listdesComptes)
   return listdesComptes
 }
 demandeContrat:any=[]

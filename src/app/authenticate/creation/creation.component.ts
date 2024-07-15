@@ -3,6 +3,7 @@ import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-creation',
@@ -18,7 +19,8 @@ export class CreationComponent {
     'Content-Type': 'application/json'
   });
 
-  constructor(        public dialogRef: MatDialogRef<CreationComponent>,
+  constructor(   private snackBar:MatSnackBar,
+      public dialogRef: MatDialogRef<CreationComponent>,
 
                       private  cookieservice:CookieService,private http:HttpClient
               ,private router:Router) {
@@ -50,9 +52,16 @@ export class CreationComponent {
         .subscribe((data:any) => {
             console.log(data)
           this.cookieservice.set('etat','ACTIF')
+          this.dialogRef.close();
+          this.snackBar.open("Success", 'Close', {
+            duration: 5000, // duration in milliseconds (optional)
+          });
         }, (err:any) => {
           console.error('Error:', err)
+          this.snackBar.open(err, 'Close', {
+            duration: 5000, // duration in milliseconds (optional)
+          });
         })
-    this.dialogRef.close();
+
   }
 }

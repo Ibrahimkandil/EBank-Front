@@ -6,7 +6,7 @@
 
     <ul  style="    margin: 0px; padding-left: 2%;" >
 
-        <li    style="  position: relative;z-index: 1;"  *ngFor="let element of this.CookieService.get('menus').split(',')" [ngClass]="currentUrl.split('/')[currentUrl.split('/').length-1]===element.split(':')[1] ? 'Meeenu' : ''">
+        <li    style="   position: relative;z-index: 1;"  *ngFor="let element of this.CookieService.get('menus').split(',')" [ngClass]="currentUrl.split('4200/')[currentUrl.split('4200/').length-1]===element.split(':')[1] ? 'Meeenu' : ''">
 
             <a  class="A"  href="{{element.split(':')[1] }}">{{element.split(':')[0]}}</a>
 
@@ -23,14 +23,23 @@
         <p style="padding-left: 1% ;margin: 0px;margin-right: -10%"> {{this.CookieService.get('first_name')+" "+this.CookieService.get('last_name')}} </p>
           <div class="menu-container" (mouseenter)="display_menu=true" (focus)="display_menu=false"  >
           <span  class="menu-user" ><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-              <ul  (mouseleave)="display_menu=false" class="menu" [ngClass]="display_menu?'shown-menu':'hidden-menu'" >
-                <li  *ngFor="let element of this.CookieService.get('menus').split(',') " [ngClass]="currentUrl.split('/')[currentUrl.split('/').length-1]===element.split(':')[1] ? 'Meeenu2' : ''">
+              <ul  (mouseleave)="display_menu=false" style="    padding-right: 0px;" class="menu" [ngClass]="display_menu?'shown-menu':'hidden-menu'" >
+                <li  *ngFor="let element of this.CookieService.get('menus').split(',') " [ngClass]="currentUrl.split('4200/')[currentUrl.split('4200/').length-1]===element.split(':')[1] ? 'Meeenu2' : ''">
 
 
-                  <a href="{{element.split(':')[1] }}">{{element.split(':')[0]}}</a>
+                  <a style="margin-left: 1.5rem;" href="{{element.split(':')[1] }}">{{element.split(':')[0]}}</a>
 
                 </li>
+
+
+                      <li >
+                          <a style="margin-left: 1.5rem;"  (click)="logout()" >Déconnecter</a>
+
+                      </li>
+
               </ul>
+
+
         </div>
         </div>
             <mat-icon class="Icon-Hovered" fontIcon="logout" (click)="logout()" ></mat-icon>
@@ -45,9 +54,11 @@
     <span   class="iconss" (click)="toggleNav()" ><i class=" fas fa-times"></i>
 </span>
 
-        <div class="row-12 col-8" style="display: flex; position: relative;bottom: 50%;
+        <div class="row-12 col-8" style="display: flex;
+    position: relative;
+    bottom: 100%;
     align-items: center;
-justify-content: space-around;">
+    justify-content: space-around;">
                 <div  style="display: flex;
     align-items: center;  position:relative;    right: 20%; ">
                   <mat-icon fontIcon="person" ></mat-icon>
@@ -56,11 +67,18 @@ justify-content: space-around;">
             </div>
                 <mat-icon class="Icon-Hovered" fontIcon="logout" (click)="logout()" ></mat-icon>
     </div>
-    <ul style="position: relative;bottom: 25%" >
-      <li *ngFor="let element of this.CookieService.get('menus').split(',')">
+    <ul  class="col-12 " style="    position: relative;
+    bottom: 50%;
+    left: -10%;
+    width: 120%;" >
+      <li  style="height: 60%;
+    display: flex;
+    align-items: center;
+    padding-left: 5%; ;" (click)="vers(element.split(':')[1])" [ngClass]="currentUrl.split('4200/')[currentUrl.split('4200/').length-1]===element.split(':')[1] ? 'MMM' : ''" *ngFor="let element of this.CookieService.get('menus').split(',')">
         <a href="{{element.split(':')[1] }}">{{element.split(':')[0]}}</a>
 
       </li>
+
     </ul>
 </div>
 <router-outlet ></router-outlet>

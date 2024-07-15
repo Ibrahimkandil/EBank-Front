@@ -58,12 +58,28 @@
               class="pb-12">Remember this Account</mat-checkbox>
           </div>
 <div class="pb-2">
-          <button mat-raised-button class="mat-primary full-width mb-16 " [disabled]="signinForm.invalid">Sign in</button>
+          <button mat-raised-button class="mat-primary v full-width mb-16 " style="cursor: pointer" [disabled]="!captchaSuccess || signinForm.invalid">Sign in</button>
 </div>
+            <div class="11">
+            <ngx-recaptcha2
+                    (reset)="handleReset()"
+                    (expire)="handleExpire()"
+                    (load)="handleLoad()"
+                    (success)="handleSuccess($event)"
+                    [siteKey]="'6LeZExAqAAAAABHwUSNZb4ZhjDG9Inz7GbwGXqX9'"
+                    [theme]="'light'"
+                    [size]="'normal'"
+                    [type]="'image'">
+            </ngx-recaptcha2>
+            </div>
           <div class="text-center" style="display: flex;flex-direction: column;">
             <a [routerLink]="'/reset'" class="mat-primary text-center full-width" style="color: blue"><u>Forgot password</u></a>
 
           </div>
+
+<!--          <ngx-recaptcha [(ngModel)]="captchaResponse" (captchaResponse)="handleCaptcha($event)"></ngx-recaptcha>-->
+<!--          <re-captcha (resolved)="handleCaptcha($event)"></re-captcha>-->
+
         </form>
       </mat-card-content>
     </mat-card>

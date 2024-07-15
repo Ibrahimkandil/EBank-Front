@@ -15,6 +15,7 @@ import {Interface2Component} from "../interface2/interface2.component";
 import {ClientFormComponent} from "../interface2/client-form/client-form.component";
 import {EmployeeFormComponent} from "./employee-form/employee-form.component";
 import { AgenceFormComponent } from './agence-form/agence-form.component';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 const routes: Routes = [
   {path: '', component: Interface3Component},
@@ -27,17 +28,19 @@ const routes: Routes = [
     EmployeeFormComponent,
     AgenceFormComponent
   ],
-  imports: [
-    RouterModule.forChild(routes),
-    CommonModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatSelectModule,
-    MatTabsModule,
-    MatPaginatorModule,
-    MatTableModule,
-    MatSortModule,
-    MatIconModule,
-    MatButtonModule,  ]
+    imports: [
+        RouterModule.forChild(routes),
+        CommonModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatSelectModule,
+        MatTabsModule,
+        MatPaginatorModule,
+        MatTableModule,
+        MatSortModule,
+        MatIconModule,
+        MatButtonModule,
+        MatProgressBarModule,
+    ]
 })
 export class Interface3Module { }

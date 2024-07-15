@@ -161,8 +161,8 @@ Montant        </th>
         ></th>
       </tr>
       </thead>
-      <tbody *ngFor="let i of listofbunch">
-      <tr class="Hovring">
+      <tbody >
+      <tr  *ngFor="let i of listofbunch" class="Hovring">
         <th
           class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
         >
@@ -198,6 +198,10 @@ Montant        </th>
         </td>
       </tr>
 
+      </tbody>
+      <tbody  *ngIf="listofbunch.length==0">
+      <h3 class="pt-3" style="    display: flex;
+                justify-content: center;">Pas du Historiques </h3>
       </tbody>
     </table>
   </div>
