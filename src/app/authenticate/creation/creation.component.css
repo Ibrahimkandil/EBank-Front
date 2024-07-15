@@ -1,0 +1,17 @@
+
+.terms-container {
+    width: 400px; /* Adjust width as per your design */
+    height: 300px; /* Adjust height as per your design */
+    overflow-y: scroll; /* Enable vertical scroll */
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+.terms-content {
+    margin-bottom: 20px; /* Provide spacing at the bottom */
+}
+
+.terms-content p {
+    margin-bottom: 10px; /* Adjust paragraph margin as needed */
+}
+

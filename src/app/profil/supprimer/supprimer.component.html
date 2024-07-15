@@ -1,0 +1,25 @@
+<br>
+<br>
+<div class="row">
+    <div class="col-4"></div>
+<div class="Div col-6">
+    <p>Voulez Vous supprimer {{type_user}}: {{user.last_name}} {{user.first_name}}</p>
+    <div class="col-12" style="    display: flex;
+    justify-content: center;">
+        <button style="height: 50%;width: 20%;"  class="bg-red-500 text-white active:bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button"  (click)="VersSupp()">Supprimer</button>
+
+        <button style="height: 50%;width: 20%;" class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="refus()" >Refuser</button>
+        <button style="height: 50%;width: 20%;" class="bg-yellow-500 text-white active:bg-yellow-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="Return()">Retourner</button>
+    </div>
+
+</div>
+</div>
+<br>
+<br>
+<div *ngIf="Supprim" class="row">
+    <div class="col-2"></div>
+    <div class=" col-10">
+<app-signature (imageDataChange)="handleImageDataChange($event)"></app-signature>
+    </div>
+    </div>
+

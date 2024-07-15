@@ -27,7 +27,7 @@ export class WalletDashboardService {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer '+this.cookieService.get('token')
     });
-     return this.http.get('http://localhost:8081/ebank/api/v1/client/wallets',{ headers: headers })
+     return this.http.get('http://localhost:8081/ebank/api/v1/client/wallets/all/'+this.cookieService.get('id'),{ headers: headers })
   }
 
 

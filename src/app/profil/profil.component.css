@@ -1,0 +1,120 @@
+mat-nav-list {
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    top: 52px;
+    left: 0;
+    bottom: 0;
+    background-color: #f0f0f0;
+    overflow-y: auto;
+    box-shadow: 3px 6px 4px 0px #0000007a;
+    padding-top: 0px;
+
+}
+.main-content {
+    margin-left: 250px; /* Same as sidebar width */
+    padding: 20px;
+}
+
+
+.custom-list-item {
+    position: relative;
+    display: block;
+    padding: 12px 24px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    background-color: #2196F3; /* Blue background color */
+    clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
+}
+
+/*.custom-list-item::after {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    top: 50%;*/
+/*    right: 0;*/
+/*    transform: translateY(-50%);*/
+/*    width: 10px; !* Adjust arrow width *!*/
+/*    height: 10px; !* Adjust arrow height *!*/
+/*    background-color: #2196F3; !* Match background color *!*/
+/*    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);*/
+/*}*/
+
+.custom-list-item:hover {
+    clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
+    background-color: #0D47A1; /* Darker blue on hover */
+}
+.regularMenu {
+    transition: background-color 0.3s ease !important;
+    clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%) !important;
+
+}
+.regularMenu:hover {
+    clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%) !important;
+    background-color: #a49c9c !important; /* Darker blue on hover */
+}
+
+input:focus {
+    --tw-ring-color: transparent !important;
+}
+.DivContent {
+
+    display: flex;
+    border-radius: 10px;
+    justify-content: space-between;
+}
+.MsgError {
+    margin: 0px;
+    padding: 20px;
+}
+.IconError {
+    font-size: large;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.DivError {
+    background-color: #ff000054;
+    border: 1px solid red;
+}
+.DivSucess {
+    background-color: rgba(0, 128, 0, 0.33);
+    border: 1px solid green;
+
+}
+
+
+.terms-container {
+    width: 400px; /* Adjust width as per your design */
+    height: 300px; /* Adjust height as per your design */
+    overflow-y: scroll; /* Enable vertical scroll */
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+.terms-content {
+    margin-bottom: 20px; /* Provide spacing at the bottom */
+}
+
+.terms-content p {
+    margin-bottom: 10px; /* Adjust paragraph margin as needed */
+}
+
+
+.DivAsking {
+    background-color: rgba(0, 89, 255, 0.33);;
+    border: 1px solid rgba(0, 89, 255, 1);
+}
+.DivError {
+    background-color:  rgb(171, 25, 25, 0.33);
+    border: 1px solid red;
+}
+.DivContent {
+
+    display: flex;
+    border-radius: 10px;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+

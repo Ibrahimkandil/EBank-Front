@@ -5,7 +5,7 @@ import {CookieService} from "ngx-cookie-service";
   providedIn: 'root'
 })
 export class CookiesGestionnaireService {
-
+MenusParCompte:any
   constructor(
     private cookieservice:CookieService
   ) { }
@@ -13,16 +13,34 @@ export class CookiesGestionnaireService {
   setCookies(object:any){
     let list = Object.keys(object);
     list.forEach(element => {
-      if(element !=="addedBy"){
-      if(element === 'body'){
+        if(element==="menus"){
+
+          let MenuParProfils=""
+          this.MenusParCompte=object[element]
+          for(let i =0;i<object[element].length;i++){
+            if(MenuParProfils===""){
+             MenuParProfils= object[element][i].index+":"+object[element][i].link
+          }else{
+              MenuParProfils= MenuParProfils+","+object[element][i].index+":"+object[element][i].link
+
+            }
+          }
+
+
+          this.cookieservice.set(element, MenuParProfils);
+
+        }
+        else{
+        if(element === 'body'){
         let bodykeys = Object.keys(object[element]);
         bodykeys.forEach(bodyelement => {
           this.cookieservice.set(bodyelement, object[element][bodyelement]);
         })
-      }else {
+      }
+        else {
       this.cookieservice.set(element, object[element]);
       }
-      }
+        }
       });
 
 
@@ -30,5 +48,7 @@ export class CookiesGestionnaireService {
 
   clearCookies(){
     this.cookieservice.deleteAll();
+      window.location.reload();
+
   }
 }

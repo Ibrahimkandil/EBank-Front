@@ -31,25 +31,9 @@ export class Interface1Component implements OnInit{
 
 
 
-    this.LoginControllerService.check_login();
-    console.log("this.cookieservice.get('type')===\"Employee\"",this.cookieservice.get('type')==="Employee")
-    console.log("this.cookieservice.get('type')===\"Client\"",this.cookieservice.get('type')==="Client")
-     //
-     // if(this.cookieservice.get('type')==="Employee"){
-     //   console.log('true')
-     //   this.router.navigateByUrl('/interface2');
-     // }
-     //    this.router.navigate(['interface2']);
-     // }
-    //   this.router.navigate(['/interface2']);
-    //
-    // }
-    // if(this.cookieservice.get('type')!=="Client"){
-    //   if(this.cookieservice.get('type')==="Employee"){
-    //     this.router.navigate(['/interface2']);
-    //   }else{
-    //   }
-    // }
+    this.LoginControllerService.check_login("client");
+
+
     this.getNotification()
     const headers = new HttpHeaders({
       'Authorization': 'Bearer '+this.cookieservice.get('token')
@@ -57,19 +41,25 @@ export class Interface1Component implements OnInit{
     this.http.get('http://localhost:8081/ebank/api/v1/client/historiques/'+this.cookieservice.get('id'), {headers: headers}).
     subscribe((res: any) => {
       this.historiques=res;
+
       this.snackBar.open("Succefull fetching Historiques", 'Success', {
         duration: 5000, // duration in milliseconds (optional)
 
       });
       this.http.get('http://localhost:8081/ebank/api/v1/client/comptes/'+this.cookieservice.get('id'), {headers: headers}).
       subscribe((resp: any) => {
+        console.log("comptes",resp)
         this.comptes=resp;
-        this.snackBar.open(resp, 'Success fetching les comptes Bancaires', {
+        this.snackBar.open("Success fetching les comptes Bancaires", "Close", {
           duration: 5000,
         });
         this.transaction=this.historiques[0]
-        this.listdesComptes=this.fetch_CompteNumber(this.transaction)
-        console.log("this.listdesComptes",this.listdesComptes)
+
+        this.listdesComptes=this.fetch_CompteNumber(this.comptes)
+        console.log("listdesComptes",this.listdesComptes)
+        console.log("listdesComptes",this.listdesComptes)
+
+
         let transactionByCompteNumber=this.TransactionByCompteNumber(this.transaction,this.listdesComptes[0])
         this.fetchfive(this.listofbunch,transactionByCompteNumber)
         this.transfert=this.historiques[1]
@@ -78,7 +68,9 @@ export class Interface1Component implements OnInit{
         let total=this.comptes[0].balance;
         let totwith=0
         totwith=this.calcDepense(withdraw)
-        this.compareDate(this.historiques[0][4]['date_Expiration'])
+
+        totwith=totwith+this.calcDepense(this.historiques[1])
+        // this.compareDate(this.historiques[0][4]['date_Expiration'])
         this.Create_PieChart(totwith,total)
       }, (err: any) => {})
     }, (err: any) => {})
@@ -119,6 +111,7 @@ export class Interface1Component implements OnInit{
     let total=this.comptes.find((i:any)=>i['account_number']===e).balance;
     let totwith=0
     totwith=this.calcDepense(withdraw)
+
     this.Create_PieChart(totwith,total)
 
   }
@@ -156,8 +149,8 @@ fetch_CompteNumber(transaction:any):any{
   let seenAccountNumbers = new Set<string>();
   let listdesComptes:any=[]
 
-  this.transaction.forEach((element: any) => {
-    let accountNumber = element.compte_Bancaire.account_number;
+  transaction.forEach((element: any) => {
+    let accountNumber = element.account_number;
 
     // Check if the account number hasn't been added already
     if (!seenAccountNumbers.has(accountNumber)) {
@@ -165,6 +158,7 @@ fetch_CompteNumber(transaction:any):any{
       seenAccountNumbers.add(accountNumber); // Add to the Set to track uniqueness
     }
   });
+  console.log("listes",listdesComptes)
   return listdesComptes
 }
 demandeContrat:any=[]
@@ -203,8 +197,7 @@ getNotification(){
           });
 
 
-          console.log("this.demandeContrat",this.demandeContrat)
-          console.log("this.reclamations",this.reclamations)
+
         }, (err: any) => {})
 }
   formatDate(date: Date): string {

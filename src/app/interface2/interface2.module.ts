@@ -13,6 +13,8 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatIconModule} from "@angular/material/icon";
 import { ClientFormComponent } from './client-form/client-form.component';
 import {MatButtonModule} from "@angular/material/button";
+import {AppModule} from "../app.module";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 const routes: Routes = [
   {path: '', component: Interface2Component},
     {path: 'form', component: ClientFormComponent}
@@ -22,7 +24,9 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     Interface2Component,
-    ClientFormComponent
+    ClientFormComponent,
+
+
   ],
     imports: [
         RouterModule.forChild(routes),
@@ -36,6 +40,8 @@ const routes: Routes = [
         MatSortModule,
         MatIconModule,
         MatButtonModule,
+        MatProgressBarModule,
+
     ]
 })
 export class Interface2Module { }

@@ -79,15 +79,17 @@ export class HeaderStatsComponent implements OnInit {
   constructor(private  walletDashboardService:WalletDashboardService, private snackBar: MatSnackBar,) {
     this.screenWidth = window.innerWidth;
     this.walletDashboardService.fetchWallets().subscribe((data: any) => {
-      this.snackBar.open("Success"), 'Error', {
+      this.snackBar.open("Success", 'Error', {
         duration: 5000, // duration in milliseconds (optional)
-      };
+      });
       if(data){
         this.originalData=data;
         this.processData(this.originalData);
 
       }
     }, (error: any) => {
+      console.log("err",error)
+
     });
 
   }
@@ -95,22 +97,19 @@ export class HeaderStatsComponent implements OnInit {
     window.addEventListener('resize', this.onResize.bind(this));
   }
   advance(){
-    console.log("index",this.index)
+
 
     if(this.index==this.totalpages-1){
     this.index=0;
   }else{
     this.index=this.index+1;}
-    console.log("index",this.index)
   }
 
   goback(){
-    console.log("index",this.index)
     if(this.index==0){
       this.index=this.totalpages-1;
     }else{
       this.index=this.index-1;}
-    console.log("index",this.index)
   }
   gothere(index:number){
     this.index=index;
@@ -144,8 +143,7 @@ export class HeaderStatsComponent implements OnInit {
         }
         this.datasources.push(row);
       }
-      console.log("datasources", this.datasources);
-      console.log("datasources length", this.datasources.length);
+
       this.totalpages = this.datasources.length;
     }
   }

@@ -2,14 +2,24 @@
 <div class="row-6 col-12" style="    display: flex;
     align-items: center;
     flex-direction: column;">
+
+        <div class="col-md-8" style="    padding-left: 5%;
+    padding-right: 5%;">
+    <mat-progress-bar mode="determinate" class=" col-10 session-progress"></mat-progress-bar>
+        </div>
+        <br>
+
+
     <img style="width: 50px;height: 50px" src="assets/images/Bank.png" alt="logo" />
     <h2>Formulaire d'Ajout Un Nouveau Client</h2>
 </div>
 <br>
 <div class="row">
     <div class="col-2"></div>
-    <div class="col-md-8">
-<form
+    <div class="col-md-8" style="    padding-left: 5%;
+    padding-right: 5%;">
+
+        <form
         style="    display: flex;
     flex-direction: column;
     " [formGroup]="clientForm" (ngSubmit)="onSubmit()">
@@ -47,7 +57,7 @@
 
     <mat-form-field appearance="fill">
         <mat-label>Addresse</mat-label>
-        <input matInput formControlName="address">
+        <input matInput formControlName="Address">
     </mat-form-field>
 
 

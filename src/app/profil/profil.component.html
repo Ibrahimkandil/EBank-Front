@@ -1,0 +1,125 @@
+<mat-nav-list>
+    <a mat-list-item [ngClass]="id_div===1 ? 'custom-list-item' : 'regularMenu'"  (click)="display(1)">General Settings</a>
+    <a mat-list-item [ngClass]="id_div===2 ? 'custom-list-item' : 'regularMenu'" (click)="display(2)">Changer Mots du Passe</a>
+    <a mat-list-item  *ngIf="this.cookieservice.get('type')!=='Admin'" [ngClass]="id_div===3 ? 'custom-list-item' : 'regularMenu'" (click)="display(3)">Suppression Du Compte</a>
+    <!-- Add more navigation items as needed -->
+</mat-nav-list>
+
+<div *ngIf="id_div==1" class="main-content">
+    <div class="detail-item">
+        <img *ngIf="Form.get('image_data')?.value" class="Image" [src]="convertImageDataToBase64(Form.get('image_data')?.value)" style="    height: 20%;width: 20%;" alt="Image" >
+        <img *ngIf="!Form.get('image_data')?.value" class="Image" src="/assets/images/userlogo.png" alt="Default Image">
+    </div>
+    <br>
+    <form class="row col-6" [formGroup]="Form" (ngSubmit)="onSubmit()">
+        <div *ngFor="let input of list" class="col-md-6 form-group">
+
+            <mat-form-field *ngIf="input!=='image_data' && input!=='sexe' && input!=='etatCivil' && input!=='statutEmploi'">
+                <input matInput [disabled]="input ==='email' ||  input==='mail'" placeholder="{{ input | titlecase }}" type="text" [formControlName]="input" id="{{input}}" class="form-control"      required>
+            </mat-form-field>
+            <mat-form-field  *ngIf="input==='sexe' || input==='etatCivil' || input==='statutEmploi'"      appearance="fill">
+                <mat-label>{{input}}</mat-label>
+                <mat-select [formControlName]="input">
+                    <mat-option *ngFor="let status of SelectList[input]" [value]="status">{{ status }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="input==='image_data'" style="    display: flex;
+    align-items: center;">
+                <input type="file"  (change)="onFileSelected($event)" />
+                <i style="color:red;cursor: pointer" *ngIf="Form.get('image_data')?.value!==null" (click)="resetImage()" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <!--
+      <div *ngIf="Form.get(input)!.errors && Form.get(input)!.touched" class="invalid-feedback">-->
+<!--                <div *ngIf="Form.get(input)!.hasError('required')">Field is required.</div>-->
+<!--            </div>-->
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary" [disabled]="!Form.valid">Submit</button>
+    </form>
+
+</div>
+<div  *ngIf="id_div==2" class=" col-8 main-content"
+      style="display: flex;
+    justify-content: center;
+    flex-direction: column;">
+    <div  [ngClass]="Errror ? 'DivError' : Sucess ? 'DivSucess' : ''" class="DivContent" *ngIf="Errror || Sucess" >
+        <h4 class="MsgError" >{{MsgToDisplay}}</h4>
+        <i   class=" IconError fa fa-times" aria-hidden="true" (click)="hide()"></i>
+    </div>
+    <br>
+    <form  style="    display: flex;
+    flex-direction: column;" (ngSubmit)="resetPassword()">
+        <mat-form-field>
+            <input matInput placeholder="Saisir Votre Mot du Passe Ancienne" type="password" [(ngModel)]="OldPassword" name="OldPassword" required>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Saisir votre nouveau Mot du Passe" type="password" [(ngModel)]="newPassword" name="newPassword" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Saisir à nouveau le  Mot du Passe" type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="!formValid()">Changer le mot du Passe Password</button>
+    </form>
+
+</div>
+<div  *ngIf="this.cookieservice.get('type')!=='Admin' && id_div==3" class="main-content">
+<!--Confirmation de suppression-->
+    <div *ngIf="confirmationDelete"
+         style="    display: flex;
+    justify-content: center;">
+        <div   class=" DivAsking DivContent col-8" >
+            <h4 class="MsgError text-center" >êtes vous Sure du supprimer Votre Compte?</h4>
+            <!--            <i   class=" IconError fa fa-times" aria-hidden="true" (click)="hide()"></i>-->
+            <div class="col-12" style="    display: flex;
+    justify-content: space-around;">
+                <button  class="bg-yellow-500  text-white active:bg-yellow-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="Refresh()">Annuler</button>
+                <button   class="bg-red-500 text-white active:bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="signSuppression()">Supprimer</button>
+
+            </div>    </div>
+    </div>
+    <!--Message d'erreur si on ne peut pas supprimer le compte-->
+    <div *ngIf="cantDelete"
+         style="    display: flex;
+    justify-content: center;">
+        <div   class=" DivError DivContent col-8" >
+            <h4 class="MsgError text-center" >Vous ne pouvez pas supprimer Votre Compte Car vous avez Un contrat no payé</h4>
+            <!--            <i   class=" IconError fa fa-times" aria-hidden="true" (click)="hide()"></i>-->
+            <div class="col-12" style="    display: flex;
+    justify-content: space-around;">
+                <button  class="bg-yellow-500  text-white active:bg-yellow-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="Refresh()">Annuler</button>
+
+            </div>    </div>
+    </div>
+    <br>
+    <div class="terms-container" style="width: 100%">
+        <h2>Termes et Conditions pour la Clôture de Compte</h2>
+        <div class="terms-content" >
+            <p>En procédant à la clôture de votre compte bancaire, vous acceptez les termes suivants :</p>
+            <ol>
+                <li>Une fois la demande de clôture soumise, elle ne peut être annulée. Assurez-vous de prendre cette décision avec soin.</li>
+                <li>Vous devez vous assurer que toutes les dettes, prêts ou autres obligations liés à ce compte sont entièrement réglés avant la clôture.</li>
+                <li>La banque se réserve le droit de rejeter la demande de clôture si des transactions en attente ou des litiges restent non résolus. Veuillez résoudre tout problème ou conflit en suspens avant de soumettre votre demande de clôture.</li>
+                <li>Les fonds restants sur le compte seront transférés vers le compte désigné spécifié par vous. Assurez-vous de fournir les informations de compte correctes pour éviter tout retard dans le transfert des fonds.</li>
+                <li>Le processus de clôture peut prendre jusqu'à [nombre de jours] pour être complet, pendant lequel l'accès au compte peut être restreint. Veuillez prévoir suffisamment de temps pour cette procédure, en particulier si vous avez des paiements récurrents ou des engagements financiers.</li>
+                <li>Vous vous engagez à retourner toutes les cartes de débit/crédit, chèques et autres matériels liés à ce compte dès que la clôture est confirmée. Cela inclut également tout matériel de sécurité tel que les tokens ou les clés d'accès.</li>
+                <li>En fermant ce compte, vous reconnaissez avoir examiné et accepté de respecter les politiques de clôture de compte de la banque. Pour toute question concernant ces politiques, veuillez contacter notre service clientèle avant de procéder à la clôture.</li>
+            </ol>
+            <p>
+                En cochant la case ci-dessous, vous confirmez avoir lu, compris et accepté les Termes et Conditions pour la clôture de votre compte bancaire.
+            </p>
+
+        </div>
+    </div>
+    <br>
+    <mat-checkbox   (change)="h2()" >I agree to the Terms and Conditions</mat-checkbox>
+
+
+    <br>
+
+
+
+    <app-signature (imageDataChange)="handleImageDataChange($event)" *ngIf="agreeToTerms"></app-signature>
+</div>
+

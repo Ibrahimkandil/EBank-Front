@@ -46,3 +46,18 @@
     padding-left: 10px;
     padding-right: 10px;
 }
+
+
+.sized {
+    width : 55% !important;
+}
+@media (max-width: 900px) {
+    .sized {
+        width : 90% !important;
+    }
+
+}
+.Hovring:hover {
+  background-color: rgba(69, 71, 176, 0.5);
+  cursor: pointer;
+}

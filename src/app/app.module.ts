@@ -53,6 +53,20 @@ import {WalletDashboardService} from "./mayssem/WalletDashboard/wallet-dashboard
 import { ResetpasswordComponent } from './authenticate/resetpassword/resetpassword.component';
 import { Interface2Component } from './interface2/interface2.component';
 import {Interface2Module} from "./interface2/interface2.module";
+import { FicheClientComponent } from './Fiches/fiche-client/fiche-client.component';
+import { SendEmailDialogComponent } from './authenticate/send-email-dialog/send-email-dialog.component';
+import { Interface3Component } from './interface3/interface3.component';
+import {Interface3Module} from "./interface3/interface3.module";
+import {FicheEmployeeComponent} from "./Fiches/fiche-employee/fiche-employee.component";
+import { ProfilComponent } from './profil/profil.component';
+import { SignatureComponent } from './tools/signature/signature.component';
+
+import SignaturePad from "signature_pad";
+import { CreationComponent } from './authenticate/creation/creation.component';
+import { SupprimerComponent } from './profil/supprimer/supprimer.component';
+import { QrcodeComponent } from './tools/qrcode/qrcode.component';
+import {NgxQRCodeModule} from "ngx-qrcode2";
+import { NgxCaptchaModule } from 'ngx-captcha'; // Import NgxCaptchaModule
 import { CompteComponent } from './Ahmed/compte/compte.component';
 import { TransactionComponent } from './Ahmed/transaction/transaction.component';
 import { TransfertComponent } from './Ahmed/transfert/transfert.component';
@@ -70,6 +84,17 @@ import { QRCodeModule } from 'angularx-qrcode';
     AppLoaderComponent,
     NotFoundComponent,
     ResetpasswordComponent,
+    FicheClientComponent,
+    SendEmailDialogComponent,
+    FicheEmployeeComponent,
+    ProfilComponent,
+    SignatureComponent,
+    CreationComponent,
+    SupprimerComponent,
+    QrcodeComponent,
+
+
+
     CompteComponent,
     TransactionComponent,
     TransfertComponent,
@@ -126,6 +151,8 @@ import { QRCodeModule } from 'angularx-qrcode';
     BrowserAnimationsModule,
     MatIconModule,
     FormsModule,
+    NgxQRCodeModule,
+    NgxCaptchaModule,
     QRCodeModule,
     ToastrModule.forRoot(),
 
@@ -133,12 +160,14 @@ import { QRCodeModule } from 'angularx-qrcode';
   ],
   exports: [
     Interface1Module,
-      Interface2Module
+    Interface2Module,
+    Interface3Module,
 
 
   ],
 
-  providers: [AppLoaderService,CookieService,WalletDashboardService],
+  providers: [AppLoaderService,CookieService,WalletDashboardService,
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

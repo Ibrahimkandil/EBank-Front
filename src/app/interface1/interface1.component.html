@@ -42,11 +42,14 @@
     border-radius: 1rem;
     display: flex;
     justify-content: space-around;
-    align-items: center;">
+    align-items: center;
+    width: 96.5%;
+    margin-left: 1.5%;
+">
   <button style="height: 50%;width: 20%;" class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Depôt</button>
-  <button style="height: 50%;width: 20%;"  class="bg-yellow-500 text-white active:bg-indigo-500 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">retirer</button>
-  <button style="height: 50%;width: 20%;"  class="bg-red-500 text-white active:bg-indigo-500 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Transfert</button>
-  <button style="height: 50%;width: 20%;"  class="bg-emerald-500 text-white active:bg-indigo-500 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Créer Compte Bancaire</button>
+  <button style="height: 50%;width: 20%;"  class="bg-yellow-500 text-white active:bg-yellow-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">retirer</button>
+  <button style="height: 50%;width: 20%;"  class="bg-red-500 text-white active:bg-red-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Transfert</button>
+  <button style="height: 50%;width: 20%;"  class="bg-emerald-500 text-white active:bg-emerald-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Créer Compte Bancaire</button>
 
 
 </div>
@@ -65,7 +68,7 @@
           <mat-tab label="Demandes/Contrats">
             <table class="items-center w-full bg-transparent border-collapse">
               <thead>
-              <tr>
+              <tr >
                 <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Type</th>
                 <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Montant</th>
                 <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Description</th>
@@ -74,7 +77,7 @@
 
               </thead>
               <tbody  *ngIf="demandeContrat.length!=0">
-              <tr *ngFor="let ele of demandeContrat">
+              <tr  class="Hovring" *ngFor="let ele of demandeContrat">
                 <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">{{ele.typeObj ||  ele.type}}</th>
                 <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{{ele.montant}}</td>
                 <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{{ele.raisonDemandeCredit || ele.description }}</td>
@@ -99,7 +102,7 @@
               </tr>
               </thead>
               <tbody  *ngIf="demandeContrat.length!=0">
-              <tr *ngFor="let ele of reclamations">
+              <tr class="Hovring" *ngFor="let ele of reclamations">
                 <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">{{ele.type}}</th>
                 <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{{ele.date.split("T")[0]+" "+ele.date.split("T")[1].split("Z")[0]  }}</td>
                 <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{{ele.subject }}</td>
@@ -158,8 +161,8 @@ Montant        </th>
         ></th>
       </tr>
       </thead>
-      <tbody *ngFor="let i of listofbunch">
-      <tr>
+      <tbody >
+      <tr  *ngFor="let i of listofbunch" class="Hovring">
         <th
           class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
         >
@@ -195,6 +198,10 @@ Montant        </th>
         </td>
       </tr>
 
+      </tbody>
+      <tbody  *ngIf="listofbunch.length==0">
+      <h3 class="pt-3" style="    display: flex;
+                justify-content: center;">Pas du Historiques </h3>
       </tbody>
     </table>
   </div>

@@ -1,0 +1,94 @@
+<br>
+<div class="row-6 col-12" style="    display: flex;
+    align-items: center;
+    flex-direction: column;">
+    <div class="col-md-8" style="    padding-left: 5%;
+    padding-right: 5%;">
+        <mat-progress-bar mode="determinate" class=" col-10 session-progress"></mat-progress-bar>
+    </div>
+    <br>
+    <img style="width: 50px;height: 50px" src="assets/images/Bank.png" alt="logo" />
+    <h2>Formulaire d'Ajout Un Nouveau Employee</h2>
+</div>
+<br>
+<div class="row" style="    padding-left: 5%;
+    padding-right: 5%;">
+    <div class="col-2"></div>
+    <div class="col-md-8">
+<form style="    display: flex;
+    flex-direction: column;" [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+
+    <div
+            style="display: flex;
+    justify-content: space-between;">
+        <!-- Name -->
+    <mat-form-field  style="width: 49%;" appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
+        <mat-error *ngIf="employeeForm.get('name')?.invalid">Name is required</mat-error>
+    </mat-form-field>
+    <!-- last_name -->
+    <mat-form-field style="width: 49%;"  appearance="fill">
+        <mat-label>Prénom</mat-label>
+        <input matInput formControlName="last_name">
+        <mat-error *ngIf="employeeForm.get('last_name')?.invalid">Prénom is required</mat-error>
+    </mat-form-field>
+    </div>
+    <div
+            style="display: flex;
+    justify-content: space-between;">
+        <!-- cin -->
+        <mat-form-field style="width: 49%"  appearance="fill">
+            <mat-label>CIN</mat-label>
+            <input matInput formControlName="cin">
+            <mat-error *ngIf="employeeForm.get('cin')?.invalid">cin is required</mat-error>
+        </mat-form-field>
+        <!-- last_name -->
+        <mat-form-field  style="width: 49%"  appearance="fill">
+            <mat-label>Genre</mat-label>
+            <mat-select formControlName="sexe">
+                <mat-option *ngFor="let sex of sexes" [value]="sex">{{ sex }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <!-- Email -->
+    <mat-form-field  appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="mail">
+        <mat-error *ngIf="employeeForm.get('mail')?.invalid">Valid email is required</mat-error>
+    </mat-form-field>
+
+    <!-- Salary -->
+    <mat-form-field  appearance="fill">
+        <mat-label>Salary</mat-label>
+        <input matInput type="number" formControlName="salaire">
+        <mat-error *ngIf="employeeForm.get('salaire')?.invalid">Salary is required</mat-error>
+    </mat-form-field>
+
+    <!-- Address -->
+    <mat-form-field  appearance="fill">
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="address">
+        <mat-error *ngIf="employeeForm.get('address')?.invalid">Address is required</mat-error>
+    </mat-form-field>
+
+
+
+<!--    <mat-form-field  appearance="fill">-->
+<!--        <mat-label>Prénom</mat-label>-->
+<!--        <input matInput formControlName="last_name">-->
+<!--        <mat-error *ngIf="employeeForm.get('last_name')?.invalid">cin is required</mat-error>-->
+<!--    </mat-form-field>-->
+
+    <!-- Other fields (cin, Date_ajout, added_by, last_name, image_data, agence, Sexe) -->
+    <!-- Implement as per your UI/UX requirements -->
+    <div>
+        <input type="file" (change)="onFileSelected($event)" />
+    </div>
+    <!-- Submit Button -->
+   <br>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!employeeForm.valid">Submit</button>
+
+</form>
+    </div>
+</div>

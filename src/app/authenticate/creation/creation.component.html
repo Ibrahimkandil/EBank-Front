@@ -1,0 +1,24 @@
+<div class="col-12">
+    <div class="terms-container" style="width: 100%">
+        <h2>Termes et Conditions pour la Clôture de Compte</h2>
+        <div class="terms-content" >
+            <p>En procédant à l'ouverture d'un nouveau compte bancaire et à sa vérification, vous acceptez les termes suivants :</p>
+            <ol>
+                <li>Une fois que vous soumettez votre demande d'ouverture de compte, elle ne peut pas être annulée. Assurez-vous de prendre cette décision avec soin.</li>
+                <li>Vous devez vous assurer que toutes les informations fournies pour l'ouverture du compte sont exactes et complètes.</li>
+                <li>La banque se réserve le droit de refuser la demande d'ouverture de compte si les informations fournies sont incomplètes ou incorrectes. Assurez-vous que toutes les exigences de vérification sont remplies avant de soumettre votre demande.</li>
+                <li>Les fonds déposés sur le compte seront transférés vers le nouveau compte que vous avez spécifié. Assurez-vous de fournir les informations de compte correctes pour éviter tout retard dans le transfert des fonds.</li>
+                <li>Le processus d'ouverture du compte peut prendre un certain nombre de jours pour être complet. Pendant cette période, l'accès au compte peut être limité. Veuillez prévoir suffisamment de temps pour cette procédure, surtout si vous avez des paiements récurrents ou des obligations financières.</li>
+                <li>Vous vous engagez à respecter toutes les politiques et procédures de la banque concernant l'ouverture de compte. Pour toute question concernant ces politiques, veuillez contacter notre service clientèle avant de procéder.</li>
+            </ol>
+            <p>En cochant la case ci-dessous, vous confirmez avoir lu, compris et accepté les Termes et Conditions pour l'ouverture et la vérification de votre nouveau compte bancaire.</p>
+
+        </div>
+    </div>
+    <br>
+    <mat-checkbox  [(ngModel)]="agreeToTerms">I agree to the Terms and Conditions</mat-checkbox>
+
+    <br>
+    <app-signature (imageDataChange)="handleImageDataChange($event)" *ngIf="agreeToTerms"></app-signature>
+<br>
+</div>

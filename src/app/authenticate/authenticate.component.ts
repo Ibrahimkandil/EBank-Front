@@ -9,6 +9,8 @@ import {AppLoaderService} from "./app-loader/app-loader.service";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {CookiesGestionnaireService} from "./CookiesGestionnaire.service";
 import {LoginControllerService} from "./login-controller.service";
+import { NgxCaptchaModule, ReCaptcha2Component } from 'ngx-captcha'; // Import NgxCaptchaModule and ReCaptcha2Component
+
 
 @Component({
   selector: 'app-authenticate',
@@ -18,16 +20,21 @@ import {LoginControllerService} from "./login-controller.service";
 export class AuthenticateComponent {
   @ViewChild(MatProgressBar) progressBar!: MatProgressBar;
   @ViewChild(MatButton) submitButton!: MatButton;
+  captchaResponse!: string;
+  captchaValid: boolean = false;
+  loginDisabled: boolean = true;
 
   signinForm!: FormGroup;
   errorMsg = '';
-  // return: string;
-
+  // return: string;.
+  Errror:boolean=false
   private _unsubscribeAll: Subject<any>;
   show_Error: boolean = false;
 
   constructor(
-    private jwtAuth: JwtAuthService,
+      // private recaptchaLoaderService: RecaptchaLoaderService,
+
+  private jwtAuth: JwtAuthService,
     private matxLoader: AppLoaderService,
     private router: Router,
     private route: ActivatedRoute,
@@ -35,7 +42,7 @@ export class AuthenticateComponent {
     private snackBar: MatSnackBar,
     private LoginControllerService:LoginControllerService
   ) {
-    this.LoginControllerService.check_login();
+    this.LoginControllerService.check_login("none");
     this._unsubscribeAll = new Subject();
   }
 
@@ -74,14 +81,16 @@ export class AuthenticateComponent {
         this.snackBar.open("Success", 'Error', {
           duration: 5000, // duration in milliseconds (optional)
         });
-        console.log('response', response);
+
+
         this.router.navigateByUrl("interface1");
       }, err => {
         this.submitButton.disabled = false;
         this.progressBar.mode = 'determinate';
-        this.errorMsg = err.message;
-        console.log(err);
-        this.snackBar.open(err.toString(), 'Error', {
+        this.errorMsg = err.error;
+        console.log("err",err);
+        this.Errror=true;
+        this.snackBar.open(err.error, 'Error', {
           duration: 5000, // duration in milliseconds (optional)
         });
       })
@@ -94,9 +103,35 @@ export class AuthenticateComponent {
     this.matxLoader.open(`Automatically Signing you in! \n Return url: ${this.jwtAuth.return.substring(0, 20)}...`, {width: '320px'});
     setTimeout(() => {
       this.signin();
-      console.log('autoSignIn');
+
       this.matxLoader.close()
     }, 2000);
   }
+  hide() {
+    this.Errror = false;
 
+  }
+  public captchaIsLoaded: boolean = false;
+  public captchaSuccess: boolean = false;
+  public captchaIsExpired: boolean = false;
+
+  handleReset(): void {
+    this.captchaSuccess = false;
+    this.captchaResponse = '';
+  }
+
+  handleExpire(): void {
+    this.captchaSuccess = false;
+    this.captchaIsExpired = true;
+  }
+
+  handleLoad(): void {
+    this.captchaIsLoaded = true;
+    this.captchaIsExpired = false;
+  }
+
+  handleSuccess(event: any): void {
+    this.captchaSuccess = true;
+    this.captchaResponse = event;
+  }
 }

@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {CookieService} from "ngx-cookie-service";
+import {Router} from "@angular/router";
+import {MatButton} from "@angular/material/button";
+import {MatProgressBar} from "@angular/material/progress-bar";
+
 
 @Component({
   selector: 'app-client-form',
@@ -10,6 +14,10 @@ import {CookieService} from "ngx-cookie-service";
   styleUrls: ['./client-form.component.css']
 })
 export class ClientFormComponent {
+  @ViewChild(MatButton) submitButton!: MatButton;
+  @ViewChild(MatProgressBar) progressBar!: MatProgressBar;
+
+
   clientForm: FormGroup;
 
 
@@ -27,7 +35,8 @@ export class ClientFormComponent {
       private fb: FormBuilder,
       private http: HttpClient,
       private snackBar: MatSnackBar,
-      private cookieService: CookieService
+      private cookieService: CookieService,
+      private router: Router
 
   ) {
 
@@ -52,10 +61,11 @@ export class ClientFormComponent {
   }
 
   onSubmit(): void {
+    this.submitButton.disabled = true;
+    this.progressBar.mode = 'indeterminate';
     if (this.clientForm.valid) {
       const formData = this.clientForm.value;
-      console.log('Form data:', formData);
-      console.log('Form data:', this.clientForm);
+
 
 
       let id=this.cookieService.get('id');
@@ -64,13 +74,17 @@ export class ClientFormComponent {
       });
       this.http.post<any>('http://localhost:8081/ebank/api/v1/employee/addClient/'+id, formData,{headers: headers}).subscribe(
           response => {
-            console.log('Form submission successful:', response);
             this.snackBar.open('Client data saved successfully', 'Close', {
-              duration: 3000,
+              duration: 5000,
             });
+
+
+            this.router.navigate(['/fiche/Client/'+response.id]);
             // this.clientForm.reset();
           },
           error => {
+            this.submitButton.disabled = false;
+            this.progressBar.mode = 'determinate';
             console.error('Form submission error:', error);
             this.snackBar.open('Error saving client data', 'Close', {
               duration: 3000,
