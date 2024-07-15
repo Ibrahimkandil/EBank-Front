@@ -17,7 +17,7 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
   options1: string[] = [];
   options2: string[] = [];
   options3: string[] = [];
-  account_number=null
+  accountNumber =null
 
   input_Compte:boolean=true
   input_currency:boolean=true
@@ -94,7 +94,7 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
     subscribe((resp: any) => {
       this.comptes=resp;
       for(let i =0;i<this.comptes.length;i++){
-        this.listcomptes[i]=this.comptes[i].account_number
+        this.listcomptes[i]=this.comptes[i].accountNumber
       }
 
 
@@ -109,8 +109,8 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
         this.selectedRate = null
 
       }
-    this.datas_CompteBancaire = this.comptes.find((element: any) => element.account_number === e);
-    this.account_number = this.datas_CompteBancaire.account_number
+    this.datas_CompteBancaire = this.comptes.find((element: any) => element.accountNumber === e);
+    this.accountNumber = this.datas_CompteBancaire.accountNumber
 
     if(this.meth==="Buy") {
 
@@ -119,7 +119,7 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
       let body = {
         "currency": this.cuurency,
         "id_client": parseInt(this.cookieservice.get('id')),
-        "account_number": this.datas_CompteBancaire.account_number
+        "accountNumber": this.datas_CompteBancaire.accountNumber
 
       }
       this.http.post<any>('http://localhost:8081/ebank/api/v1/client/wallets/Bycurrency',body, {headers: this.headers})
@@ -177,7 +177,7 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
         subscribe((resp: any) => {
           this.cuurency=null
           this.datas_CompteBancaire=null
-          this.account_number=null
+          this.accountNumber=null
           this.form.get('input1')?.setValue(0)
         },(err:any)=>{})
       }
@@ -196,7 +196,7 @@ export class CardBarChartComponent implements OnInit, AfterViewInit {
       subscribe((resp: any) => {
         this.cuurency=null
         this.datas_CompteBancaire=null
-        this.account_number=null
+        this.accountNumber=null
         this.form.get('input1')?.setValue(0)
       },(err:any)=>{
         console.log("err",err)
@@ -256,7 +256,7 @@ task=""
     let body={
       "currency":e,
       "id_client":parseInt(this.cookieservice.get('id')) ,
-      "account_number":this.datas_CompteBancaire.account_number
+      "accountNumber":this.datas_CompteBancaire.accountNumber
 
     }
 
@@ -287,7 +287,7 @@ task=""
       this.selectedRate = null
       this.objWallet=null
       this.datas_CompteBancaire=null
-      this.account_number=null
+      this.accountNumber=null
       this.input_currency=true
       this.valueIncurrency=0
       this.supthanbalance=false
